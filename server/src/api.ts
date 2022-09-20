@@ -1,9 +1,11 @@
 import axios from "axios";
+import { key, version } from "./mealAPI";
 var _ = require("lodash");
 const express = require("express");
 const router = express.Router();
 
-axios.defaults.baseURL = "https://www.themealdb.com/api/json/v2/9973533/";
+axios.defaults.baseURL =
+  "https://www.themealdb.com/api/json/" + version + "/" + key + "//";
 // middleware that is specific to this router
 router.use((req, res, next) => {
   console.log("Time: ", Date.now());
