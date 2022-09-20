@@ -36,19 +36,22 @@ router.get("/get/categories", (req, res) => {
 
 //gets meals filtered by category, area, ingredients
 router.post("/post/filterMeals", (req, res) => {
-  const mealByCategory = axios.get("filter.php?c=" + req.body.category);
-  const mealByArea = axios.get("filter.php?a=" + req.body.area);
-  const mealByIngredients = axios.get(
-    "filter.php?i=" + req.body.ingredients.toString()
-  );
-  const mealByQuery = axios.get("search.php?s=" + req.body.query);
+  let filterPromises = [];
+  if (req.body.category)
+    filterPromises.push(axios.get("filter.php?c=" + req.body.category));
+  if (req.body.area)
+    filterPromises.push(axios.get("filter.php?a=" + req.body.area));
+  if (req.body.ingredients)
+    filterPromises.push(
+      axios.get("filter.php?i=" + req.body.ingredients.toString())
+    );
+  if (req.body.query)
+    filterPromises.push(axios.get("search.php?s=" + req.body.query));
 
-  axios
-    .all([mealByCategory, mealByArea, mealByIngredients, mealByQuery])
-    .then((response) => {
-      console.log(_.intersectionBy(...response.map(getMeals), "idMeal"));
-      res.send(_.intersectionBy(...response.map(getMeals), "idMeal"));
-    });
+  axios.all(filterPromises).then((response) => {
+    console.log(_.intersectionBy(...response.map(getMeals), "idMeal"));
+    res.send(_.intersectionBy(...response.map(getMeals), "idMeal"));
+  });
 });
 
 function getMeal(response) {
