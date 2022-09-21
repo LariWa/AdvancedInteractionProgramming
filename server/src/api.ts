@@ -14,7 +14,6 @@ router.use((req, res, next) => {
 // define the home page route
 //gets random meal
 router.get("/get/randomMeal", (req, res) => {
-  console.log(1)
   axios
     .get("/random.php")
     .then(getMeal)
