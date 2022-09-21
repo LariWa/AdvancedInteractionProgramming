@@ -25,7 +25,9 @@ export type getMealAction = getMealActionSuccess | getMealActionError;
 export const getMeal = () => {
     return async (dispatch:Dispatch<getMealAction>) => { 
         //axios.get('https://www.boredapi.com/api/activity')
-        axios.get('https://localhost:8080/api/get/randomMeal', {withCredentials:true })
+        axios.get('https://localhost:8080/api/get/randomMeal/', {
+            withCredentials:true,
+        })
                 //fetch('www.themealdb.com/api/json/v1/1/lookup.php?i=52772')
         //.then(data => data)
         .then(data => {

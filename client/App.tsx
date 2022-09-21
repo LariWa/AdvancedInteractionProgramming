@@ -11,11 +11,11 @@ import {getMeal} from './redux/actions/getMealActions';
 
 export default function App() {
   const [fetchedData, setFetchedData] = React.useState("");
-  React.useEffect(()=>{
-    getAPI().then(data => {setFetchedData(data)
+  // React.useEffect(()=>{
+  //   getAPI().then(data => {setFetchedData(data)
 
-  })
-  }, [])
+  // })
+  // }, [])
   
   const dispatch = useDispatch(); 
   const onClick = () => {
