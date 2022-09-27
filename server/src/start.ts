@@ -3,6 +3,7 @@ import path from "path";
 import https from "https";
 import fs from "fs";
 import cors from "cors";
+const UserRouter = require("./db/UserController"); //import User Routes
 const api = require("./api");
 const app = express();
 const port = process.env.PORT || 8080;
@@ -19,6 +20,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.status(200).send(htmlFile);
 });
 app.use("/api", api);
+app.use("/user", UserRouter);
 
 const server = https.createServer(options, app);
 server.listen(port, () => {

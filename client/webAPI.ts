@@ -10,12 +10,10 @@ import axios from "axios";
 //   );
 export const getAPI = () =>
   axios.post(
-    "https://localhost:8080/api/post/filterMeals",
+    "https://localhost:8080/user/login",
     {
-      category: null,
-      area: "Canadian",
-      ingredients: ["Eggs"],
-      query: "BeaverTails",
+      username: "lari",
+      password: "test",
     },
     { withCredentials: true }
   );
