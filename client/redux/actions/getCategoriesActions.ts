@@ -1,33 +1,31 @@
 import { Dispatch } from 'react';
 import axios from 'axios'
+import { Alert } from 'react-native';
 
-//Get random meal (no par)
-//Get meal details (id)
-//Get filtered meal (category, area, ingredients)
-export interface MealModel {
+
+export interface CategoriesModel {
     firstName: string;
     lastName: string;
     subscription: string;
     token: string;
 }
 
-
-export interface getMealActionSuccess {
-    readonly type: 'GET_MEAL_SUCCESS';
+export interface getCategoriesActionSuccess {
+    readonly type: 'GET_CATEGORIES_SUCCESS';
     payload: any
 }
 
-export interface getMealActionLoading {
-    readonly type: 'GET_MEAL_LOADING';
+export interface getCategoriesActionLoading {
+    readonly type: 'GET_CATEGORIES_LOADING';
     payload: any
 }
 
-export interface getMealActionError {
-    readonly type: 'GET_MEAL_ERROR';
+export interface getCategoriesActionError {
+    readonly type: 'GET_CATEGORIES_ERROR';
     payload: any
 }
 
-export type getMealAction = getMealActionSuccess | getMealActionLoading | getMealActionError;
+export type getCategoriesAction = getCategoriesActionSuccess | getCategoriesActionLoading | getCategoriesActionError;
 
 const handleErrorACB =  (response: any) => {
     if (!response.ok) { 
@@ -45,15 +43,16 @@ const handleNoMealACB = (response: any) => {
     }
 }
 
-export const getMealAction = (id: number) => {
-    return async (dispatch:Dispatch<getMealAction>) => { 
-        console.log(id)
-        axios.post('https://localhost:8080/api/post/mealDetails/', {id: id}, {withCredentials:true})
+export const getCategoriesAction = () => {
+    return async (dispatch:Dispatch<getCategoriesAction>) => { 
+        axios.get('https://localhost:8080/api/get/categories/', {
+            withCredentials:true,
+        })
         .then(data => {
             console.log(data)
             setTimeout(() => {
                 dispatch({ 
-                    type: 'GET_MEAL_SUCCESS',
+                    type: 'GET_CATEGORIES_SUCCESS',
                     payload: data
                 }) 
                 return data
@@ -61,9 +60,8 @@ export const getMealAction = (id: number) => {
         })
         .catch((error) => 
             dispatch({
-            type: 'GET_MEAL_ERROR', 
+            type: 'GET_CATEGORIES_ERROR', 
             payload: error
         }));
     };
 };
-

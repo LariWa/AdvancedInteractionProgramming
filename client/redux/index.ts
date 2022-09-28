@@ -1,4 +1,4 @@
-import { getMeal } from './actions/getMealActions';
+import { getRandomMealAction } from './actions/getRandomMealActions';
 export * from './store';
 export * from './actions/getMealActions';
 export * from './reducers';
