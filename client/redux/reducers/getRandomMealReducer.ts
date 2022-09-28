@@ -1,4 +1,4 @@
-import {  getMealAction, MealModel } from '../actions/getMealActions';
+import { getRandomMealAction, MealModel } from '../actions/getRandomMealActions';
 
 type MealState = {
     meal: MealModel,
@@ -12,21 +12,22 @@ const  initMealState = {
     error: undefined,
 }
 
-export const getMealReducer = (state: MealState = initMealState, action: getMealAction) => {
+
+export const getRandomMealReducer = (state: MealState = initMealState, action: getRandomMealAction) => {
     switch(action.type) {
-        case 'GET_MEAL_LOADING':
+        case 'GET_RANDOM_MEAL_LOADING':
             return{
                 loading: true,
                 meal: null, 
                 error: false
             }
-        case 'GET_MEAL_SUCCESS':
+        case 'GET_RANDOM_MEAL_SUCCESS':
             return{
                 meal: action.payload,
                 loading: false
             }
         
-        case 'GET_MEAL_ERROR':
+        case 'GET_RANDOM_MEAL_ERROR':
             return{
                 loading: false,
                 error: action.payload,

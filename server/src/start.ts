@@ -13,7 +13,7 @@ const options = {
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../../dist")));
-app.use(cors({ credentials: true, origin: "http://localhost:19007" }));
+app.use(cors({ credentials: true, origin: "http://localhost:19006" }));
 app.get("/", (req: express.Request, res: express.Response) => {
   const htmlFile = path.join(__dirname, "../../dist/index.html");
   res.status(200).send(htmlFile);
