@@ -22,13 +22,13 @@ export type getFilteredMealsAction = getFilteredMealsSuccess | getFilteredMealsL
 
 export const getFilteredMealsAction = (category: string, area: string, ingredients: string) => {
     return async (dispatch:Dispatch<getFilteredMealsAction>) => { 
-        axios.post('/post/filterMeals/post/filterMeals/', {
-            params: {category: category,
+        axios.post('https://localhost:8080/api/post/filterMeals/post/filterMeals/', 
+            {category: category,
             area: area,
             ingredients: ingredients
             },
-            withCredentials:true,
-        })
+            {withCredentials:true},
+        )
         .then(data => {
             console.log(data)
             setTimeout(() => {

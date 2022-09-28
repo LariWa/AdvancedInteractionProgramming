@@ -48,7 +48,7 @@ const handleNoMealACB = (response: any) => {
 export const getMealAction = (id: number) => {
     return async (dispatch:Dispatch<getMealAction>) => { 
         console.log(id)
-        axios.get('/post/filterMealsget/mealDetails/', {params: {id: id}, withCredentials:true})
+        axios.post('https://localhost:8080/api/post/mealDetails/', {id: id}, {withCredentials:true})
         .then(data => {
             console.log(data)
             setTimeout(() => {
