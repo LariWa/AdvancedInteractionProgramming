@@ -9,7 +9,7 @@ In order to run the app ,
 
 1. `npm run web`
 
-or android if/ios if you want
+or android/ios if you want, `npm run android` `npm run ios`
 
 In order to run the app (if using expo),
 
