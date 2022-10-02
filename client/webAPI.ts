@@ -1,5 +1,4 @@
 import axios from "axios";
-
 // export const getAPI = () =>
 //   axios.post(
 //     "https://localhost:8080/api/post/mealDetails",
