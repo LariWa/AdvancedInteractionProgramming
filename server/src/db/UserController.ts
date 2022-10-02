@@ -1,5 +1,5 @@
 //https://dev.to/alexmercedcoder/basic-authentication-with-node-express-and-mongo-1a1c
-const { Router } = require("express"); // import router from express
+var { Router } = require("express"); // import router from express
 const User = require("./user"); // import user model
 const bcrypt = require("bcryptjs"); // import bcrypt to hash passwords
 const jwt = require("jsonwebtoken"); // import jwt to sign tokens

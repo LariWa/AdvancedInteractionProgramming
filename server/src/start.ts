@@ -4,6 +4,8 @@ import https from "https";
 import fs from "fs";
 import cors from "cors";
 const UserRouter = require("./db/UserController"); //import User Routes
+const DataRouter = require("./db/DataController"); //import Data Routes
+
 const api = require("./api");
 const app = express();
 const port = process.env.PORT || 8080;
@@ -21,6 +23,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
 });
 app.use("/api", api);
 app.use("/user", UserRouter);
+app.use("/db", DataRouter);
 
 const server = https.createServer(options, app);
 server.listen(port, () => {
