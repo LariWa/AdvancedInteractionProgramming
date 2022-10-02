@@ -7,7 +7,7 @@ import axios from "axios";
 //       withCredentials: true,
 //     }
 //   );
-export const getAPI = () =>
+const getAPI = () =>
   axios.post(
     "https://localhost:8080/user/login",
     {
@@ -16,3 +16,9 @@ export const getAPI = () =>
     },
     { withCredentials: true }
   );
+function getData(token: string) {
+  axios.get("https://localhost:8080/db/", {
+    headers: { authorization: "bearer " + token },
+  });
+}
+export { getAPI, getData };

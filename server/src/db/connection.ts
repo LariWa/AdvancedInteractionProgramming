@@ -1,8 +1,11 @@
 const mongoose = require("mongoose"); //import fresh mongoose object
+import key from "./DBKey";
 
 //DESTRUCTURE ENV VARIABLES
 const uri =
-  "mongodb+srv://admin:mealApp@cluster0.w6inavl.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://admin:" +
+  key +
+  "@cluster0.w6inavl.mongodb.net/?retryWrites=true&w=majority";
 // CONNECT TO MONGO
 mongoose.connect = mongoose.connect(uri, {
   useNewUrlParser: true,

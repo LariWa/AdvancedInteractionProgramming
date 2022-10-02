@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {Provider} from 'react-redux';
 import { Alert, StyleSheet, Text, View } from 'react-native';
-import { getAPI} from "./webAPI"
+import { getAPI, getData} from "./webAPI"
 import { useSelector, useDispatch } from 'react-redux';
 
 //import { ApplicationState,  getMeal} from './redux';
@@ -13,11 +13,9 @@ import {getCategoriesAction} from './redux/actions/getCategoriesActions';
 
 export default function App() {
   const [fetchedData, setFetchedData] = React.useState("");
-  // React.useEffect(()=>{
-  //   getAPI().then(data => {setFetchedData(data)
-
-  // })
-  // }, [])
+  React.useEffect(()=>{
+    getAPI().then(data => getData(data.data.token)).then((res)=>console.log(res))
+  }, [])
   
   const dispatch = useDispatch(); 
   const onGetRandomMealACB = () => {

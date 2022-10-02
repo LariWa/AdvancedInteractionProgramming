@@ -1,4 +1,4 @@
-//https://dev.to/alexmercedcoder/basic-authentication-with-node-express-and-mongo-1a1c
+//from https://dev.to/alexmercedcoder/basic-authentication-with-node-express-and-mongo-1a1c
 var { Router } = require("express"); // import router from express
 const User = require("./user"); // import user model
 const bcrypt = require("bcryptjs"); // import bcrypt to hash passwords
@@ -46,4 +46,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

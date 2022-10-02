@@ -3,8 +3,8 @@ import path from "path";
 import https from "https";
 import fs from "fs";
 import cors from "cors";
-const UserRouter = require("./db/UserController"); //import User Routes
-const DataRouter = require("./db/DataController"); //import Data Routes
+import UserRouter from "./db/UserController"; //import User Routes
+import DataRouter from "./db/DataController"; //import Data Routes
 
 const api = require("./api");
 const app = express();
@@ -15,12 +15,8 @@ const options = {
 };
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "../../dist")));
 app.use(cors({ credentials: true, origin: "http://localhost:19006" }));
-app.get("/", (req: express.Request, res: express.Response) => {
-  const htmlFile = path.join(__dirname, "../../dist/index.html");
-  res.status(200).send(htmlFile);
-});
+
 app.use("/api", api);
 app.use("/user", UserRouter);
 app.use("/db", DataRouter);
