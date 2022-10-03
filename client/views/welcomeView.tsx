@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         marginLeft:"auto", 
         paddingTop: "10px", 
         paddingBottom:"10px", 
-        borderRadius: 10,
+        borderRadius: 30,
     },
     containerOne_image: {
         width: "100%",
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
    });
 
 export default function WelcomeView(props: any) {
-    const handeStartACB = () => {
+    const handleStartACB = () => {
         props.getStarted()
     }
     return (
@@ -62,7 +62,7 @@ export default function WelcomeView(props: any) {
                 <Text variant="h6" style={styles.containerTwo_centered_h6} >Welcome text Welcome text</Text>
             </Flex>
             <Flex fill style={styles.containerTwo_centered}>
-            <Button title="Get Started" style={styles.button} color="red" onPress={handeStartACB}/>
+            <Button title="Get Started" style={styles.button} color="red" onPress={handleStartACB}/>
             </Flex>
         </Flex>
     </Flex>

@@ -12,6 +12,7 @@ import './App.css';
 import {getMealAction} from './redux/actions/getMealActions';
 import {getRandomMealAction} from './redux/actions/getRandomMealActions';
 import {getCategoriesAction} from './redux/actions/getCategoriesActions';
+import LoginPresenter from './presenters/loginPresenter';
 
 export default function App() {
   const [fetchedData, setFetchedData] = React.useState("");
@@ -40,7 +41,8 @@ export default function App() {
     //   <div>{`${fetchedData}`}</div>
     //   <StatusBar style="auto" />
     // </View>
-    <WelcomePresenter/>
+    <LoginPresenter/>
+    // <WelcomePresenter/>
   );
 }
 
