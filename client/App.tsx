@@ -13,6 +13,7 @@ import {getMealAction} from './redux/actions/getMealActions';
 import {getRandomMealAction} from './redux/actions/getRandomMealActions';
 import {getCategoriesAction} from './redux/actions/getCategoriesActions';
 import LoginPresenter from './presenters/loginPresenter';
+import RegistrationPresenter from './presenters/registrationPresenter';
 
 export default function App() {
   const [fetchedData, setFetchedData] = React.useState("");
@@ -41,7 +42,8 @@ export default function App() {
     //   <div>{`${fetchedData}`}</div>
     //   <StatusBar style="auto" />
     // </View>
-    <LoginPresenter/>
+    <RegistrationPresenter/>
+    // <LoginPresenter/>
     // <WelcomePresenter/>
   );
 }
