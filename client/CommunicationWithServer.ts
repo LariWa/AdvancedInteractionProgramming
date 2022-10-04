@@ -14,7 +14,7 @@ function login(username: string, password: string) {
   });
 }
 function signup(username: string, password: string) {
-  return axios.post("/user/login", {
+  return axios.post("/user/signup", {
     username: username,
     password: password,
   });

@@ -43,8 +43,8 @@ export default function App() {
     // </View>
     <>
       {/* <WelcomePresenter/> */}
-      <LoginPresenter />
-      {/* <RegistrationPresenter/> */}
+      {/* <LoginPresenter /> */}
+      <RegistrationPresenter />
       {/* <SearchPresenter /> */}
     </>
   );
