@@ -11,6 +11,10 @@ In order to run the app ,
 
 or android/ios if you want, `npm run android` `npm run ios`
 
-In order to run the app (if using expo),
+In order to initialize an app (if using expo),
 
 1. `expo init mealApp`
+
+In order to run the app (if using expo),
+
+1. `expo start`
