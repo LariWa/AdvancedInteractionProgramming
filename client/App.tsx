@@ -1,29 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import {Provider} from 'react-redux';
-import { Alert, StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { getAPI} from "./webAPI"
-import { useSelector, useDispatch } from 'react-redux';
-import WelcomePresenter from "./presenters/welcomePresenter"
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { Provider } from "react-redux";
+import { Alert, StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { getAPI } from "./webAPI";
+import { useSelector, useDispatch } from "react-redux";
+import WelcomePresenter from "./presenters/welcomePresenter";
 
 //import { ApplicationState,  getMeal} from './redux';
 
-import {getMealAction} from './redux/actions/getMealActions';
-import {getRandomMealAction} from './redux/actions/getRandomMealActions';
-import {getCategoriesAction} from './redux/actions/getCategoriesActions';
-import LoginPresenter from './presenters/loginPresenter';
-import RegistrationPresenter from './presenters/registrationPresenter';
-import SearchPresenter from './presenters/searchPresenter';
-
+import { getMealAction } from "./redux/actions/getMealActions";
+import { getRandomMealAction } from "./redux/actions/getRandomMealActions";
+import { getCategoriesAction } from "./redux/actions/getCategoriesActions";
+import LoginPresenter from "./presenters/loginPresenter";
+import RegistrationPresenter from "./presenters/registrationPresenter";
+import SearchPresenter from "./presenters/searchPresenter";
 
 export default function App() {
   const [fetchedData, setFetchedData] = React.useState("");
-  React.useEffect(()=>{
-    getAPI().then((res)=>console.log(res))
-  }, [])
-  
-  const dispatch = useDispatch(); 
+  React.useEffect(() => {
+    getAPI().then((res) => console.log(res));
+  }, []);
+
+  const dispatch = useDispatch();
   const onGetRandomMealACB = () => {
     dispatch(getRandomMealAction() as any);
   };
@@ -43,10 +42,10 @@ export default function App() {
     //   <StatusBar style="auto" />
     // </View>
     <>
-        {/* <WelcomePresenter/> */}
-        {/* <LoginPresenter/> */}
-        {/* <RegistrationPresenter/> */}
-        <SearchPresenter/>
+      {/* <WelcomePresenter/> */}
+      <LoginPresenter />
+      {/* <RegistrationPresenter/> */}
+      {/* <SearchPresenter /> */}
     </>
   );
 }
@@ -54,8 +53,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
