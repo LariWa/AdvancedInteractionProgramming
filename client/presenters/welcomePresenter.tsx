@@ -3,7 +3,7 @@ import WelcomeView from "../views/welcomeView"
 
 export default function WelcomePresenter(props: any) {
     function getStartedACB(){
-        console.log(111)
+        props.navigation.navigate('LoginPresenter')
     }
   return (
     <WelcomeView getStarted={getStartedACB} />

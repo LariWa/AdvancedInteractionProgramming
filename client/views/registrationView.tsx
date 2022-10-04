@@ -4,15 +4,15 @@ import { Stack, IconButton, Flex, Text, Button } from "@react-native-material/co
 
 const styles = StyleSheet.create({
     mainContainer: {
-        backgroundColor: "var(--light-green)",
+        backgroundColor: "#F4FFDC",
         padding: 10,
         top: 0,
         width: "100%",
         height: "100%",
         position:"absolute",
-        paddingLeft: "50px",
-        paddingRight: "50px",
-        paddingTop:"40px",
+        paddingLeft: 50,
+        paddingRight: 50,
+        paddingTop: 70,
         alignContent:"center"
     },
     mainContainer_textInput:{
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         fontSize: 32,
         marginBottom: 20,
-        color:"var(--dark-blue)"
+        color:"#314959"
     },
     mainContainer_italics: {
         fontStyle: "italic",
@@ -39,19 +39,19 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginRight:"auto", 
         marginLeft:"auto", 
-        color:"var(--dark-blue)",
+        color:"#314959",
         textDecorationLine: "underline",
         marginBottom: 30,
         overflow: 'hidden'
     },
     mainContainer_button: {
-        backgroundColor: 'var(--dark-blue)', 
+        backgroundColor: '#314959', 
         width:155, 
         height:60, 
         marginRight:"auto", 
         marginLeft:"auto", 
-        paddingTop: "10px", 
-        paddingBottom:"10px", 
+        paddingTop: 10, 
+        paddingBottom:10, 
         borderRadius: 300,
         boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)"
     },
@@ -59,13 +59,16 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0,
         right: 0,
-        width: "170px",
-        height: "270px"
+        width: 170,
+        height: 270
     }
 })
 export default function RegistrationView(props: any) {
     const onRegistrationACB = () => {
         props.onRegistration()
+    }
+    const onLoginACB = () => {
+        props.onLogin()
     }
     return (
     <Flex fill style={styles.mainContainer}>
@@ -82,7 +85,7 @@ export default function RegistrationView(props: any) {
             placeholder="Confirm Password"
             style={styles.mainContainer_textInput}
         />
-        <Text style={styles.mainContainer_italics} >New user</Text>
+        <Text style={styles.mainContainer_italics} onPress={onLoginACB}>Alredy have an account?</Text>
         <Button title="Get Started" style={styles.mainContainer_button} onPress={onRegistrationACB}/>
         <Image style={styles.maincontainer_image} source={require('../styles/registrationImage.png')}></Image>
     </Flex>

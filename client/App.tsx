@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {Provider} from 'react-redux';
 import { Alert, StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { getAPI} from "./webAPI"
 import { useSelector, useDispatch } from 'react-redux';
-import WelcomePresenter from "./presenters/WelcomePresenter"
-import './App.css';
+import WelcomePresenter from "./presenters/welcomePresenter"
 
 //import { ApplicationState,  getMeal} from './redux';
 
@@ -14,6 +14,8 @@ import {getRandomMealAction} from './redux/actions/getRandomMealActions';
 import {getCategoriesAction} from './redux/actions/getCategoriesActions';
 import LoginPresenter from './presenters/loginPresenter';
 import RegistrationPresenter from './presenters/registrationPresenter';
+import SearchPresenter from './presenters/searchPresenter';
+
 
 export default function App() {
   const [fetchedData, setFetchedData] = React.useState("");
@@ -42,9 +44,12 @@ export default function App() {
     //   <div>{`${fetchedData}`}</div>
     //   <StatusBar style="auto" />
     // </View>
-    <RegistrationPresenter/>
-    // <LoginPresenter/>
-    // <WelcomePresenter/>
+    <>
+        {/* <WelcomePresenter/> */}
+        {/* <LoginPresenter/> */}
+        {/* <RegistrationPresenter/> */}
+        <SearchPresenter/>
+    </>
   );
 }
 

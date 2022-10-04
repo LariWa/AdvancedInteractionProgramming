@@ -6,10 +6,10 @@ const previewImage = require("../styles/previewImage.png");
 
 const styles = StyleSheet.create({
     containerOne: {
-        backgroundColor: "var(--white-color)"
+        backgroundColor: "#white"
     },
     containerTwo: { 
-        backgroundColor: "var(--light-green)", 
+        backgroundColor: "#F4FFDC", 
         borderTopLeftRadius: 60,
         borderTopRightRadius: 30,
     },
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         fontWeight:"400"
     },
     button: {
-        backgroundColor: 'var(--white-color)', 
+        backgroundColor: 'white', 
         width:"200px", 
         height:"60px", 
         marginRight:"auto", 

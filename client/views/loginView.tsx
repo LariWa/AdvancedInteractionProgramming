@@ -4,23 +4,25 @@ import { Stack, IconButton, Flex, Text, Button } from "@react-native-material/co
 
 const styles = StyleSheet.create({
     mainContainer: {
-        backgroundColor: "var(--dark-blue)",
+        backgroundColor: "#314959",
         padding: 10,
         top: 0,
         width: "100%",
         height: "100%",
         position:"absolute",
-        paddingLeft: "50px",
-        paddingRight: "50px",
-        paddingTop:"40px",
+        paddingLeft: 50,
+        paddingRight: 50,
+        paddingTop:100,
         alignContent:"center"
     },
     mainContainer_textInput:{
         marginRight:"auto", 
         marginLeft:"auto", 
-        marginBottom: "10px",
-        border: "1px solid var(--light-blue)",
-        color:"var(--light-blue)",
+        marginBottom: 10,
+        border: "1px solid #A7C6DA",
+        borderColor: "#A7C6DA",
+        borderWidth: 2,
+        color:"#A7C6DA",
         borderRadius: 10,
         width: 264,
         height: 45,
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         fontSize: 32,
         marginBottom: 20,
-        color:"var(--light-blue)"
+        color:"#A7C6DA"
     },
     mainContainer_italics: {
         fontStyle: "italic",
@@ -40,13 +42,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginRight:"auto", 
         marginLeft:"auto", 
-        color:"var(--light-blue)",
+        color:"#A7C6DA",
         textDecorationLine: "underline",
         marginBottom: 30,
         overflow: 'hidden'
     },
     mainContainer_button: {
-        backgroundColor: 'var(--light-blue)', 
+        backgroundColor: '#A7C6DA', 
         width:155, 
         height:60, 
         marginRight:"auto", 
@@ -68,6 +70,9 @@ export default function LoginView(props: any) {
     const handleLoginACB = () => {
         props.onLogin()
     }
+    const handleRegistrationACB = () => {
+        props.onRegistration()
+    }
     return (
     <Flex fill style={styles.mainContainer}>
         <Text style={styles.mainContainer_h5} >Sign in</Text>
@@ -79,8 +84,8 @@ export default function LoginView(props: any) {
             placeholder="Password"
             style={styles.mainContainer_textInput}
         />
-        <Text style={styles.mainContainer_italics} >New user</Text>
-        <Button title="Get Started" style={styles.mainContainer_button} onPress={handleLoginACB}/>
+        <Text style={styles.mainContainer_italics} onPress={handleRegistrationACB}>New user</Text>
+        <Button title="Get Started" style={styles.mainContainer_button} />
         <Image style={styles.maincontainer_image} source={require('../styles/loginImage.png')}></Image>
     </Flex>
   )

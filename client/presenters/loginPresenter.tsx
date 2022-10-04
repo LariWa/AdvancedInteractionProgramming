@@ -3,9 +3,12 @@ import LoginView from "../views/loginView"
 
 export default function LoginPresenter(props:any) {
     function onLoginACB(){
-        console.log(222)
+        props.navigation.navigate('SearchPresenter')
+    }
+    function onRegistrationACB(){
+        props.navigation.navigate('RegistrationPresenter')
     }
     return (
-        <LoginView onLogin={onLoginACB}></LoginView>
+        <LoginView onLogin={onLoginACB} onRegistration={onRegistrationACB}></LoginView>
     )
 }
