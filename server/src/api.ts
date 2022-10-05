@@ -13,8 +13,8 @@ router.use((req, res, next) => {
 });
 // define the home page route
 //gets random meal
-router.get("/get/randomMeal", (req, res) => {
-  console.log(1)
+router.get("/randomMeal", (req, res) => {
+  console.log(1);
   axios
     .get("/random.php")
     .then(getMeal)
@@ -22,7 +22,7 @@ router.get("/get/randomMeal", (req, res) => {
 });
 
 //get meal details
-router.post("/post/mealDetails", (req, res) => {
+router.post("/mealDetails", (req, res) => {
   console.log(req.body);
   axios
     .get("/lookup.php?i=" + req.body.id)
@@ -31,14 +31,24 @@ router.post("/post/mealDetails", (req, res) => {
 });
 
 //get all meal categories
-router.get("/get/categories", (req, res) => {
+router.get("/categories", (req, res) => {
   axios
     .get("/categories.php")
     .then((response) => res.send(response.data.categories));
 });
+router.get("/areas", (req, res) => {
+  axios
+    .get("/list.php?a=list")
+    .then((response) => res.send(response.data.categories));
+});
+router.get("/ingredients", (req, res) => {
+  axios
+    .get("/list.php?i=list")
+    .then((response) => res.send(response.data.categories));
+});
 
 //gets meals filtered by category, area, ingredients
-router.post("/post/filterMeals", (req, res) => {
+router.post("/filterMeals", (req, res) => {
   let filterPromises = [];
   if (req.body.category)
     filterPromises.push(axios.get("filter.php?c=" + req.body.category));

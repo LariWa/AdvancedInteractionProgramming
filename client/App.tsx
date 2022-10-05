@@ -44,8 +44,8 @@ export default function App() {
     <>
       {/* <WelcomePresenter/> */}
       {/* <LoginPresenter /> */}
-      <RegistrationPresenter />
-      {/* <SearchPresenter /> */}
+      {/* <RegistrationPresenter /> */}
+      <SearchPresenter />
     </>
   );
 }

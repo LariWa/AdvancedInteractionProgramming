@@ -6,6 +6,13 @@ import { isLoggedIn } from "../middleware";
 // get all data for user
 router.get("/", isLoggedIn, async (req, res) => {
   try {
+    res.json(await Data.findOne({ username: req.body.user.username }));
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+router.get("/getFavourites", isLoggedIn, async (req, res) => {
+  try {
     res.json(
       (await Data.findOne({ username: req.body.user.username })).favourites
     );
@@ -13,9 +20,8 @@ router.get("/", isLoggedIn, async (req, res) => {
     res.status(400).json({ error });
   }
 });
-
 // add favourite for user
-router.post("/add", isLoggedIn, async (req, res) => {
+router.post("/addFavourite", isLoggedIn, async (req, res) => {
   try {
     res.json(
       await Data.update(
@@ -30,7 +36,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
 });
 
 // delete favourite
-router.post("/delete", isLoggedIn, async (req, res) => {
+router.post("/deleteFavourite", isLoggedIn, async (req, res) => {
   try {
     res.json(
       await Data.updateOne(
