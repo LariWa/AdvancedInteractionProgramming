@@ -68,8 +68,18 @@ router.post("/filterMeals", (req, res) => {
 });
 
 function getMeal(response) {
-  console.log(response.data.meals[0]);
-  return response.data.meals[0];
+  if (response.data.meals.length > 0) {
+    const meal = response.data.meals[0];
+    const ingredients = [];
+    for (let i = 0; i <= 20; i++) {
+      if (meal["strIngredient" + i])
+        ingredients.push({
+          name: meal["strIngredient" + i],
+          quantity: meal["strMeasure" + i],
+        });
+    }
+    return { ...meal, ingredients: ingredients };
+  } else return null;
 }
 function getMeals(response) {
   return response.data.meals;
