@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import { getRandomMealReducer } from "./getRandomMealReducer";
 import { getMealReducer } from "./getMealReducer";
 import { getCategoriesReducer } from "./getCategoriesReducer";
+import { favouritesReducer } from "./favouritesReducer";
 const user = (state = {}, action: any) => {
   switch (action.type) {
     case "SET_USER":
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   categories: getCategoriesReducer,
   token: token,
   user: user,
+  favourites: favouritesReducer,
 });
 
 export type ApplicationState = ReturnType<typeof rootReducer>;
