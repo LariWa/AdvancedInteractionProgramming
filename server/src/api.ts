@@ -29,6 +29,14 @@ router.post("/mealDetails", (req, res) => {
     .then(getMeal)
     .then((data) => res.send(data));
 });
+router.post("/mealsDetails", (req, res) => {
+  let requests = req.body.ids.map((id) =>
+    axios.get("/lookup.php?i=" + id).then(getMeal)
+  );
+  axios.all(requests).then((data) => {
+    res.send(data);
+  });
+});
 
 //get all meal categories
 router.get("/categories", (req, res) => {
