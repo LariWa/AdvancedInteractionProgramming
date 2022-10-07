@@ -1,45 +1,79 @@
-import React from "react";
-import { StyleSheet, Image, TextInput } from "react-native";
-import {
-  Stack,
-  IconButton,
-  Flex,
-  Text,
-  Button,
-} from "@react-native-material/core";
-import { styles } from "./styles";
+import { useState } from 'react';
+import { StyleSheet, TouchableOpacity, Button, TextInput } from 'react-native';
 
-export default function RegistrationView(props: any) {
+import EditViewInfo from '../components/EditViewInfo';
+import { Text, View } from '../components/Themed';
+import { RootTabScreenProps } from '../types';
+
+export default function RegistrationView({ navigation }: RootTabScreenProps<'TabTwo'>) {
+
+  const [name, onSetName] = useState("");
+  const [password, onSetPassword] = useState("");
+  const [passwordTwice, onSetPasswordTwice] = useState("");
+
+  
   return (
-    <Flex fill style={styles.mainContainer}>
-      <Text style={styles.mainContainer_h5}>Sign up</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Registration View</Text>
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
       <TextInput
+        style={styles.input}
+        onChangeText={onSetName}
+        value={name}
         placeholder="Name"
-        style={styles.mainContainer_textInput}
-        onChangeText={props.onNameChanged}
+        keyboardType="default"
       />
       <TextInput
+        style={styles.input}
+        onChangeText={onSetPassword}
+        value={password}
         placeholder="Password"
-        style={styles.mainContainer_textInput}
-        onChangeText={props.onPWChanged}
+        keyboardType="default"
       />
       <TextInput
-        placeholder="Confirm Password"
-        style={styles.mainContainer_textInput}
-        onChangeText={props.onPWConfirmChanged}
+        style={styles.input}
+        onChangeText={onSetPassword}
+        value={password}
+        placeholder="PasswordTwice"
+        keyboardType="default"
       />
-      <Text style={styles.mainContainer_italics} onPress={props.onLoginA}>
-        Alredy have an account?
-      </Text>
-      <Button
-        title="Get Started"
-        style={styles.mainContainer_button}
-        onPress={props.onRegistration}
-      />
-      <Image
-        style={styles.maincontainer_image}
-        source={require("../styles/registrationImage.png")}
-      ></Image>
-    </Flex>
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TabFour')} >
+        <Text>Sign up</Text>
+      </TouchableOpacity>
+
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: '80%',
+  },
+  input: {
+    height: 40,
+    margin: 5,
+    borderWidth: 1,
+    padding: 20,
+    //backgroundColor: "black"
+  },
+  button: {
+    fontWeight: "bold",
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    marginVertical: 4,
+  },
+});

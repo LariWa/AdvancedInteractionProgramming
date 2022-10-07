@@ -1,17 +1,16 @@
 import React from 'react'
-import { Image, ImageBackground, StyleSheet } from "react-native";
-import { Flex, Box, Text, VStack, Button } from "@react-native-material/core";
-
-const previewImage = require("../styles/previewImage.png");
+import { Image, StyleSheet } from "react-native";
+import { Flex, Text, Button } from "@react-native-material/core";
+const previewImage = require("../pictures/previewImage.png");
 
 const styles = StyleSheet.create({
     containerOne: {
-        backgroundColor: "#white"
+        backgroundColor: "#FFFFFF"
     },
     containerTwo: { 
         backgroundColor: "#F4FFDC", 
-        borderTopLeftRadius: 60,
-        borderTopRightRadius: 30,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
     },
     containerTwo_centered: { 
         justifyContent:"center", 
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
         marginLeft:"auto", 
         paddingTop: "10px", 
         paddingBottom:"10px", 
-        borderRadius: 30,
+        borderRadius: 10,
     },
     containerOne_image: {
         width: "100%",
@@ -48,13 +47,13 @@ const styles = StyleSheet.create({
    });
 
 export default function WelcomeView(props: any) {
-    const handleStartACB = () => {
+    const handeStartACB = () => {
         props.getStarted()
     }
     return (
     <Flex fill>
         <Flex fill style={styles.containerOne}>
-            <Image style={styles.containerOne_image} source={require('../styles/previewImage.png')} ></Image>
+            <Image style={styles.containerOne_image} source={require('../pictures/previewImage.png')} ></Image>
         </Flex>
         <Flex fill style={styles.containerTwo}>
             <Flex fill style={styles.containerTwo_centered}>
@@ -62,7 +61,7 @@ export default function WelcomeView(props: any) {
                 <Text variant="h6" style={styles.containerTwo_centered_h6} >Welcome text Welcome text</Text>
             </Flex>
             <Flex fill style={styles.containerTwo_centered}>
-            <Button title="Get Started" style={styles.button} color="red" onPress={handleStartACB}/>
+            <Button title="Get Started" style={styles.button} color="red" onPress={handeStartACB}/>
             </Flex>
         </Flex>
     </Flex>
