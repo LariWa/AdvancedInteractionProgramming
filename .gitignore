@@ -108,3 +108,5 @@ dist
 
 cert
 client/android
+server/src/mealAPI.ts
+server/src/db/DBKey.ts
