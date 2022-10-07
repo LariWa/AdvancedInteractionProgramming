@@ -7,14 +7,18 @@ import axios from "axios";
 //       withCredentials: true,
 //     }
 //   );
-export const getAPI = () =>
+const getAPI = () =>
   axios.post(
-    "https://localhost:8080/api/post/filterMeals",
+    "https://localhost:8080/user/login",
     {
-      category: null,
-      area: "Canadian",
-      ingredients: ["Eggs"],
-      query: "BeaverTails",
+      username: "lari",
+      password: "test",
     },
     { withCredentials: true }
   );
+function getData(token: string) {
+  axios.get("https://localhost:8080/db/", {
+    headers: { authorization: "bearer " + token },
+  });
+}
+export { getAPI, getData };
