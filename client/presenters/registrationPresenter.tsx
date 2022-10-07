@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import RegistrationView from "../views/registrationView";
-import { signup } from "../CommunicationWithServer";
+import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../redux";
+import { RootTabScreenProps } from "../types";
 
-export default function RegistrationPresenter(props: any) {
+export default function RegistrationPresenter({
+  navigation,
+}: RootTabScreenProps<"TabTwo">) {
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const [pwConfirm, setPwConfirmState] = useState("");
@@ -16,6 +19,7 @@ export default function RegistrationPresenter(props: any) {
         console.log("succesfully signed in!");
         dispatch(setUser(name));
         dispatch(setToken(res.data));
+        navigation.navigate("TabFour");
         // props.navigation.navigate("SearchPresenter");
       })
       .catch((error) => {

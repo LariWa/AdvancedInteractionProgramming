@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getMealAction } from "../redux";
 import SearchView from "../views/searchView";
 import { filterMeals, getCategories } from "../mealSouce";
 import resolvePromise from "../resolvePromise";
 import { promiseStateType } from "../types";
-export default function SearchPresenter(props: any) {
+import { RootTabScreenProps } from "../types";
+
+export default function SearchPresenter({
+  navigation,
+}: RootTabScreenProps<"TabFour">) {
   const dispatch = useDispatch();
   const [categories, setCategoriesState] = useState("");
 

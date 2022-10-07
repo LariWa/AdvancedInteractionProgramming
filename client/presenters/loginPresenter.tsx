@@ -3,8 +3,11 @@ import LoginView from "../views/loginView";
 import { login } from "../loginSource";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser, setToken } from "../redux";
+import { RootTabScreenProps } from "../types";
 
-export default function LoginPresenter(props: any) {
+export default function LoginPresenter({
+  navigation,
+}: RootTabScreenProps<"TabTwo">) {
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const dispatch = useDispatch();
@@ -15,6 +18,7 @@ export default function LoginPresenter(props: any) {
         console.log("succesfully logged in!");
         dispatch(setUser(name));
         dispatch(setToken(res.data.token));
+        navigation.navigate("TabFour");
         // props.navigation.navigate("SearchPresenter");
       })
       .catch((error) => {
@@ -24,7 +28,7 @@ export default function LoginPresenter(props: any) {
   }
 
   function onRegistrationACB() {
-    props.navigation.navigate("RegistrationPresenter");
+    navigation.navigate("TabThree");
   }
   return (
     <LoginView
