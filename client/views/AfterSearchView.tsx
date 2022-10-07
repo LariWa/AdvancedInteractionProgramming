@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { StyleSheet, TouchableOpacity, TextInput, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import selectedValueFilter1 from "../views/SearchView"
+import selectedValueFilter2 from "../views/SearchView"
+import selectedValueFilter3 from "../views/SearchView"
 
 import EditViewInfo from '../components/EditViewInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
-export default function SearchView({ navigation }: RootTabScreenProps<'TabFour'>) {
+export default function AfterSearchView({ navigation }: RootTabScreenProps<'TabFour'>) {
 
   const [selectedValueFilter1, setSelectedValueFilter1] = useState("Select one category...");
   const [selectedValueFilter2, setSelectedValueFilter2] = useState("Select on area...");
   const [selectedValueFilter3, setSelectedValueFilter3] = useState("Select an ingredient...");
-
 
   return (
     <View style={styles.container}>

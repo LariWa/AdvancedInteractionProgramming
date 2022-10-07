@@ -43,6 +43,7 @@ export default function RegistrationView({ navigation }: RootTabScreenProps<'Tab
         <Text>Sign up</Text>
       </TouchableOpacity>
 
+      <Button title="Go back" onPress={() => navigation.navigate('TabOne')} />
     </View>
   );
 }
