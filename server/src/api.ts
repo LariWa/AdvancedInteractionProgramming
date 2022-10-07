@@ -47,12 +47,12 @@ router.get("/categories", (req, res) => {
 router.get("/areas", (req, res) => {
   axios
     .get("/list.php?a=list")
-    .then((response) => res.send(response.data.categories));
+    .then((response) => res.send(response.data.meals));
 });
 router.get("/ingredients", (req, res) => {
   axios
     .get("/list.php?i=list")
-    .then((response) => res.send(response.data.categories));
+    .then((response) => res.send(response.data.meals));
 });
 
 //gets meals filtered by category, area, ingredients

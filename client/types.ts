@@ -1,6 +1,6 @@
 type promiseStateType = {
   promise: any | null;
-  data: null | Object;
+  data: null | { data: any };
   error: String | null;
 };
 type test = {

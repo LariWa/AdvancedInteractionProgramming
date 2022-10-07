@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Image, TextInput, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 
 const styles = StyleSheet.create({
   dropdown: {
@@ -19,9 +20,10 @@ export default function DropdownMenu(props: any) {
       search={true}
       labelField="label"
       valueField="value"
-      onChange={() => {
-        console.log(11);
-      }}
+      onChange={onChange}
     />
   );
+  function onChange(value) {
+    props.onChange(value.label);
+  }
 }

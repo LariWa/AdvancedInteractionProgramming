@@ -1,23 +1,23 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://localhost:8080/api";
+axios.defaults.baseURL = "https://localhost:8080/";
 
 function getRandomMeal() {
-  return axios.get("/randomMeal");
+  return axios.get("api/randomMeal");
 }
 function getMealDetails(id: string) {
-  return axios.post("/mealDetails", {
+  return axios.post("api//mealDetails", {
     id: id,
   });
 }
 function getCategories() {
-  return axios.get("/categories");
+  return axios.get("api/categories");
 }
 function getAreas() {
-  return axios.get("/areas");
+  return axios.get("api/areas");
 }
 function getIngredients() {
-  return axios.get("/ingredients");
+  return axios.get("api/ingredients");
 }
 function filterMeals(
   category: string,
@@ -25,7 +25,7 @@ function filterMeals(
   ingredients: Array<string>,
   query: string
 ) {
-  return axios.post("/mealDetails", {
+  return axios.post("api/filterMeals", {
     category: category,
     area: area,
     ingredients: ingredients,

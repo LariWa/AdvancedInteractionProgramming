@@ -62,15 +62,6 @@ const styles = StyleSheet.create({
   },
 });
 export default function SearchView(props: any) {
-  const onRegistrationACB = () => {
-    props.onRegistration();
-  };
-  const onLoginACB = () => {
-    props.onLogin();
-  };
-  function onInputACB(event: any) {
-    props.onInput(event.target.value);
-  }
   return (
     <Flex fill style={styles.mainContainer}>
       <Header />
@@ -78,14 +69,23 @@ export default function SearchView(props: any) {
       <TextInput
         placeholder="Search"
         style={styles.textInput}
-        onChange={onInputACB}
+        onTextInput={props.onQueryChanged}
       />
       <div style={styles.mainContainer_filters}>
-        <DropdownMenu data={data} />
-        <DropdownMenu data={data} />
+        <DropdownMenu
+          data={props.categories}
+          onChange={props.onCategorySelected}
+        />
+        <DropdownMenu data={props.areas} onChange={props.onAreaSelected} />
+        <DropdownMenu
+          data={props.ingrToSelect}
+          onChange={props.onIngredientsSelected}
+        />
+        <Button title="Search" onPress={props.onSearch} />
       </div>
-      <DishCard />
-      <DishCard />
+      {props.results.map((r) => (
+        <DishCard key={r.idMeal} data={r} />
+      ))}
     </Flex>
   );
 }
