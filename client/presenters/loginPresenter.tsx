@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LoginView from "../views/loginView";
-import { login } from "../CommunicationWithServer";
+import { login } from "../loginSource";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser, setToken } from "../redux";
 

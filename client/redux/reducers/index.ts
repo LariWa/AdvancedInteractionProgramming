@@ -1,7 +1,4 @@
 import { combineReducers } from "redux";
-import { getRandomMealReducer } from "./getRandomMealReducer";
-import { getMealReducer } from "./getMealReducer";
-import { getCategoriesReducer } from "./getCategoriesReducer";
 import { favouritesReducer } from "./favouritesReducer";
 const user = (state = {}, action: any) => {
   switch (action.type) {
@@ -22,9 +19,6 @@ const token = (state = {}, action: any) => {
   }
 };
 const rootReducer = combineReducers({
-  randomMeal: getRandomMealReducer,
-  meal: getMealReducer,
-  categories: getCategoriesReducer,
   token: token,
   user: user,
   favourites: favouritesReducer,
