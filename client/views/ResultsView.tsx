@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: "#FDFBF7",
     padding: 10,
-    top: 0,
+    // top: 0,
     width: "100%",
     // position: "absolute",
     paddingLeft: "50px",
@@ -60,28 +60,12 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
 });
-export default function SearchView(props: any) {
+export default function ResultsView(props: any) {
   return (
     <Flex fill style={styles.mainContainer}>
-      <Header />
-      {/* <Text style={styles.mainContainer_h5} >Sign up</Text> */}
-      <TextInput
-        placeholder="Search"
-        style={styles.textInput}
-        onChangeText={props.onQueryChanged}
-      />
-      <div style={styles.mainContainer_filters}>
-        <DropdownMenu
-          data={props.categories}
-          onChange={props.onCategorySelected}
-        />
-        <DropdownMenu data={props.areas} onChange={props.onAreaSelected} />
-        <DropdownMenu
-          data={props.ingrToSelect}
-          onChange={props.onIngredientsSelected}
-        />
-        <Button title="Search" onPress={props.onSearch} />
-      </div>
+      {props.results.map((r) => (
+        <DishCard key={r.idMeal} data={r} />
+      ))}
     </Flex>
   );
 }
