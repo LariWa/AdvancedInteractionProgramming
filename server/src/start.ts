@@ -15,7 +15,7 @@ const options = {
 };
 
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:19006" }));
+app.use(cors({ credentials: true, origin: "*" }));
 
 app.use("/api", api);
 app.use("/user", UserRouter);

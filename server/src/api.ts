@@ -57,22 +57,29 @@ router.get("/ingredients", (req, res) => {
 
 //gets meals filtered by category, area, ingredients
 router.post("/filterMeals", (req, res) => {
-  let filterPromises = [];
-  if (req.body.category)
-    filterPromises.push(axios.get("filter.php?c=" + req.body.category));
-  if (req.body.area)
-    filterPromises.push(axios.get("filter.php?a=" + req.body.area));
-  if (req.body.ingredients)
-    filterPromises.push(
-      axios.get("filter.php?i=" + req.body.ingredients.toString())
-    );
-  if (req.body.query)
-    filterPromises.push(axios.get("search.php?s=" + req.body.query));
+  try {
+    let filterPromises = [];
+    if (req.body.category)
+      filterPromises.push(axios.get("filter.php?c=" + req.body.category));
+    if (req.body.area)
+      filterPromises.push(axios.get("filter.php?a=" + req.body.area));
+    if (req.body.ingredients)
+      filterPromises.push(
+        axios.get("filter.php?i=" + req.body.ingredients.toString())
+      );
+    if (req.body.query)
+      filterPromises.push(axios.get("search.php?s=" + req.body.query));
 
-  axios.all(filterPromises).then((response) => {
-    console.log(_.intersectionBy(...response.map(getMeals), "idMeal"));
-    res.send(_.intersectionBy(...response.map(getMeals), "idMeal"));
-  });
+    axios.all(filterPromises).then((response) => {
+      var meals = _.intersectionBy(...response.map(getMeals), "idMeal");
+      var detailsReqs = meals.map((meal) =>
+        axios.get("/lookup.php?i=" + meal.idMeal).then(getMeal)
+      );
+      axios.all(detailsReqs).then((mealDetails) => res.send(mealDetails));
+    });
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 });
 
 function getMeal(response) {
