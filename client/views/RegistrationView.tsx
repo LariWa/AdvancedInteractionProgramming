@@ -10,6 +10,9 @@ import {
 import { styles } from "./styles";
 
 export default function RegistrationView(props: any) {
+  const handleLoginACB = () => {
+    props.onLogin();
+  };
   return (
     <Flex fill style={styles.mainContainer}>
       <Text style={styles.mainContainer_h5}>Sign up</Text>
@@ -28,7 +31,8 @@ export default function RegistrationView(props: any) {
         style={styles.mainContainer_textInput}
         onChangeText={props.onPWConfirmChanged}
       />
-      <Text style={styles.mainContainer_italics} onPress={props.onLoginA}>
+      <Text style={styles.mainContainer_italics} 
+        onPress={props.onLogin}>
         Alredy have an account?
       </Text>
       <Button

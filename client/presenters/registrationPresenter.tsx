@@ -5,15 +5,15 @@ import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../redux";
 import { RootTabScreenProps } from "../types";
 
-export default function RegistrationPresenter({
-  navigation,
-}: RootTabScreenProps<"TabTwo">) {
+export default function RegistrationPresenter(props: any, {navigation}: RootTabScreenProps<'TabThree'>) {
+
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const [pwConfirm, setPwConfirmState] = useState("");
   const dispatch = useDispatch();
 
   function onRegistrationACB() {
+    console.log("inside onLoginACB");
     signup(name, pw)
       .then((res: any) => {
         console.log("succesfully signed in!");
@@ -29,7 +29,7 @@ export default function RegistrationPresenter({
     //props.navigation.navigate('SearchPresenter')
   }
   function onLoginACB() {
-    props.navigation.navigate("LoginPresenter");
+    props.navigation.navigate('TabTwo');
   }
   function onPWChangedACB(pw: string) {
     //TODO check if valid pw

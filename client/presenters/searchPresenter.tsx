@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import SearchView from "../views/SearchView";
+import SearchView from "../views/searchView";
 import {
   filterMeals,
   getAreas,

@@ -1,5 +1,6 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
 import { Text, View } from '../components/Themed';
 import { RootStackScreenProps } from '../types';
 
