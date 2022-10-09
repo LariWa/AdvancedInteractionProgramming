@@ -63,7 +63,7 @@ router.post("/filterMeals", (req, res) => {
       filterPromises.push(axios.get("filter.php?c=" + req.body.category));
     if (req.body.area)
       filterPromises.push(axios.get("filter.php?a=" + req.body.area));
-    if (req.body.ingredients)
+    if (req.body.ingredients && req.body.ingredients.length > 0)
       filterPromises.push(
         axios.get("filter.php?i=" + req.body.ingredients.toString())
       );
