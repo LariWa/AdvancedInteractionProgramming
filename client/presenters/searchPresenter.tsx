@@ -10,6 +10,11 @@ import {
 import resolvePromise from "../resolvePromise";
 import { promiseStateType } from "../types";
 import { RootTabScreenProps } from "../types";
+import promiseNoData from "../views/promiseNoData";
+import ResultsView from "../views/ResultsView";
+import { StyleSheet, View } from "react-native";
+import { Flex } from "@react-native-material/core";
+import PromiseNoData from "../views/promiseNoData";
 
 export default function SearchPresenter({
   navigation,
@@ -30,6 +35,9 @@ export default function SearchPresenter({
     data: null,
     error: null,
   });
+  const [promise, setPromise] = React.useState<any>();
+  const [data, setData] = React.useState<any>();
+  const [error, setError] = React.useState<any>();
 
   React.useEffect(() => {
     // Runs after the first render() lifecycle
@@ -75,6 +83,10 @@ export default function SearchPresenter({
   }, []);
 
   function onSearchACB() {
+    setResultsState([]);
+    setPromise(null);
+    setData(null);
+    setError(null);
     resolvePromise(
       filterMeals(category, area, ingredients, query),
       mealsPromiseState,
@@ -83,24 +95,43 @@ export default function SearchPresenter({
   }
   function mealPromiseStateChanged(result: promiseStateType) {
     setMealsPromiseState(result);
+    setPromise(result.promise);
+    setData(result.data);
+    setError(result.error);
     if (result.data && result.data.data) setResultsState(result.data.data);
   }
-
+  const styles = StyleSheet.create({
+    mainContainer: {
+      backgroundColor: "#FDFBF7",
+      padding: 10,
+      top: 0,
+      width: "100%",
+      height: "100%",
+      position: "absolute",
+      paddingLeft: "50px",
+      paddingRight: "50px",
+      paddingTop: "30px",
+      alignContent: "center",
+    },
+  });
   return (
-    <SearchView
-      categories={categories}
-      areas={areas}
-      ingrToSelect={ingredientsToSelect}
-      category={category}
-      area={area}
-      ingredients={ingredients}
-      query={query}
-      onCategorySelected={setCategoryState}
-      onAreaSelected={setAreaState}
-      onIngredientsSelected={setIngredientsState}
-      onQueryChanged={setQueryState}
-      onSearch={onSearchACB}
-      results={results}
-    ></SearchView>
+    <Flex fill style={styles.mainContainer}>
+      <SearchView
+        categories={categories}
+        areas={areas}
+        ingrToSelect={ingredientsToSelect}
+        category={category}
+        area={area}
+        ingredients={ingredients}
+        query={query}
+        onCategorySelected={setCategoryState}
+        onAreaSelected={setAreaState}
+        onIngredientsSelected={setIngredientsState}
+        onQueryChanged={setQueryState}
+        onSearch={onSearchACB}
+      ></SearchView>
+
+      {promiseNoData(promise, data, error) || <ResultsView results={results} />}
+    </Flex>
   );
 }
