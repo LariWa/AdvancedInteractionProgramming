@@ -14,45 +14,67 @@ router.use((req, res, next) => {
 // define the home page route
 //gets random meal
 router.get("/randomMeal", (req, res) => {
-  console.log(1);
-  axios
-    .get("/random.php")
-    .then(getMeal)
-    .then((meal) => res.send(meal));
+  try {
+    axios
+      .get("/random.php")
+      .then(getMeal)
+      .then((meal) => res.send(meal));
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 //get meal details
 router.post("/mealDetails", (req, res) => {
-  console.log(req.body);
-  axios
-    .get("/lookup.php?i=" + req.body.id)
-    .then(getMeal)
-    .then((data) => res.send(data));
+  try {
+    axios
+      .get("/lookup.php?i=" + req.body.id)
+      .then(getMeal)
+      .then((data) => res.send(data));
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 router.post("/mealsDetails", (req, res) => {
-  let requests = req.body.ids.map((id) =>
-    axios.get("/lookup.php?i=" + id).then(getMeal)
-  );
-  axios.all(requests).then((data) => {
-    res.send(data);
-  });
+  try {
+    let requests = req.body.ids.map((id) =>
+      axios.get("/lookup.php?i=" + id).then(getMeal)
+    );
+    axios.all(requests).then((data) => {
+      res.send(data);
+    });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 //get all meal categories
 router.get("/categories", (req, res) => {
-  axios
-    .get("/categories.php")
-    .then((response) => res.send(response.data.categories));
+  try {
+    axios
+      .get("/categories.php")
+      .then((response) => res.send(response.data.categories));
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 router.get("/areas", (req, res) => {
-  axios
-    .get("/list.php?a=list")
-    .then((response) => res.send(response.data.meals));
+  try {
+    axios
+      .get("/list.php?a=list")
+      .then((response) => res.send(response.data.meals));
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 router.get("/ingredients", (req, res) => {
-  axios
-    .get("/list.php?i=list")
-    .then((response) => res.send(response.data.meals));
+  try {
+    axios
+      .get("/list.php?i=list")
+      .then((response) => res.send(response.data.meals));
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 //gets meals filtered by category, area, ingredients
@@ -78,7 +100,7 @@ router.post("/filterMeals", (req, res) => {
       axios.all(detailsReqs).then((mealDetails) => res.send(mealDetails));
     });
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(500).json({ error });
   }
 });
 
