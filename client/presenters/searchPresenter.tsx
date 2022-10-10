@@ -14,7 +14,8 @@ import promiseNoData from "../views/promiseNoData";
 import ResultsView from "../views/ResultsView";
 import { StyleSheet, View } from "react-native";
 import { Flex } from "@react-native-material/core";
-import PromiseNoData from "../views/promiseNoData";
+import { setCurrentRecipe } from "../redux";
+import RecipePresenter from "./recipePresenter";
 
 export default function SearchPresenter({
   navigation,
@@ -100,6 +101,10 @@ export default function SearchPresenter({
     setError(result.error);
     if (result.data && result.data.data) setResultsState(result.data.data);
   }
+  function setCurrentRecipeACB(recipe: any) {
+    dispatch(setCurrentRecipe(recipe));
+    //TODO go to RecipePresenter
+  }
   const styles = StyleSheet.create({
     mainContainer: {
       backgroundColor: "#FDFBF7",
@@ -131,7 +136,10 @@ export default function SearchPresenter({
         onSearch={onSearchACB}
       ></SearchView>
 
-      {promiseNoData(promise, data, error) || <ResultsView results={results} />}
+      {promiseNoData(promise, data, error) || (
+        <ResultsView results={results} onSelectedRecipe={setCurrentRecipeACB} />
+      )}
+      <RecipePresenter />
     </Flex>
   );
 }
