@@ -19,7 +19,7 @@ export default function RegistrationPresenter(props: any, {navigation}: RootTabS
         console.log("succesfully signed in!");
         dispatch(setUser(name));
         dispatch(setToken(res.data));
-        navigation.navigate("TabFour");
+        props.navigation.navigate("TabFour");
         // props.navigation.navigate("SearchPresenter");
       })
       .catch((error) => {
@@ -29,15 +29,19 @@ export default function RegistrationPresenter(props: any, {navigation}: RootTabS
     //props.navigation.navigate('SearchPresenter')
   }
   function onLoginACB() {
-    props.navigation.navigate('TabTwo');
+    navigation.navigate('TabTwo');
   }
   function onPWChangedACB(pw: string) {
     //TODO check if valid pw
     setPwState(pw);
+
   }
-  function onPWConfirmChangedACB(pw: string) {
+  function onPWConfirmChangedACB(pwConfirm: string) {
     //TODO check if pw matches pw
-    setPwConfirmState(pw);
+    setPwConfirmState(pwConfirm);
+    if (props.state.pw !== props.state.pwConfirm){
+      //TODO if passwords do not match, abort and send error message
+    }
   }
 
   return (

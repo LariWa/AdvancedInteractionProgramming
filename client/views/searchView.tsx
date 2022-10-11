@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     padding: 10,
     top: 0,
     width: "100%",
-    // position: "absolute",
+    height: "100%",
+    position: "absolute",
     paddingLeft: "50px",
     paddingRight: "50px",
     paddingTop: "30px",
@@ -68,7 +69,7 @@ export default function SearchView(props: any) {
       <TextInput
         placeholder="Search"
         style={styles.textInput}
-        onChangeText={props.onQueryChanged}
+        onTextInput={props.onQueryChanged}
       />
       <div style={styles.mainContainer_filters}>
         <DropdownMenu
@@ -82,6 +83,9 @@ export default function SearchView(props: any) {
         />
         <Button title="Search" onPress={props.onSearch} />
       </div>
+      {props.results.map((r) => (
+        <DishCard key={r.idMeal} data={r} />
+      ))}
     </Flex>
   );
 }

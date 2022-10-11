@@ -15,10 +15,7 @@ export type { promiseStateType, test };
  */
 
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import {
-  CompositeScreenProps,
-  NavigatorScreenParams,
-} from "@react-navigation/native";
+import {CompositeScreenProps, NavigatorScreenParams} from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 declare global {
@@ -41,6 +38,7 @@ export type RootTabParamList = {
   TabTwo: undefined;
   TabThree: undefined;
   TabFour: undefined;
+  TabFive: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
