@@ -113,14 +113,12 @@ export default function SearchPresenter({
       width: "100%",
       height: "100%",
       position: "absolute",
-      paddingLeft: "50px",
-      paddingRight: "50px",
-      paddingTop: "30px",
+      paddingTop: "0px",
       alignContent: "center",
     },
   });
   return (
-    <Flex fill style={styles.mainContainer}>
+    <Flex style={styles.mainContainer}>
       <SearchView
         categories={categories}
         areas={areas}

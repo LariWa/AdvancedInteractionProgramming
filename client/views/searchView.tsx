@@ -22,13 +22,12 @@ const data = [
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: "#FDFBF7",
-    padding: 10,
     top: 0,
     width: "100%",
     // position: "absolute",
-    paddingLeft: "50px",
-    paddingRight: "50px",
-    paddingTop: "30px",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+    paddingTop: "10px",
     alignContent: "center",
   },
   mainContainer_button: {
@@ -38,14 +37,13 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     marginLeft: "auto",
     paddingTop: "10px",
-    paddingBottom: "10px",
     borderRadius: 300,
     boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
   },
   mainContainer_filters: {
     backgroundColor: "white",
     borderRadius: 10,
-    padding: 0,
+    marginTop: 10,
     width: "100%",
     display: "flex",
     overflowX: "auto",
@@ -59,17 +57,25 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontStyle: "italic",
   },
+  searchButton:{
+    backgroundColor: "#314959",
+    boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
+    borderRadius: 30
+  }
 });
 export default function SearchView(props: any) {
   return (
     <Flex fill style={styles.mainContainer}>
       <Header />
       {/* <Text style={styles.mainContainer_h5} >Sign up</Text> */}
-      <TextInput
-        placeholder="Search"
-        style={styles.textInput}
-        onChangeText={props.onQueryChanged}
-      />
+      <HStack spacing={6}>
+        <TextInput
+          placeholder="Search"
+          style={styles.textInput}
+          onChangeText={props.onQueryChanged}
+        />
+        <Button title="Search"  style={styles.searchButton} onPress={props.onSearch} />
+      </HStack>
       <div style={styles.mainContainer_filters}>
         <DropdownMenu
           data={props.categories}
@@ -80,7 +86,6 @@ export default function SearchView(props: any) {
           data={props.ingrToSelect}
           onChange={props.onIngredientsSelected}
         />
-        <Button title="Search" onPress={props.onSearch} />
       </div>
     </Flex>
   );
