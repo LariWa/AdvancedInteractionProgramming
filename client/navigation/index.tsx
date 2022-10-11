@@ -4,6 +4,7 @@
  *
  */
 import { FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
@@ -29,6 +30,9 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { login } from "../loginSource";
+import RecipePresenter from "../presenters/recipePresenter";
+import FavouritesPresenter from "../presenters/recipePresenter";
+import GroceryListView from "../views/groceryListView";
 
 export default function Navigation({
   colorScheme,
@@ -91,7 +95,7 @@ function BottomTabNavigator() {
         name="TabOne"
         component={WelcomePresenter}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Tab One",
+          title: "Welcome",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
@@ -114,7 +118,7 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={LoginPresenter}
         options={{
-          title: "Tab Two",
+          title: "Login",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
@@ -122,7 +126,7 @@ function BottomTabNavigator() {
         name="TabThree"
         component={RegistrationPresenter}
         options={{
-          title: "Tab Three",
+          title: "Register",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
@@ -130,7 +134,31 @@ function BottomTabNavigator() {
         name="TabFour"
         component={SearchPresenter}
         options={{
-          title: "Tab Four",
+          title: "Search",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabFive"
+        component={RecipePresenter}
+        options={{
+          title: "Recipt",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabSix"
+        component={FavouritesPresenter}
+        options={{
+          title: "Favourites",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabSeven"
+        component={GroceryListView}
+        options={{
+          title: "GroceryList",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
@@ -144,6 +172,7 @@ function BottomTabNavigator() {
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
+  
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return (<MaterialIcons name="tab" size={30} color="black" />);
 }

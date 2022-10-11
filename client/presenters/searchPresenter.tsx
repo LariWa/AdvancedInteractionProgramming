@@ -11,15 +11,13 @@ import resolvePromise from "../resolvePromise";
 import { promiseStateType } from "../types";
 import { RootTabScreenProps } from "../types";
 import promiseNoData from "../views/promiseNoData";
-import ResultsView from "../views/ResultsView";
+import ResultsView from "../views/resultsView";
 import { StyleSheet, View } from "react-native";
 import { Flex } from "@react-native-material/core";
-//import { setCurrentRecipe } from "../redux";
+import { setCurrentRecipe } from "../redux";
 import RecipePresenter from "./recipePresenter";
 
-export default function SearchPresenter({
-  navigation,
-}: RootTabScreenProps<"TabFour">) {
+export default function SearchPresenter({navigation}: RootTabScreenProps<'TabFour'>) {
   const dispatch = useDispatch();
   const [categories, setCategoriesState] = useState([]);
   const [areas, setAreasState] = useState([]);

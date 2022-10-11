@@ -31,7 +31,7 @@ export default function RegistrationPresenter(
     //props.navigation.navigate('SearchPresenter')
   }
   function onLoginACB() {
-    navigation.navigate("TabTwo");
+    props.navigation.navigate("TabTwo");
   }
   function onPWChangedACB(pw: string) {
     //TODO check if valid pw
