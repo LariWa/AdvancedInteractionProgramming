@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../redux";
 import { RootTabScreenProps } from "../types";
 
-export default function RegistrationPresenter(props: any, {navigation}: RootTabScreenProps<'TabThree'>) {
-
+export default function RegistrationPresenter(
+  props: any,
+  { navigation }: RootTabScreenProps<"TabThree">
+) {
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const [pwConfirm, setPwConfirmState] = useState("");
@@ -29,17 +31,16 @@ export default function RegistrationPresenter(props: any, {navigation}: RootTabS
     //props.navigation.navigate('SearchPresenter')
   }
   function onLoginACB() {
-    navigation.navigate('TabTwo');
+    navigation.navigate("TabTwo");
   }
   function onPWChangedACB(pw: string) {
     //TODO check if valid pw
     setPwState(pw);
-
   }
   function onPWConfirmChangedACB(pwConfirm: string) {
     //TODO check if pw matches pw
     setPwConfirmState(pwConfirm);
-    if (props.state.pw !== props.state.pwConfirm){
+    if (pw !== pwConfirm) {
       //TODO if passwords do not match, abort and send error message
     }
   }
