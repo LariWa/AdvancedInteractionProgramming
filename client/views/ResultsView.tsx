@@ -64,7 +64,7 @@ export default function ResultsView(props: any) {
   return (
     <Flex fill style={styles.mainContainer}>
       {props.results.map((r) => (
-        <DishCard key={r.idMeal} data={r} />
+        <DishCard key={r.idMeal} data={r} onClicked={props.onSelectedRecipe} />
       ))}
     </Flex>
   );

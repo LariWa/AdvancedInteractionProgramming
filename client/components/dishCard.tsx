@@ -53,6 +53,7 @@ export default function DishCard(props: any) {
         <Text style={styles.dishcard_details_description}>
           Quisque dictum sapien ut commodo maximus.
         </Text>
+        <Button title="select" onPress={() => props.onClicked(props.data)} />
       </View>
     </HStack>
   );

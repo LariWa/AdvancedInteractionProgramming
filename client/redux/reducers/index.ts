@@ -18,10 +18,20 @@ const token = (state = {}, action: any) => {
       return state;
   }
 };
+const currentRecipe = (state = {}, action: any) => {
+  switch (action.type) {
+    case "SET_CURRENT_RECIPE":
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
 const rootReducer = combineReducers({
   token: token,
   user: user,
   favourites: favouritesReducer,
+  currentRecipe: currentRecipe,
 });
 
 export type ApplicationState = ReturnType<typeof rootReducer>;
