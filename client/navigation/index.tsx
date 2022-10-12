@@ -22,6 +22,7 @@ import WelcomePresenter from "../presenters/welcomePresenter";
 import LoginPresenter from "../presenters/loginPresenter";
 import RegistrationPresenter from "../presenters/registrationPresenter";
 import SearchPresenter from "../presenters/searchPresenter";
+import RecipePresenter from "../presenters/recipePresenter"
 import {
   RootStackParamList,
   RootTabParamList,
@@ -128,7 +129,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabFour"
-        component={SearchPresenter}
+        component={RecipePresenter}//Search
         options={{
           title: "Tab Four",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,

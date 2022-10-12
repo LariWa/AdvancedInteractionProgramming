@@ -26,9 +26,7 @@ const styles = StyleSheet.create({
     // top: 0,
     width: "100%",
     // position: "absolute",
-    paddingLeft: "50px",
-    paddingRight: "50px",
-    paddingTop: "30px",
+    paddingTop: 10,
     alignContent: "center",
   },
   mainContainer_button: {
