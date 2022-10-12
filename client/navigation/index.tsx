@@ -129,7 +129,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabFour"
-        component={RecipePresenter}//Search
+        component={SearchPresenter}//Search
         options={{
           title: "Tab Four",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,

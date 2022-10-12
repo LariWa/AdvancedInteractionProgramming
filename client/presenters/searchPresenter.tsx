@@ -137,7 +137,7 @@ export default function SearchPresenter({
       {promiseNoData(promise, data, error) || (
         <ResultsView results={results} onSelectedRecipe={setCurrentRecipeACB} />
       )}
-      <RecipePresenter />
+      {/* <RecipePresenter /> */}
       </Flex>
   );
 }
