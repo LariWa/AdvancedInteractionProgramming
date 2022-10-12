@@ -1,7 +1,5 @@
 import express, { Application } from "express";
-import path from "path";
 import https from "https";
-import fs from "fs";
 import cors from "cors";
 import UserRouter from "./db/UserController"; //import User Routes
 import DataRouter from "./db/DataController"; //import Data Routes
@@ -11,6 +9,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
+
 app.use(
   cors({
     origin: "*",
@@ -28,6 +27,6 @@ app.use("/user", UserRouter);
 app.use("/db", DataRouter);
 
 const server = https.createServer(app);
-server.listen(port, () => {
+app.listen(port, () => {
   console.log("Server is listening on port:" + port);
 });
