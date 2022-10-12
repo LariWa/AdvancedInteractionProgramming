@@ -113,7 +113,7 @@ export default function SearchPresenter({
       width: "100%",
       height: "100%",
       position: "absolute",
-      paddingTop: "0px",
+      paddingTop: 0,
       alignContent: "center",
     },
   });
@@ -138,6 +138,6 @@ export default function SearchPresenter({
         <ResultsView results={results} onSelectedRecipe={setCurrentRecipeACB} />
       )}
       {/* <RecipePresenter /> */}
-      </Flex>
+    </Flex>
   );
 }

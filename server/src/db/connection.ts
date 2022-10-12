@@ -1,7 +1,5 @@
 const mongoose = require("mongoose"); //import fresh mongoose object
-import key from "./DBKey";
-
-//DESTRUCTURE ENV VARIABLES
+import key from "../DBKey"; //DESTRUCTURE ENV VARIABLES
 const uri =
   "mongodb+srv://admin:" +
   key +

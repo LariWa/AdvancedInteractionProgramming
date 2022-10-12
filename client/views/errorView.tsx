@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, TextInput } from "react-native";
+import { StyleSheet, Image, TextInput, View } from "react-native";
 import {
   Stack,
   IconButton,
@@ -11,7 +11,7 @@ import { preventAutoHideAsync } from "expo-splash-screen";
 
 const styles = StyleSheet.create({
   errorContainer: {
-    position:"absolute",
+    position: "absolute",
     left: 0,
     top: 0,
     width: "100%",
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     paddingRight: 50,
     paddingBottom: 200,
   },
-  message:{
+  message: {
     width: "auto",
     height: "auto",
     backgroundColor: "white",
@@ -53,14 +53,14 @@ export default function ErrorView(props: any) {
   };
   return (
     <Flex fill style={styles.errorContainer}>
-        <div style={styles.message}>
-            {props.error}
-            <Button
-            onPress={handleReturnACB}
-            title="Ge back"
-            style={styles.errorContainer_button}
+      <View style={styles.message}>
+        {props.error}
+        <Button
+          onPress={handleReturnACB}
+          title="Ge back"
+          style={styles.errorContainer_button}
         />
-        </div>
+      </View>
     </Flex>
   );
 }

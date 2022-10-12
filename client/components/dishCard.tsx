@@ -9,7 +9,7 @@ import {
   HStack,
   Wrap,
   IconComponentProvider,
-  Icon
+  Icon,
 } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
   },
   dishcard_img: {
     width: "30%",
-    height: "200px",
+    height: 200,
     backgroundColor: "#faf089",
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
   },
   dishcard_details: {
     width: "82%",
-    height: "200px",
+    height: 200,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     padding: 10,
@@ -40,20 +40,19 @@ const styles = StyleSheet.create({
   dishcard_details_description: {
     fontSize: 9,
   },
-  tag:{
+  tag: {
     width: "auto",
     height: 25,
     backgroundColor: "#F3F2E9",
     borderRadius: 10,
     marginRight: 10,
     marginTop: 5,
-    padding: 5
-
+    padding: 5,
   },
-  dishcard_right:{
+  dishcard_right: {
     width: "70%",
-    backgroundColor:"white"
-  }
+    backgroundColor: "white",
+  },
 });
 export default function DishCard(props: any) {
   const onRegistrationACB = () => {
@@ -63,10 +62,12 @@ export default function DishCard(props: any) {
     props.onLogin();
   };
 
-  function renderArrayCB(tag: any){
-      return<div style={styles.tag} key={tag}>
-          {tag}
-      </div>
+  function renderArrayCB(tag: any) {
+    return (
+      <View style={styles.tag} key={tag}>
+        {tag}
+      </View>
+    );
   }
   return (
     <HStack spacing={0} style={styles.dishcard}>
@@ -76,15 +77,17 @@ export default function DishCard(props: any) {
       ></Image>
       <Wrap m={4} items="center" spacing={5} style={styles.dishcard_right}>
         <View style={styles.dishcard_details}>
-          <Text style={styles.dishcard_details_header}>{props.data.strMeal}</Text>
-          <Text style={styles.dishcard_details_description}>
+          <Text style={styles.dishcard_details_header}>
+            {props.data.strMeal}
           </Text>
+          <Text style={styles.dishcard_details_description}></Text>
           <Flex wrap="wrap" direction="row">
-            {props.data.strTags && props.data.strTags.split(',').map(renderArrayCB)} 
+            {props.data.strTags &&
+              props.data.strTags.split(",").map(renderArrayCB)}
           </Flex>
         </View>
         <IconComponentProvider IconComponent={MaterialCommunityIcons}>
-          <Icon name="heart" size={24} color="red" style={styles.heart}/>
+          <Icon name="heart" size={24} color="red" style={styles.heart} />
         </IconComponentProvider>
       </Wrap>
     </HStack>

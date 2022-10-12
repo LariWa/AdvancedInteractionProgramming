@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
     width: "100%",
     // height: "100%",
     // position: "absolute",
-    paddingLeft: "10px",
-    paddingRight: "10px",
-    paddingTop: "10px",
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
     alignContent: "center",
   },
   mainContainer_button: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     height: 60,
     marginRight: "auto",
     marginLeft: "auto",
-    paddingTop: "10px",
+    paddingTop: 10,
     borderRadius: 300,
     boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
   },
@@ -45,24 +45,24 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     marginTop: 10,
-    width: "100%",
+    width: 100,
     display: "flex",
     overflowX: "auto",
   },
   textInput: {
-    marginBottom: "10px",
+    marginBottom: 10,
     backgroundColor: "#F3F2E9",
     borderRadius: 10,
-    width: "100%",
+    width: 100,
     height: 45,
     paddingLeft: 10,
     fontStyle: "italic",
   },
-  searchButton:{
+  searchButton: {
     backgroundColor: "#314959",
     boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
-    borderRadius: 30
-  }
+    borderRadius: 30,
+  },
 });
 export default function SearchView(props: any) {
   return (
@@ -75,9 +75,13 @@ export default function SearchView(props: any) {
           style={styles.textInput}
           onChangeText={props.onQueryChanged}
         />
-        <Button title="Search"  style={styles.searchButton} onPress={props.onSearch} />
+        <Button
+          title="Search"
+          style={styles.searchButton}
+          onPress={props.onSearch}
+        />
       </HStack>
-      <div style={styles.mainContainer_filters}>
+      <Flex style={styles.mainContainer_filters}>
         <DropdownMenu
           data={props.categories}
           onChange={props.onCategorySelected}
@@ -87,7 +91,7 @@ export default function SearchView(props: any) {
           data={props.ingrToSelect}
           onChange={props.onIngredientsSelected}
         />
-      </div>
+      </Flex>
     </Flex>
   );
 }

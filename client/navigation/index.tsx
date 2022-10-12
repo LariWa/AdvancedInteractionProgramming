@@ -16,13 +16,13 @@ import { ColorSchemeName, Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../views/ModalView";
-import NotFoundScreen from "../views/NotFoundView";
+import ModalView from "../views/modalView";
+import NotFoundScreen from "../views/notFoundView";
 import WelcomePresenter from "../presenters/welcomePresenter";
 import LoginPresenter from "../presenters/loginPresenter";
 import RegistrationPresenter from "../presenters/registrationPresenter";
 import SearchPresenter from "../presenters/searchPresenter";
-import RecipePresenter from "../presenters/recipePresenter"
+import RecipePresenter from "../presenters/recipePresenter";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -66,7 +66,7 @@ function RootNavigator() {
         options={{ title: "Oops!" }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Modal" component={ModalView} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -129,7 +129,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabFour"
-        component={SearchPresenter}//Search
+        component={SearchPresenter} //Search
         options={{
           title: "Tab Four",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,

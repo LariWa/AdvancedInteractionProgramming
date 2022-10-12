@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://localhost:8080/";
+axios.defaults.baseURL = "https://mealappserver.onrender.com/";
 
 // function getData(token: string) {
 //   axios.get("https://localhost:8080/db/", {
