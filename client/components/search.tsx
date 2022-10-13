@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useState }  from 'react'
-import { StyleSheet, Image, TextInput, View  } from "react-native";
+import React from 'react'
+import { StyleSheet, TextInput  } from "react-native";
 
 
 const styles = StyleSheet.create({

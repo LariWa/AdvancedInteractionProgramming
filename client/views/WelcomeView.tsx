@@ -19,28 +19,26 @@ const styles = StyleSheet.create({
     containerTwo_centered_h5: {
         marginRight:"auto", 
         marginLeft:"auto", 
-        fontWeight:"700"
     },
     containerTwo_centered_h6: {
         marginRight:"auto", 
         marginLeft:"auto", 
-        fontWeight:"400"
     },
     button: {
         backgroundColor: 'white', 
-        width:"200px", 
-        height:"60px", 
+        width:200, 
+        height:60, 
         marginRight:"auto", 
         marginLeft:"auto", 
-        paddingTop: "10px", 
-        paddingBottom:"10px", 
+        paddingTop: 10, 
+        paddingBottom:10, 
         borderRadius: 10,
     },
     containerOne_image: {
         width: "100%",
         height: "100%",
-        top: "0",
-        left: "0",
+        top: 0,
+        left: 0,
         position: "absolute"
     }
    

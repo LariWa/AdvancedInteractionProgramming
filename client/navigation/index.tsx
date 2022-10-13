@@ -16,8 +16,8 @@ import { ColorSchemeName, Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../views/ModalView";
-import NotFoundScreen from "../views/NotFoundView";
+import ModalScreen from "../views/modalView";
+import NotFoundScreen from "../views/notFoundView";
 import WelcomePresenter from "../presenters/welcomePresenter";
 import LoginPresenter from "../presenters/loginPresenter";
 import RegistrationPresenter from "../presenters/registrationPresenter";

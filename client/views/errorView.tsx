@@ -42,9 +42,8 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginTop: 10,
     paddingTop: 10,
-    paddingBottom: "10px",
+    paddingBottom: 10,
     borderRadius: 300,
-    boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
   },
 });
 export default function ErrorView(props: any) {

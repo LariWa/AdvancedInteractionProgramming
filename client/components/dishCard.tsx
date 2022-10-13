@@ -21,21 +21,20 @@ const styles = StyleSheet.create({
   },
   dishcard_img: {
     width: "30%",
-    height: "200px",
+    height: 200,
     backgroundColor: "#faf089",
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
   },
   dishcard_details: {
     width: "82%",
-    height: "200px",
+    height: 200,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     padding: 10,
     backgroundColor: "white",
   },
   dishcard_details_header: {
-    fontWeight: "700",
   },
   dishcard_details_description: {
     fontSize: 9,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Image, TextInput, View  } from "react-native";
+import { StyleSheet, View  } from "react-native";
 import {  Avatar } from "@react-native-material/core";
 
 const styles = StyleSheet.create({
@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
 
 export default function Header() {
   return (
-    <div style={styles.header}> 
+    <View style={styles.header}> 
         <Avatar 
         size={32}
         label="Kent Dodds" 
         autoColor 
         style={styles.avatar}/>
-    </div>
+    </View>
   )
 }

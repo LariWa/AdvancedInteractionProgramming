@@ -1,26 +1,13 @@
-import React, { useState } from "react";
-import { StyleSheet, Image, TextInput, View } from "react-native";
+import React from "react";
+import { StyleSheet, ScrollView } from "react-native";
 import {
-  Stack,
-  IconButton,
   Flex,
-  Text,
-  Button,
-  HStack,
 } from "@react-native-material/core";
-import DropdownMenu from "../components/dropdownMenu";
 import DishCard from "../components/dishCard";
-import Search from "../components/search";
-import Header from "../components/header";
-
-const data = [
-  { label: "Item 1", value: "1" },
-  { label: "Item 2", value: "2" },
-  { label: "Item 3", value: "3" },
-];
 
 const styles = StyleSheet.create({
   mainContainer: {
+    position:"relative",
     backgroundColor: "#FDFBF7",
     padding: 10,
     // top: 0,
@@ -35,10 +22,9 @@ const styles = StyleSheet.create({
     height: 60,
     marginRight: "auto",
     marginLeft: "auto",
-    paddingTop: "10px",
-    paddingBottom: "10px",
+    paddingTop: 10,
+    paddingBottom: 10,
     borderRadius: 300,
-    boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
   },
   mainContainer_filters: {
     backgroundColor: "white",
@@ -49,7 +35,7 @@ const styles = StyleSheet.create({
     overflowX: "auto",
   },
   textInput: {
-    marginBottom: "10px",
+    marginBottom: 10,
     backgroundColor: "#F3F2E9",
     borderRadius: 10,
     width: "100%",
@@ -60,10 +46,12 @@ const styles = StyleSheet.create({
 });
 export default function ResultsView(props: any) {
   return (
-    <Flex fill style={styles.mainContainer}>
-      {props.results.map((r: any) => (
-        <DishCard key={r.idMeal} data={r} onPress={props.onSelectedRecipe}/>
-      ))}
-    </Flex>
+    <ScrollView style={styles.mainContainer}>
+      <Flex fill>
+        {props.results.map((r: any) => (
+          <DishCard key={r.idMeal} data={r} onPress={props.onSelectedRecipe}/>
+        ))}
+      </Flex>
+    </ScrollView>
   );
 }

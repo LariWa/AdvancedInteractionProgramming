@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import { StyleSheet, Image, TextInput, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { MultiSelect  } from "react-native-element-dropdown";
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 
 const styles = StyleSheet.create({
   dropdown: {
