@@ -1,6 +1,9 @@
-import { Flex } from "@react-native-material/core";
+import { Flex, Text } from "@react-native-material/core";
 import React from "react";
 
 export default function RecipeView(props: any) {
-  return <Flex>{props.meal.strMeal}</Flex>;
+  return <Flex>
+        <Text>This is the recipe view </Text>
+            {/*props.meal.strMeal*/}
+         </Flex>;
 }

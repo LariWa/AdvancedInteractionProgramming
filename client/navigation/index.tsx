@@ -31,8 +31,8 @@ import {
 import LinkingConfiguration from "./LinkingConfiguration";
 import { login } from "../loginSource";
 import RecipePresenter from "../presenters/recipePresenter";
-import FavouritesPresenter from "../presenters/recipePresenter";
-import GroceryListView from "../views/groceryListView";
+import FavouritesPresenter from "../presenters/favouritesPresenter";
+import GroceryListPresenter from "../presenters/groceryListPresenter";
 
 export default function Navigation({
   colorScheme,
@@ -156,7 +156,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabSeven"
-        component={GroceryListView}
+        component={GroceryListPresenter}
         options={{
           title: "GroceryList",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,

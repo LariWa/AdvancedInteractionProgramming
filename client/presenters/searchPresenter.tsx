@@ -14,10 +14,12 @@ import promiseNoData from "../views/promiseNoData";
 import ResultsView from "../views/resultsView";
 import { StyleSheet, View } from "react-native";
 import { Flex } from "@react-native-material/core";
-import { setCurrentRecipe } from "../redux";
+//import { setCurrentRecipe } from "../redux";
 import RecipePresenter from "./recipePresenter";
 
-export default function SearchPresenter({navigation}: RootTabScreenProps<'TabFour'>) {
+export default function SearchPresenter({
+navigation,
+}: RootTabScreenProps<"TabFour">) {
   const dispatch = useDispatch();
   const [categories, setCategoriesState] = useState([]);
   const [areas, setAreasState] = useState([]);
@@ -137,7 +139,7 @@ export default function SearchPresenter({navigation}: RootTabScreenProps<'TabFou
       {promiseNoData(promise, data, error) || (
         <ResultsView results={results} onSelectedRecipe={setCurrentRecipeACB} />
       )}
-      <RecipePresenter />
+      {/*<RecipePresenter/>*/}
       </Flex>
   );
 }
