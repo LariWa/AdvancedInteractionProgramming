@@ -3,7 +3,7 @@ import RegistrationView from "../views/registrationView";
 import ErrorView from "../views/errorView";
 import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
-import { setUser, setToken } from "../redux";
+import { setUserData, setToken, setNewUserData } from "../redux";
 import { RootTabScreenProps } from "../types";
 
 export default function RegistrationPresenter(
@@ -13,15 +13,14 @@ export default function RegistrationPresenter(
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const [pwConfirm, setPwConfirmState] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   function onRegistrationACB() {
     console.log("inside onLoginACB");
     signup(name, pw)
       .then((res: any) => {
         console.log("succesfully signed in!");
-        dispatch(setUser(name));
-        dispatch(setToken(res.data));
+        dispatch(setNewUserData(name, res.data));
         props.navigation.navigate("TabFour");
         // props.navigation.navigate("SearchPresenter");
       })
@@ -46,8 +45,8 @@ export default function RegistrationPresenter(
     }
   }
   function onReturnACB() {
-    props.navigation.navigate('TabThree')
-    props.error = null
+    props.navigation.navigate("TabThree");
+    props.error = null;
   }
   return (
     <>
@@ -58,10 +57,9 @@ export default function RegistrationPresenter(
         onPWConfirmChanged={onPWConfirmChangedACB}
         onNameChanged={setNameState}
       ></RegistrationView>
-      {props.error && <ErrorView
-        error="Message"
-        onReturn={onReturnACB}
-      ></ErrorView>}
+      {props.error && (
+        <ErrorView error="Message" onReturn={onReturnACB}></ErrorView>
+      )}
     </>
   );
 }

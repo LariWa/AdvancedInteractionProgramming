@@ -19,12 +19,10 @@ function deleteFavourite(id: string) {
     getHeader()
   );
 }
-function getFavourites(id: string) {
-  return axios.post(
+function getFavourites() {
+  return axios.get(
     "/db/getFavourites",
-    {
-      id: id,
-    },
+
     getHeader()
   );
 }

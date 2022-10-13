@@ -39,6 +39,13 @@ export const favouritesReducer = (
         success: true,
         error: false,
       };
+    case "GET_FAVS_SUC":
+      return {
+        data: action.payload,
+        loading: false,
+        success: true,
+        error: false,
+      };
     default:
       return state;
   }
