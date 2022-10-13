@@ -5,6 +5,7 @@ export const favouritesReducer = (
   switch (action.type) {
     case "ADD_TO_FAV" || "DELETE_FAV":
       return {
+        data: state.data,
         loading: true,
         success: false,
         error: false,
@@ -16,7 +17,8 @@ export const favouritesReducer = (
         success: true,
         error: false,
       };
-    case "DELETE_TO_FAV_SUC":
+    case "DELETE_FAV_SUC":
+      console.log(action);
       return {
         data: state.data.filter((fav) => fav !== action.payload),
         loading: false,
@@ -25,9 +27,10 @@ export const favouritesReducer = (
       };
     case "MANIPULATE_FAV_ERROR":
       return {
+        data: state.data,
         loading: false,
         success: false,
-        error: action.payload.error,
+        error: action.payload,
       };
     case "SET_FAVS":
       return {

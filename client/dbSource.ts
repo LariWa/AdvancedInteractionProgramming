@@ -1,11 +1,9 @@
 import axios from "axios";
 import store from "./redux/store";
 
-axios.defaults.baseURL = "https://localhost:8080/db";
-
 function addFavourite(id: string) {
   return axios.post(
-    "/addFavourite",
+    "/db/addFavourite",
     {
       id: id,
     },
@@ -14,7 +12,7 @@ function addFavourite(id: string) {
 }
 function deleteFavourite(id: string) {
   return axios.post(
-    "/deleteFavourite",
+    "/db/deleteFavourite",
     {
       id: id,
     },
@@ -23,7 +21,7 @@ function deleteFavourite(id: string) {
 }
 function getFavourites(id: string) {
   return axios.post(
-    "/getFavourites",
+    "/db/getFavourites",
     {
       id: id,
     },

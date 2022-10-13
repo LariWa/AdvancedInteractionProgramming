@@ -12,6 +12,7 @@ import DropdownMenu from "../components/dropdownMenu";
 import DishCard from "../components/dishCard";
 import Search from "../components/search";
 import Header from "../components/header";
+import DishCardPresenter from "../presenters/dishCardPresenter";
 
 const data = [
   { label: "Item 1", value: "1" },
@@ -62,7 +63,11 @@ export default function ResultsView(props: any) {
   return (
     <Flex fill style={styles.mainContainer}>
       {props.results.map((r) => (
-        <DishCard key={r.idMeal} data={r} onClicked={props.onSelectedRecipe} />
+        <DishCardPresenter
+          key={r.idMeal}
+          data={r}
+          onClicked={props.onSelectedRecipe}
+        />
       ))}
     </Flex>
   );
