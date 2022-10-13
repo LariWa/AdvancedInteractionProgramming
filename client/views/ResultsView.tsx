@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
 export default function ResultsView(props: any) {
   return (
     <Flex fill style={styles.mainContainer}>
-      {props.results.map((r) => (
-        <DishCard key={r.idMeal} data={r} onClicked={props.onSelectedRecipe} />
+      {props.results.map((r: any) => (
+        <DishCard key={r.idMeal} data={r} onPress={props.onSelectedRecipe}/>
       ))}
     </Flex>
   );

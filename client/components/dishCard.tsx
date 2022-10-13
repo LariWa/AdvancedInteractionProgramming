@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, TextInput, View } from "react-native";
+import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
 import {
   Stack,
   IconButton,
@@ -69,7 +69,8 @@ export default function DishCard(props: any) {
       </div>
   }
   return (
-    <HStack spacing={0} style={styles.dishcard}>
+    <TouchableOpacity onPress={props.onPress}>
+      <HStack spacing={0} style={styles.dishcard}>
       <Image
         style={styles.dishcard_img}
         source={props.data.strMealThumb}
@@ -87,6 +88,7 @@ export default function DishCard(props: any) {
           <Icon name="heart" size={24} color="red" style={styles.heart}/>
         </IconComponentProvider>
       </Wrap>
-    </HStack>
+      </HStack> 
+    </TouchableOpacity>   
   );
 }

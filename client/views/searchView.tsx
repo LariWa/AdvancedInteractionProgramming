@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
   }
 });
 export default function SearchView(props: any) {
+  function onSearch(){
+    props.onSearch();
+  }
   return (
     <Flex fill style={styles.mainContainer}>
       <Header />
@@ -75,9 +78,9 @@ export default function SearchView(props: any) {
           style={styles.textInput}
           onChangeText={props.onQueryChanged}
         />
-        <Button title="Search"  style={styles.searchButton} onPress={props.onSearch} />
+        <Button title="Search"  style={styles.searchButton} onPress={onSearch} />
       </HStack>
-      <div style={styles.mainContainer_filters}>
+      <View style={styles.mainContainer_filters}>
         <DropdownMenu
           data={props.categories}
           onChange={props.onCategorySelected}
@@ -87,7 +90,7 @@ export default function SearchView(props: any) {
           data={props.ingrToSelect}
           onChange={props.onIngredientsSelected}
         />
-      </div>
+      </View>
     </Flex>
   );
 }
