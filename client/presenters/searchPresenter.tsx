@@ -16,6 +16,7 @@ import { StyleSheet, View } from "react-native";
 import { Flex } from "@react-native-material/core";
 //import { setCurrentRecipe } from "../redux";
 import RecipePresenter from "./recipePresenter";
+import { getTopFavourites } from "../dbSource";
 
 export default function SearchPresenter({
   navigation,
@@ -30,6 +31,8 @@ export default function SearchPresenter({
   const [ingredients, setIngredientsState] = useState<Array<string>>([]);
   const [query, setQueryState] = useState("");
   const [results, setResultsState] = useState([]);
+  const [topFavs, setTopFavs] = React.useState<Array<any>>([]);
+  const [topFavsLoading, setTopFavsLoading] = React.useState<boolean>();
 
   const [mealsPromiseState, setMealsPromiseState] = useState<promiseStateType>({
     promise: null,
@@ -42,6 +45,12 @@ export default function SearchPresenter({
 
   React.useEffect(() => {
     // Runs after the first render() lifecycle
+    setTopFavsLoading(true);
+    getTopFavourites().then((res) => {
+      setTopFavs(res.data);
+      setTopFavsLoading(false);
+    });
+
     getCategories()
       .then((res) =>
         setCategoriesState(
@@ -134,10 +143,21 @@ export default function SearchPresenter({
         onSearch={onSearchACB}
       ></SearchView>
 
-      {promiseNoData(promise, data, error) || (
-        <ResultsView results={results} onSelectedRecipe={setCurrentRecipeACB} />
-      )}
+      {promiseNoData(promise, data, error) ||
+        (results && results.length > 0 ? (
+          <ResultsView
+            results={results}
+            onSelectedRecipe={setCurrentRecipeACB}
+          />
+        ) : (
+          <ResultsView
+            header="No data was found :( But you can get inspired by the Top Favourites of other users:"
+            loading={topFavsLoading}
+            results={topFavs}
+            onSelectedRecipe={setCurrentRecipeACB}
+          />
+        ))}
       {/* <RecipePresenter /> */}
-      </Flex>
+    </Flex>
   );
 }

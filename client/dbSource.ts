@@ -26,8 +26,17 @@ function getFavourites() {
     getHeader()
   );
 }
+
+function getTopFavourites() {
+  return axios.get("/db/topTen").then((res) => {
+    console.log(res.data);
+    return axios.post("/api/mealsDetails", {
+      ids: res.data,
+    });
+  });
+}
 function getHeader() {
   return { headers: { authorization: "bearer " + store.getState().token } };
 }
 
-export { addFavourite, deleteFavourite, getFavourites };
+export { addFavourite, deleteFavourite, getFavourites, getTopFavourites };

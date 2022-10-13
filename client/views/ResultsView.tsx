@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  TextInput,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import {
   Stack,
   IconButton,
@@ -62,6 +68,11 @@ const styles = StyleSheet.create({
 export default function ResultsView(props: any) {
   return (
     <Flex fill style={styles.mainContainer}>
+      {props.header ? <Text>{props.header}</Text> : null}
+      {props.loading ? (
+        <ActivityIndicator size="large" color="#00ff00" />
+      ) : null}
+
       {props.results.map((r) => (
         <DishCardPresenter
           key={r.idMeal}

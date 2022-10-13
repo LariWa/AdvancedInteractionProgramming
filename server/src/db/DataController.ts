@@ -3,6 +3,13 @@ const Data = require("./data"); // import user model
 import { Router } from "express";
 const router = Router(); // create router to create route bundle
 import { isLoggedIn } from "../middleware";
+var _ = require("lodash");
+
+router.use((req, res, next) => {
+  console.log("Time: ", Date.now());
+  next();
+});
+
 // get all data for user
 router.get("/", isLoggedIn, async (req, res) => {
   try {
@@ -45,6 +52,22 @@ router.post("/deleteFavourite", isLoggedIn, async (req, res) => {
       ).catch((error) => res.status(400).json({ error }))
     );
   } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+router.get("/getTopTen", async (req, res) => {
+  try {
+    let data = await Data.find({});
+    let favs = data.flatMap((r) => r.toObject().favourites);
+    var counter = _.countBy(favs);
+    var result = _(favs)
+      .uniq()
+      .sortBy((elem) => counter[elem])
+      .reverse()
+      .value();
+    res.json(result.slice(0, 10));
+  } catch (error) {
+    console.log(error);
     res.status(400).json({ error });
   }
 });

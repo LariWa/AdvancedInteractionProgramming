@@ -1,16 +1,18 @@
 import { promiseStateType } from "../types";
-import { Image, Text, View } from "react-native";
+import { ActivityIndicator, Image, Text, View } from "react-native";
 import React from "react";
 export default function promiseNoData(promise: any, data: any, error: any) {
   if (!promise)
     //no promise
-    return <Text> no data</Text>;
+    //  return <Text> no data</Text>;
+    return false; //display default data
   else {
-    if (!(data || error))
+    if (!(data || error)) {
       //promised, no data, no error
       //TODO add loading img
-      return <Text> loading</Text>;
-
+      console.log("loading");
+      return <ActivityIndicator size="large" color="#00ff00" />;
+    }
     if (!data && error)
       //promised, no data, with error
       return <Text>{error.toString()}</Text>;

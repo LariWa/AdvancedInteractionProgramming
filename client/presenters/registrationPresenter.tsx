@@ -21,7 +21,6 @@ export default function RegistrationPresenter(
   function onRegistrationACB() {
     console.log("inside onLoginACB");
     setLoadingState(true);
-    props.navigation.navigate("Favourites");
 
     signup(name, pw)
       .then((res: any) => {

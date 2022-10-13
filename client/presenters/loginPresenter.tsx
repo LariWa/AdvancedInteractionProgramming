@@ -17,6 +17,8 @@ export default function LoginPresenter(
   const [error, setError] = useState();
 
   function onLoginACB() {
+    props.navigation.navigate("Favourites");
+
     setLoadingState(true);
     login(name, pw)
       .then((res: any) => {
@@ -30,7 +32,7 @@ export default function LoginPresenter(
         // props.navigation.navigate("SearchPresenter");
       })
       .catch((data) => {
-        setError(data.response?.data?.error);
+        setError(data.response?.data?.error.toString());
         setLoadingState(false);
       });
   }
