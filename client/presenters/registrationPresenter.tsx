@@ -5,6 +5,7 @@ import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
 import { setUserData, setToken, setNewUserData } from "../redux";
 import { RootTabScreenProps } from "../types";
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 
 export default function RegistrationPresenter(
   props: any,
@@ -14,19 +15,26 @@ export default function RegistrationPresenter(
   const [pw, setPwState] = useState("");
   const [pwConfirm, setPwConfirmState] = useState("");
   const dispatch = useDispatch<any>();
+  const [loading, setLoadingState] = useState(false);
+  const [error, setError] = useState("");
 
   function onRegistrationACB() {
     console.log("inside onLoginACB");
+    setLoadingState(true);
     signup(name, pw)
       .then((res: any) => {
         console.log("succesfully signed in!");
         dispatch(setNewUserData(name, res.data));
         props.navigation.navigate("TabFour");
+        setLoadingState(false);
+
         // props.navigation.navigate("SearchPresenter");
       })
-      .catch((error) => {
+      .catch((data) => {
+        console.log(data);
         //TODO display error in View
-        console.log(error);
+        setError("need to be adapted on server");
+        setLoadingState(false);
       });
     //props.navigation.navigate('SearchPresenter')
   }
@@ -46,7 +54,7 @@ export default function RegistrationPresenter(
   }
   function onReturnACB() {
     props.navigation.navigate("TabThree");
-    props.error = null;
+    setError(null);
   }
   return (
     <>
@@ -56,10 +64,9 @@ export default function RegistrationPresenter(
         onPWChanged={onPWChangedACB}
         onPWConfirmChanged={onPWConfirmChangedACB}
         onNameChanged={setNameState}
+        loading={loading}
       ></RegistrationView>
-      {props.error && (
-        <ErrorView error="Message" onReturn={onReturnACB}></ErrorView>
-      )}
+      {error && <ErrorView error={error} onReturn={onReturnACB}></ErrorView>}
     </>
   );
 }

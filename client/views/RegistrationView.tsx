@@ -9,11 +9,7 @@ import {
 } from "@react-native-material/core";
 import { styles_registrationPage } from "./styles";
 
-
 export default function RegistrationView(props: any) {
-  const handleLoginACB = () => {
-    props.onLogin();
-  };
   return (
     <Flex fill style={styles_registrationPage.mainContainer}>
       <Text style={styles_registrationPage.mainContainer_h5}>Sign up</Text>
@@ -32,21 +28,23 @@ export default function RegistrationView(props: any) {
         style={styles_registrationPage.mainContainer_textInput}
         onChangeText={props.onPWConfirmChanged}
       />
-      <Text style={styles_registrationPage.mainContainer_italics} 
-        onPress={props.onLogin}>
+      <Text
+        style={styles_registrationPage.mainContainer_italics}
+        onPress={props.onLogin}
+      >
         Alredy have an account?
       </Text>
       <Button
         title="Get Started"
         style={styles_registrationPage.mainContainer_button}
         onPress={props.onRegistration}
+        loading={props.loading}
+        disabled={props.loading}
       />
       <Image
         style={styles_registrationPage.maincontainer_image}
         source={require("../styles/registrationImage.png")}
       ></Image>
     </Flex>
-  ); 
+  );
 }
-
-

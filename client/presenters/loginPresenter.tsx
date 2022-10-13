@@ -13,20 +13,25 @@ export default function LoginPresenter(
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const dispatch = useDispatch<any>();
+  const [loading, setLoadingState] = useState(false);
+  const [error, setError] = useState();
 
   function onLoginACB() {
+    setLoadingState(true);
     login(name, pw)
       .then((res: any) => {
         console.log("succesfully logged in!");
         dispatch(setUserData(name, res.data.token));
+        setLoadingState(false);
+
         // dispatch(setToken(res.data.token));
         //navigation.navigate("TabFour");
         props.navigation.navigate("TabFour");
         // props.navigation.navigate("SearchPresenter");
       })
-      .catch((error) => {
-        //TODO display error in View
-        console.log(error);
+      .catch((data) => {
+        setError(data.response?.data?.error);
+        setLoadingState(false);
       });
   }
 
@@ -35,7 +40,7 @@ export default function LoginPresenter(
   }
   function onReturnACB() {
     props.navigation.navigate("TabThree");
-    props.error = null;
+    setError(null);
   }
   return (
     <>
@@ -44,10 +49,9 @@ export default function LoginPresenter(
         onRegistration={onRegistrationACB}
         onPWChanged={setPwState}
         onNameChanged={setNameState}
+        loading={loading}
       ></LoginView>
-      {props.error && (
-        <ErrorView error="Message" onReturn={onReturnACB}></ErrorView>
-      )}
+      {error && <ErrorView error={error} onReturn={onReturnACB}></ErrorView>}
     </>
   );
 }

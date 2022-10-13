@@ -9,7 +9,6 @@ import {
 } from "@react-native-material/core";
 import { styles_loginPage } from "./styles";
 
-
 export default function LoginView(props: any) {
   const handleLoginACB = () => {
     console.log("loginView");
@@ -20,34 +19,36 @@ export default function LoginView(props: any) {
   };
   return (
     <>
-        <Flex fill style={styles_loginPage.mainContainer}>
+      <Flex fill style={styles_loginPage.mainContainer}>
         <Text style={styles_loginPage.mainContainer_h5}>Sign in</Text>
         <TextInput
-            onChangeText={props.onNameChanged}
-            placeholder="Name"
-            style={styles_loginPage.mainContainer_textInput}
+          onChangeText={props.onNameChanged}
+          placeholder="Name"
+          style={styles_loginPage.mainContainer_textInput}
         />
         <TextInput
-            placeholder="Password"
-            style={styles_loginPage.mainContainer_textInput}
-            onChangeText={props.onPWChanged}
+          placeholder="Password"
+          style={styles_loginPage.mainContainer_textInput}
+          onChangeText={props.onPWChanged}
         />
         <Text
-            style={styles_loginPage.mainContainer_italics}
-            onPress={handleRegistrationACB}
+          style={styles_loginPage.mainContainer_italics}
+          onPress={handleRegistrationACB}
         >
-            New user
+          New user
         </Text>
         <Button
-            onPress={handleLoginACB}
-            title="Get Started"
-            style={styles_loginPage.mainContainer_button}
+          onPress={handleLoginACB}
+          title="Get Started"
+          style={styles_loginPage.mainContainer_button}
+          loading={props.loading}
+          disabled={props.loading}
         />
         <Image
-            style={styles_loginPage.maincontainer_image}
-            source={require("../styles/loginImage.png")}
+          style={styles_loginPage.maincontainer_image}
+          source={require("../styles/loginImage.png")}
         ></Image>
-        </Flex>
+      </Flex>
     </>
   );
 }
