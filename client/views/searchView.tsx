@@ -1,23 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, Image, TextInput, View } from "react-native";
+import React from "react";
+import { StyleSheet, TextInput, View } from "react-native";
 import {
-  Stack,
-  IconButton,
   Flex,
-  Text,
   Button,
   HStack,
 } from "@react-native-material/core";
 import DropdownMenu from "../components/dropdownMenu";
-import DishCard from "../components/dishCard";
-import Search from "../components/search";
 import Header from "../components/header";
-
-const data = [
-  { label: "Item 1", value: "1" },
-  { label: "Item 2", value: "2" },
-  { label: "Item 3", value: "3" },
-];
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -80,17 +69,23 @@ export default function SearchView(props: any) {
         />
         <Button title="Search"  style={styles.searchButton} onPress={onSearch} />
       </HStack>
-      <View style={styles.mainContainer_filters}>
+      <Flex direction="row" style={styles.mainContainer_filters}>
         <DropdownMenu
           data={props.categories}
           onChange={props.onCategorySelected}
+          searchItem="Category"
         />
-        <DropdownMenu data={props.areas} onChange={props.onAreaSelected} />
+        <DropdownMenu 
+          data={props.areas} 
+          onChange={props.onAreaSelected} 
+          searchItem="Area"
+        />
         <DropdownMenu
           data={props.ingrToSelect}
           onChange={props.onIngredientsSelected}
+          searchItem="Ingredients"
         />
-      </View>
+      </Flex>
     </Flex>
   );
 }

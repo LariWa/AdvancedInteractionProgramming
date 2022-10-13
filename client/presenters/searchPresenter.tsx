@@ -12,7 +12,7 @@ import { promiseStateType } from "../types";
 import { RootTabScreenProps } from "../types";
 import promiseNoData from "../views/promiseNoData";
 import ResultsView from "../views/resultsView";
-import { Alert, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Flex } from "@react-native-material/core";
 //import { setCurrentRecipe } from "../redux";
 import RecipePresenter from "./recipePresenter";
@@ -102,7 +102,6 @@ export default function SearchPresenter({
     if (result.data && result.data.data) setResultsState(result.data.data);
   }
   function setCurrentRecipeACB(recipe: any) {
-    console.log("1111")
     //dispatch(setCurrentRecipe(recipe));
     //TODO go to RecipePresenter
   }

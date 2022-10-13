@@ -81,7 +81,7 @@ export default function DishCard(props: any) {
           <Text style={styles.dishcard_details_description}>
           </Text>
           <Flex wrap="wrap" direction="row">
-            {props.data.strTags && props.data.strTags.split(',').map(renderArrayCB)} 
+            <Text>{props.data.strTags && props.data.strTags.split(',').map(renderArrayCB)} </Text>
           </Flex>
         </View>
         <IconComponentProvider IconComponent={MaterialCommunityIcons}>
