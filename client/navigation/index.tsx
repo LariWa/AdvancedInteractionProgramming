@@ -22,7 +22,7 @@ import WelcomePresenter from "../presenters/welcomePresenter";
 import LoginPresenter from "../presenters/loginPresenter";
 import RegistrationPresenter from "../presenters/registrationPresenter";
 import SearchPresenter from "../presenters/searchPresenter";
-import RecipePresenter from "../presenters/recipePresenter"
+import RecipePresenter from "../presenters/recipePresenter";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -30,6 +30,7 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { login } from "../loginSource";
+import FavouritesPresenter from "../presenters/favourtiesPresenter";
 
 export default function Navigation({
   colorScheme,
@@ -65,6 +66,7 @@ function RootNavigator() {
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
+      <Stack.Screen name="Favourites" component={FavouritesPresenter} />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
@@ -129,7 +131,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabFour"
-        component={SearchPresenter}//Search
+        component={SearchPresenter} //Search
         options={{
           title: "Tab Four",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,

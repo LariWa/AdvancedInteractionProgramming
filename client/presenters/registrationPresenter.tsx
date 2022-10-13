@@ -21,11 +21,13 @@ export default function RegistrationPresenter(
   function onRegistrationACB() {
     console.log("inside onLoginACB");
     setLoadingState(true);
+    props.navigation.navigate("Favourites");
+
     signup(name, pw)
       .then((res: any) => {
         console.log("succesfully signed in!");
         dispatch(setNewUserData(name, res.data));
-        props.navigation.navigate("TabFour");
+        // props.navigation.navigate("TabFour");
         setLoadingState(false);
 
         // props.navigation.navigate("SearchPresenter");

@@ -3,9 +3,9 @@ import axios from "axios";
 function getRandomMeal() {
   return axios.get("api/randomMeal");
 }
-function getMealDetails(id: string) {
-  return axios.post("api//mealDetails", {
-    id: id,
+function getMealsDetails(ids: Array<String>) {
+  return axios.post("api/mealsDetails", {
+    ids: ids,
   });
 }
 function getCategories() {
@@ -33,7 +33,7 @@ function filterMeals(
 
 export {
   getRandomMeal,
-  getMealDetails,
+  getMealsDetails,
   getCategories,
   getAreas,
   getIngredients,

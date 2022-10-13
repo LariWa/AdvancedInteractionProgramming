@@ -105,18 +105,26 @@ router.post("/filterMeals", (req, res) => {
 });
 
 function getMeal(response) {
-  if (response.data.meals.length > 0) {
-    const meal = response.data.meals[0];
-    const ingredients = [];
-    for (let i = 0; i <= 20; i++) {
-      if (meal["strIngredient" + i])
-        ingredients.push({
-          name: meal["strIngredient" + i],
-          quantity: meal["strMeasure" + i],
-        });
-    }
-    return { ...meal, ingredients: ingredients };
-  } else return null;
+  try {
+    if (
+      response.data &&
+      response.data.meals &&
+      response.data.meals.length > 0
+    ) {
+      const meal = response.data.meals[0];
+      const ingredients = [];
+      for (let i = 0; i <= 20; i++) {
+        if (meal["strIngredient" + i])
+          ingredients.push({
+            name: meal["strIngredient" + i],
+            quantity: meal["strMeasure" + i],
+          });
+      }
+      return { ...meal, ingredients: ingredients };
+    } else return null;
+  } catch {
+    return null;
+  }
 }
 function getMeals(response) {
   return response.data.meals;
