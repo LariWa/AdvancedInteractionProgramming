@@ -18,6 +18,7 @@ import { Flex } from "@react-native-material/core";
 //import { setCurrentRecipe } from "../redux";
 import RecipePresenter from "./recipePresenter";
 import { getTopFavourites } from "../dbSource";
+import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 
 export default function SearchPresenter({
   navigation,
@@ -111,14 +112,7 @@ export default function SearchPresenter({
     setError(result.error);
     if (result.data && result.data.data) setResultsState(result.data.data);
   }
-  function setCurrentRecipeACB(recipe: any) {
-    //dispatch(setCurrentRecipe(recipe));
-    //TODO go to RecipePresenter
-    console.log(recipe);
-    props.navigation.navigate("Recipe", {
-      recipe,
-    });
-  }
+
   function handleFavoritesACB(id: string) {
     // addFavourite(id.toString())
     //   .then((res: any) => {
@@ -160,16 +154,13 @@ export default function SearchPresenter({
 
       {promiseNoData(promise, data, error) ||
         (results && results.length > 0 ? (
-          <ResultsView
-            results={results}
-            onSelectedRecipe={setCurrentRecipeACB}
-          />
+          <ResultsView results={results} navigation={navigation} />
         ) : (
           <ResultsView
             header="No data was found :( But you can get inspired by the Top Favourites of other users:"
             loading={topFavsLoading}
             results={topFavs}
-            onSelectedRecipe={setCurrentRecipeACB}
+            navigation={navigation}
           />
         ))}
       {/* <RecipePresenter /> */}

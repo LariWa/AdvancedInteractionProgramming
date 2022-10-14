@@ -17,14 +17,19 @@ export default function DishCardPresenter(props: any) {
     if (!addedToFav) dispatch(addFav(props.data.idMeal));
     else dispatch(deleteFav(props.data.idMeal));
   }
-
+  function setCurrentRecipeACB() {
+    //dispatch(setCurrentRecipe(recipe));
+    //TODO go to RecipePresenter
+    console.log(props.data);
+    props.navigation.navigate("Recipe", { recipe: props.data });
+  }
   return (
     <DishCard
       data={props.data}
       addedToFav={addedToFav}
       loading={loading}
       onFavBtnClicked={favBtnClickedACB}
-      onSelectedRecipe={props.onSelectedRecipe}
+      onSelectedRecipe={setCurrentRecipeACB}
     />
   );
 }

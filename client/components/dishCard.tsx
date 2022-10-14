@@ -73,7 +73,7 @@ export default function DishCard(props: any) {
   }
 
   return (
-    <TouchableOpacity onPress={props.onSelectedRecipeACB}>
+    <TouchableOpacity onPress={props.onSelectedRecipe}>
       <HStack spacing={0} style={styles.dishcard}>
         <Image
           style={styles.dishcard_img}

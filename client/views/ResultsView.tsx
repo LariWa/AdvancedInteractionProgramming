@@ -58,6 +58,7 @@ export default function ResultsView(props: any) {
           <DishCardPresenter
             key={r.idMeal}
             data={r}
+            navigation={props.navigation}
             onClicked={props.onSelectedRecipe}
           />
         ))}
