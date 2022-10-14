@@ -19,7 +19,9 @@ import { Flex } from "@react-native-material/core";
 import RecipePresenter from "./recipePresenter";
 import { getTopFavourites } from "../dbSource";
 
-export default function SearchPresenter(props: any) {
+export default function SearchPresenter({
+  navigation,
+}: RootTabScreenProps<"Search">) {
   const dispatch = useDispatch();
   const [categories, setCategoriesState] = useState([]);
   const [areas, setAreasState] = useState([]);
