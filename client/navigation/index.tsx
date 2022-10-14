@@ -33,6 +33,7 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { login } from "../loginSource";
+import FavoritesPresenter from "../presenters/favoritesPresenter";
 
 export default function Navigation({
   colorScheme,
@@ -143,9 +144,9 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={LoginPresenter}
+        component={FavoritesPresenter}
         options={{
-          title: "Tab Two",
+          title: "Favorites",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
@@ -153,7 +154,15 @@ function BottomTabNavigator() {
         name="TabThree"
         component={SearchPresenter}//Search
         options={{
-          title: "Tab Three",
+          title: "Search",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabFour"
+        component={SearchPresenter}//Search
+        options={{
+          title: "Grocery list",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
