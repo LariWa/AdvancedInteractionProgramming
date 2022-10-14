@@ -18,9 +18,7 @@ import { Flex } from "@react-native-material/core";
 //import { setCurrentRecipe } from "../redux";
 import RecipePresenter from "./recipePresenter";
 
-export default function SearchPresenter({
-  navigation,
-}: RootTabScreenProps<"TabFour">) {
+export default function SearchPresenter(props: any) {
   const dispatch = useDispatch();
   const [categories, setCategoriesState] = useState([]);
   const [areas, setAreasState] = useState([]);
@@ -105,6 +103,10 @@ export default function SearchPresenter({
   function setCurrentRecipeACB(recipe: any) {
     //dispatch(setCurrentRecipe(recipe));
     //TODO go to RecipePresenter
+    console.log(recipe)
+    props.navigation.navigate("Recipe",{
+      recipe
+    });
   }
   function handleFavoritesACB(id: string){
     // addFavourite(id.toString())

@@ -49,7 +49,7 @@ export default function ResultsView(props: any) {
     <ScrollView style={styles.mainContainer}>
       <Flex fill>
         {props.results.map((r: any) => (
-          <DishCard key={r.idMeal} data={r} onPress={props.onSelectedRecipe} handleFavorites={props.handleFavorites}/>
+          <DishCard key={r.idMeal} data={r} onSelectedRecipe={props.onSelectedRecipe} handleFavorites={props.handleFavorites}/>
         ))}
       </Flex>
     </ScrollView>

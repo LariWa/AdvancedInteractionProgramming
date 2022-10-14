@@ -64,15 +64,18 @@ export default function DishCard(props: any) {
   };
 
   function renderArrayCB(tag: any){
-      return<div style={styles.tag} key={tag}>
+      return<Text style={styles.tag} key={tag}>
           {tag}
-      </div>
+      </Text>
   }
   function handleFavoritesACB(){
     props.handleFavorites(props.data.idMeal)
   }
+  function onSelectedRecipeACB(){
+    props.onSelectedRecipe(props.data)
+  }
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={onSelectedRecipeACB}>
       <HStack spacing={0} style={styles.dishcard}>
       <Image
         style={styles.dishcard_img}
@@ -84,7 +87,7 @@ export default function DishCard(props: any) {
           <Text style={styles.dishcard_details_description}>
           </Text>
           <Flex wrap="wrap" direction="row">
-            <Text>{props.data.strTags && props.data.strTags.split(',').map(renderArrayCB)} </Text>
+            <View><Text>{props.data.strTags && props.data.strTags.split(',').map(renderArrayCB)}</Text></View>
           </Flex>
         </View>
         <AntDesign name="hearto" size={24} color="black" onPress={handleFavoritesACB}/>

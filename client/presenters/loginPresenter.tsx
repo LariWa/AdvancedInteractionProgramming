@@ -7,10 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import { setUserData, setToken } from "../redux";
 import { RootTabScreenProps } from "../types";
 
-export default function LoginPresenter(
-  props: any,
-  { navigation }: RootTabScreenProps<"TabTwo">
-) {
+export default function LoginPresenter(props: any) {
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const dispatch = useDispatch<any>();
@@ -20,7 +17,7 @@ export default function LoginPresenter(
   const [visibility, setModalVisible] = useState(false);
 
   function onLoginACB() {
-    props.navigation.navigate("Favourites");
+    // navigation.navigate("Registration");
 
     setLoadingState(true);
     login(name, pw)
@@ -44,7 +41,7 @@ export default function LoginPresenter(
   }
 
   function onRegistrationACB() {
-    props.navigation.navigate("TabThree");
+    props.navigation.navigate("Registration");
   }
   function onReturnACB() {
     props.navigation.navigate("TabThree");

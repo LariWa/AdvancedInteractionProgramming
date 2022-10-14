@@ -18,9 +18,11 @@ export default function DishCardPresenter(props: any) {
   return (
     <DishCard
       data={props.data}
-      addedToFav={addedToFav}
+      key={props.key}
+      // addedToFav={addedToFav}
+      onSelectedRecipe={props.onSelectedRecipe}
       loading={loading}
-      onFavBtnClicked={favBtnClickedACB}
+      handleFavorites={favBtnClickedACB}
     />
   );
 }

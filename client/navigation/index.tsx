@@ -72,6 +72,14 @@ function RootNavigator() {
         name="Login"
         component={LoginPresenter}
       />
+      <Stack.Screen
+        name="Registration"
+        component={RegistrationPresenter}
+      />
+      <Stack.Screen
+        name="Recipe"
+        component={RecipePresenter}
+      />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalPresenter} />
       </Stack.Group>
@@ -143,17 +151,9 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabThree"
-        component={RegistrationPresenter}
-        options={{
-          title: "Tab Three",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="TabFour"
         component={SearchPresenter}//Search
         options={{
-          title: "Tab Four",
+          title: "Tab Three",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
