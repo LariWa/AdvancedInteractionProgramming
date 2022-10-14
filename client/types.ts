@@ -49,6 +49,9 @@ export type RootTabParamList = {
   TabSix: undefined; //for favouritesView
   TabSeven: undefined; //for groceryListView
   TabEight: undefined; //for frameView
+  Search: undefined;
+  Favourites: undefined;
+  Groceries: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

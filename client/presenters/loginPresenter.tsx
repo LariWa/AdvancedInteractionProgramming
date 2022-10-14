@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import { setUserData, setToken } from "../redux";
 import { RootTabScreenProps } from "../types";
 import { setUserData } from "../redux";
+import ModalMessage from "../components/modalMessage";
 
 export default function LoginPresenter(props: any) {
   const [name, setNameState] = useState("");
@@ -32,7 +33,7 @@ export default function LoginPresenter(props: any) {
 
         // dispatch(setToken(res.data.token));
         //navigation.navigate("TabFour");
-        props.navigation.navigate("TabFour");
+        props.navigation.navigate("Search");
         // props.navigation.navigate("SearchPresenter");
       })
       .catch((data) => {
@@ -45,7 +46,7 @@ export default function LoginPresenter(props: any) {
     props.navigation.navigate("Registration");
   }
   function onReturnACB() {
-    props.navigation.navigate("TabThree");
+    // props.navigation.navigate("TabThree");
     setError(null);
   }
   return (
@@ -58,13 +59,13 @@ export default function LoginPresenter(props: any) {
         loading={loading}
       ></LoginView>
       {error && (
-        <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>
+        <ModalMessage modalVisible={visibility} message={error}></ModalMessage>
       )}
       {!error && status && (
-        <SuccessMessage
+        <ModalMessage
           modalVisible={visibility}
-          success="You've logged in successfully!"
-        ></SuccessMessage>
+          message="You've logged in successfully!"
+        ></ModalMessage>
       )}
     </>
   );
