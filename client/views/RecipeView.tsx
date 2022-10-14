@@ -1,7 +1,7 @@
 import { Flex, Text, ListItem } from "@react-native-material/core";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { StyleSheet, Image, TextInput, View } from "react-native";
+import { StyleSheet, Image, TextInput, View, ScrollView } from "react-native";
 
 const styles = StyleSheet.create({
   image: {
@@ -47,33 +47,23 @@ export default function RecipeView(props: any) {
     );
   }
   return (
-    <Flex fill direction="column">
-      <Image style={styles.image} source={props.recipe.strMealThumb}></Image>
-      <Flex direction="column" style={styles.details}>
-        <Text style={styles.header}>{props.recipe.strMeal}</Text>
-        <Text style={styles.subheader}>What do you need?</Text>
-        <>
-          <View>
-            {props.recipe.ingredients &&
-              props.recipe.ingredients.map(renderArrayCB)}{" "}
-          </View>
-          <ListItem
-            title="Ingr1"
-            trailing={(props) => (
-              <AntDesign name="pluscircleo" size={24} color="black" />
-            )}
-          />
-          <ListItem
-            title="Ingr2"
-            trailing={(props) => (
-              <AntDesign name="pluscircleo" size={24} color="black" />
-            )}
-          />
-        </>
-        <Text style={styles.subheader}>How to make it?</Text>
-        <Text style={styles.text}>{props.recipe.strInstructions}</Text>
+    <ScrollView>
+      <Flex fill direction="column">
+        <Image style={styles.image} source={props.recipe.strMealThumb}></Image>
+        <Flex direction="column" style={styles.details}>
+          <Text style={styles.header}>{props.recipe.strMeal}</Text>
+          <Text style={styles.subheader}>What do you need?</Text>
+          <>
+            <Flex direction="column">
+              {props.recipe.ingredients &&
+                props.recipe.ingredients.map(renderArrayCB)}
+            </Flex>
+          </>
+          <Text style={styles.subheader}>How to make it?</Text>
+          <Text style={styles.text}>{props.recipe.strInstructions}</Text>
+        </Flex>
       </Flex>
-    </Flex>
+    </ScrollView>
   );
 }
 

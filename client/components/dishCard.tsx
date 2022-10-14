@@ -66,9 +66,9 @@ export default function DishCard(props: any) {
 
   function renderArrayCB(tag: any) {
     return (
-      <div style={styles.tag} key={tag}>
+      <Text style={styles.tag} key={tag}>
         {tag}
-      </div>
+      </Text>
     );
   }
 
