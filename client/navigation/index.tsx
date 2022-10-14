@@ -10,13 +10,16 @@ import {
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
+import {
+  Flex,
+} from "@react-native-material/core";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+import { ColorSchemeName, Pressable, Text, View } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../views/modalView";
+import ModalPresenter from "../presenters/modalPresenter";
 import NotFoundScreen from "../views/notFoundView";
 import WelcomePresenter from "../presenters/welcomePresenter";
 import LoginPresenter from "../presenters/loginPresenter";
@@ -65,8 +68,12 @@ function RootNavigator() {
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
+      <Stack.Screen
+        name="Login"
+        component={LoginPresenter}
+      />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Modal" component={ModalPresenter} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -95,6 +102,7 @@ function BottomTabNavigator() {
           title: "Tab One",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
+            <Flex direction="row">
             <Pressable
               onPress={() => navigation.navigate("Modal")}
               style={({ pressed }) => ({
@@ -108,6 +116,20 @@ function BottomTabNavigator() {
                 style={{ marginRight: 15 }}
               />
             </Pressable>
+            <Pressable
+            onPress={() => navigation.navigate("Login")}
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.5 : 1,
+            })}
+          >
+            <FontAwesome
+              name="sign-in"
+              size={25}
+              color={Colors[colorScheme].text}
+              style={{ marginRight: 15 }}
+            />
+          </Pressable>
+          </Flex>
           ),
         })}
       />

@@ -7,6 +7,7 @@ import {
   getCategories,
   getIngredients,
 } from "../mealSouce";
+import {addFavourite} from "../dbSource" 
 import resolvePromise from "../resolvePromise";
 import { promiseStateType } from "../types";
 import { RootTabScreenProps } from "../types";
@@ -105,6 +106,16 @@ export default function SearchPresenter({
     //dispatch(setCurrentRecipe(recipe));
     //TODO go to RecipePresenter
   }
+  function handleFavoritesACB(id: string){
+    // addFavourite(id.toString())
+    //   .then((res: any) => {
+    //     console.log("succesfully added in!");
+    //   })
+    //   .catch((data) => {
+    //     console.log("errrrror");
+    //     setError(data.response?.data?.error.toString());
+    //   });
+  }
   const styles = StyleSheet.create({
     mainContainer: {
       backgroundColor: "#FDFBF7",
@@ -135,7 +146,10 @@ export default function SearchPresenter({
       ></SearchView>
 
       {promiseNoData(promise, data, error) || (
-        <ResultsView results={results} onSelectedRecipe={setCurrentRecipeACB} />
+        <ResultsView 
+        results={results} 
+        onSelectedRecipe={setCurrentRecipeACB} 
+        handleFavorites={handleFavoritesACB}/>
       )}
       {/* <RecipePresenter /> */}
       </Flex>

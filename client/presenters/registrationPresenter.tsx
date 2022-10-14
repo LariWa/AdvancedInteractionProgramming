@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import RegistrationView from "../views/registrationView";
-import ErrorView from "../views/errorView";
+import ErrorMessage from "../components/errorMessage";
+import SuccessMessage from "../components/successMessage";
 import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
-import { setUser, setToken } from "../redux";
+// import { setUserData, setToken, setNewUserData } from "../redux";
 import { RootTabScreenProps } from "../types";
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 
 export default function RegistrationPresenter(
   props: any,
@@ -13,21 +15,33 @@ export default function RegistrationPresenter(
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const [pwConfirm, setPwConfirmState] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
+  const [loading, setLoadingState] = useState(false);
+  const [status, setStatusState] = useState(false);
+  const [error, setError] = useState("");
+  const [visibility, setModalVisible] = useState(false);
 
   function onRegistrationACB() {
     console.log("inside onLoginACB");
+    setLoadingState(true);
+
     signup(name, pw)
       .then((res: any) => {
+        setStatusState(true)
+        setModalVisible(true)
+        setTimeout(() => setModalVisible(false), 3000)
         console.log("succesfully signed in!");
-        dispatch(setUser(name));
-        dispatch(setToken(res.data));
-        props.navigation.navigate("TabFour");
+        // dispatch(setNewUserData(name, res.data));
+        // props.navigation.navigate("TabFour");
+        setLoadingState(false);
+
         // props.navigation.navigate("SearchPresenter");
       })
-      .catch((error) => {
+      .catch((data) => {
+        console.log(data);
         //TODO display error in View
-        console.log(error);
+        setError("need to be adapted on server");
+        setLoadingState(false);
       });
     //props.navigation.navigate('SearchPresenter')
   }
@@ -46,8 +60,8 @@ export default function RegistrationPresenter(
     }
   }
   function onReturnACB() {
-    props.navigation.navigate('TabThree')
-    props.error = null
+    props.navigation.navigate("TabThree");
+    setError(null);
   }
   return (
     <>
@@ -57,11 +71,10 @@ export default function RegistrationPresenter(
         onPWChanged={onPWChangedACB}
         onPWConfirmChanged={onPWConfirmChangedACB}
         onNameChanged={setNameState}
+        loading={loading}
       ></RegistrationView>
-      {props.error && <ErrorView
-        error="Message"
-        onReturn={onReturnACB}
-      ></ErrorView>}
+      {error && <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>}
+      {!error && status && <SuccessMessage modalVisible={visibility} success="You've registered successfully!"></SuccessMessage>}
     </>
   );
 }

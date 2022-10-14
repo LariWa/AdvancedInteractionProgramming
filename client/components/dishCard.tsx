@@ -11,6 +11,7 @@ import {
   IconComponentProvider,
   Icon
 } from "@react-native-material/core";
+import { AntDesign } from '@expo/vector-icons';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const styles = StyleSheet.create({
@@ -67,6 +68,9 @@ export default function DishCard(props: any) {
           {tag}
       </div>
   }
+  function handleFavoritesACB(){
+    props.handleFavorites(props.data.idMeal)
+  }
   return (
     <TouchableOpacity onPress={props.onPress}>
       <HStack spacing={0} style={styles.dishcard}>
@@ -83,9 +87,7 @@ export default function DishCard(props: any) {
             <Text>{props.data.strTags && props.data.strTags.split(',').map(renderArrayCB)} </Text>
           </Flex>
         </View>
-        <IconComponentProvider IconComponent={MaterialCommunityIcons}>
-          <Icon name="heart" size={24} color="red" style={styles.heart}/>
-        </IconComponentProvider>
+        <AntDesign name="hearto" size={24} color="black" onPress={handleFavoritesACB}/>
       </Wrap>
       </HStack> 
     </TouchableOpacity>   

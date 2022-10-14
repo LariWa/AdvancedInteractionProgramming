@@ -1,52 +1,66 @@
 import React, { useState } from "react";
 import LoginView from "../views/loginView";
-import ErrorView from "../views/errorView";
+import ErrorMessage from "../components/errorMessage";
+import SuccessMessage from "../components/successMessage";
 import { login } from "../loginSource";
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, setToken } from "../redux";
+// import { setUserData, setToken } from "../redux";
 import { RootTabScreenProps } from "../types";
 
-export default function LoginPresenter(props: any, {navigation}: RootTabScreenProps<'TabTwo'>) {
+export default function LoginPresenter(
+  props: any,
+  { navigation }: RootTabScreenProps<"TabTwo">
+) {
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
+  const [loading, setLoadingState] = useState(false);
+  const [status, setStatusState] = useState(false);
+  const [error, setError] = useState("");
+  const [visibility, setModalVisible] = useState(false);
 
   function onLoginACB() {
-    
+    props.navigation.navigate("Favourites");
+
+    setLoadingState(true);
     login(name, pw)
       .then((res: any) => {
+        setStatusState(true)
+        setModalVisible(true)
+        setTimeout(() => setModalVisible(false), 3000)
         console.log("succesfully logged in!");
-        dispatch(setUser(name));
-        dispatch(setToken(res.data.token));
+        // dispatch(setUserData(name, res.data.token));
+        setLoadingState(false);
+
+        // dispatch(setToken(res.data.token));
         //navigation.navigate("TabFour");
-        props.navigation.navigate('TabFour')
+        props.navigation.navigate("TabFour");
         // props.navigation.navigate("SearchPresenter");
       })
-      .catch((error) => {
-        //TODO display error in View
-        console.log(error);
+      .catch((data) => {
+        setError(data.response?.data?.error.toString());
+        setLoadingState(false);
       });
   }
 
   function onRegistrationACB() {
-    props.navigation.navigate('TabThree')
+    props.navigation.navigate("TabThree");
   }
   function onReturnACB() {
-    props.navigation.navigate('TabThree')
-    props.error = null
+    props.navigation.navigate("TabThree");
+    setError(null);
   }
   return (
-  <>
-    <LoginView
-          onLogin={onLoginACB}
-          onRegistration={onRegistrationACB}
-          onPWChanged={setPwState}
-          onNameChanged={setNameState}
-        ></LoginView>
-    {props.error && <ErrorView
-      error="Message"
-      onReturn={onReturnACB}
-    ></ErrorView>}
-  </>
+    <>
+      <LoginView
+        onLogin={onLoginACB}
+        onRegistration={onRegistrationACB}
+        onPWChanged={setPwState}
+        onNameChanged={setNameState}
+        loading={loading}
+      ></LoginView>
+      {error && <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>}
+      {!error && status && <SuccessMessage modalVisible={visibility} success="You've logged in successfully!"></SuccessMessage>}
+    </>
   );
 }

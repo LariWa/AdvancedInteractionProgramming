@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, Button } from 'react-native';
 
 import EditViewInfo from '../components/EditViewInfo';
 import { Text, View } from '../components/Themed';
@@ -10,6 +10,7 @@ export default function ModalView() {
       <Text style={styles.title}>Modal</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditViewInfo path="/views/ModalView.tsx" />
+      <Text>Account</Text>
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />

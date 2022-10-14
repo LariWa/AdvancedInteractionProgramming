@@ -1,5 +1,5 @@
 import { promiseStateType } from "../types";
-import { Image, Text, StyleSheet } from "react-native";
+import { Image, Text, StyleSheet, View } from "react-native";
 import React from "react";
 
 const styles = StyleSheet.create({
@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
     left: 0,
     top: "20%",
   },
+  message:{
+    width: 100,
+    height: 50,
+    left: 0,
+    top: "20%",
+
+  }
 })
 
 export default function promiseNoData(promise: any, data: any, error: any) {
@@ -26,7 +33,10 @@ export default function promiseNoData(promise: any, data: any, error: any) {
 
     if (!data && error)
       //promised, no data, with error
-      return <Text>{error.toString()}</Text>;
+      return <View
+        style={styles.message}>
+        <Text>{error.toString()}</Text>
+      </View>
 
     if (data && !error)
       //promised, defined data, no error
