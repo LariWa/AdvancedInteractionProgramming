@@ -11,10 +11,9 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   centeredView: {
-    flex: 1,
-    top: 10,
-    alignContent: "center",
-    marginTop: 22
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 300
   },
   modalView: {
     margin: 20,
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
     elevation: 5
   },
 });
-export default function SuccessView(props: any) {
+export default function ModalMessage(props: any) {
   return (
     <Modal
       animationType = 'fade'

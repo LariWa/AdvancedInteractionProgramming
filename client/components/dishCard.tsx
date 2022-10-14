@@ -69,6 +69,7 @@ export default function DishCard(props: any) {
       </Text>
   }
   function handleFavoritesACB(){
+    console.log(111111111111)
     props.handleFavorites(props.data.idMeal)
   }
   function onSelectedRecipeACB(){

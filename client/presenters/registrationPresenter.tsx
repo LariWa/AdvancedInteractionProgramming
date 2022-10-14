@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RegistrationView from "../views/registrationView";
 import ErrorMessage from "../components/errorMessage";
-import SuccessMessage from "../components/successMessage";
+import SuccessMessage from "../components/modalMessage";
 import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
 // import { setUserData, setToken, setNewUserData } from "../redux";

@@ -24,6 +24,7 @@ export const styles_registrationPage = StyleSheet.create({
       paddingLeft: 10
   },
   mainContainer_h5: {
+      fontWeight:"bold",
       marginRight:"auto", 
       marginLeft:"auto", 
       fontSize: 32,
@@ -87,6 +88,7 @@ export const styles_loginPage = StyleSheet.create({
     paddingLeft: 10,
   },
   mainContainer_h5: {
+    fontWeight:"bold",
     marginRight: "auto",
     marginLeft: "auto",
     fontSize: 32,

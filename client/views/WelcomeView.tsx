@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         alignContent:"center"
     },
     containerTwo_centered_h5: {
+        fontWeight:"bold",
         marginRight:"auto", 
         marginLeft:"auto", 
     },
