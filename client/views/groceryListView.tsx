@@ -3,6 +3,7 @@ import { StyleSheet, Image, TextInput, Text, View } from "react-native";
 import { ListItem } from 'react-native-elements'
 import { AntDesign } from '@expo/vector-icons';
 import { Flex, Button } from "@react-native-material/core";
+import DishCard from "../components/dishCard";
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -55,11 +56,24 @@ export default function GroceryListView(props: any){
                 Your grocery list
             </Text>
         <div style={styles.mainContainer_filters}>
+            {/*renderIngredients(ingredients, onRemove)*/}
             <Text>
-                    Here goes an ingredient
+                    Ingredient1 
             </Text>
-            <Button title="Search"  onPress={props.onRemove}/>
-                <AntDesign name="minuscircle" size={24} color="black" />
+            <AntDesign name="minuscircle" size={24} color="black" onPress={props.onRemove} />
+        </div>
+        <div style={styles.mainContainer_filters}>
+            <Text>
+                    Ingredient2 
+            </Text>
+            <AntDesign name="minuscircle" size={24} color="black" onPress={props.onRemove} />
+        </div>
+        <div style={styles.mainContainer_filters}>
+            <Text>
+                    Ingredient3
+            </Text>
+            <td></td>
+            <AntDesign name="minuscircle" size={24} color="black" onPress={props.onRemove} />
         </div>
         </Flex>
     );
