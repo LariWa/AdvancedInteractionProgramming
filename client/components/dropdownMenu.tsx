@@ -1,7 +1,6 @@
-import React from "react";
-import { StyleSheet, Image, TextInput, View } from "react-native";
-import { Dropdown } from "react-native-element-dropdown";
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
+import React, {useState} from "react";
+import { StyleSheet } from "react-native";
+import { MultiSelect  } from "react-native-element-dropdown";
 
 const styles = StyleSheet.create({
   dropdown: {
@@ -13,17 +12,23 @@ const styles = StyleSheet.create({
   },
 });
 export default function DropdownMenu(props: any) {
+  const [selected, setSelected] = useState([])
+
+  function onChange(value: any) {
+    props.onChange(value.toString());
+    console.log(JSON.stringify(value))
+    setSelected(value);
+  }
   return (
-    <Dropdown
+    <MultiSelect
       data={props.data}
       style={styles.dropdown}
       search={true}
       labelField="label"
       valueField="value"
+      value={selected}
+      placeholder={props.searchItem}
       onChange={onChange}
     />
   );
-  function onChange(value) {
-    props.onChange(value.label);
-  }
 }

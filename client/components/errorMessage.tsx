@@ -1,13 +1,9 @@
 import React from "react";
-import { StyleSheet, Image, TextInput } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
-  Stack,
-  IconButton,
   Flex,
-  Text,
   Button,
 } from "@react-native-material/core";
-import { preventAutoHideAsync } from "expo-splash-screen";
 
 const styles = StyleSheet.create({
   errorContainer: {
@@ -42,9 +38,8 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginTop: 10,
     paddingTop: 10,
-    paddingBottom: "10px",
+    paddingBottom: 10,
     borderRadius: 300,
-    boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
   },
 });
 export default function ErrorView(props: any) {
@@ -53,14 +48,14 @@ export default function ErrorView(props: any) {
   };
   return (
     <Flex fill style={styles.errorContainer}>
-        <div style={styles.message}>
+        <View style={styles.message}>
             {props.error}
             <Button
             onPress={handleReturnACB}
             title="Ge back"
             style={styles.errorContainer_button}
         />
-        </div>
+        </View>
     </Flex>
   );
 }

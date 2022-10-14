@@ -32,6 +32,9 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Favourites: undefined;
+  Login: undefined;
+  Registration: undefined;
+  Recipe: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

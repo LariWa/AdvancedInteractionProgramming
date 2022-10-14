@@ -1,27 +1,31 @@
 import React, { useState } from "react";
 import LoginView from "../views/loginView";
-import ErrorView from "../views/errorView";
+import ErrorMessage from "../components/errorMessage";
+import SuccessMessage from "../components/modalMessage";
 import { login } from "../loginSource";
 import { useSelector, useDispatch } from "react-redux";
-import { setUserData, setToken } from "../redux";
+// import { setUserData, setToken } from "../redux";
 import { RootTabScreenProps } from "../types";
+import { setUserData } from "../redux";
 
-export default function LoginPresenter(
-  props: any,
-  { navigation }: RootTabScreenProps<"TabTwo">
-) {
+export default function LoginPresenter(props: any) {
   const [name, setNameState] = useState("");
   const [pw, setPwState] = useState("");
   const dispatch = useDispatch<any>();
   const [loading, setLoadingState] = useState(false);
   const [error, setError] = useState();
+  const [status, setStatusState] = useState(false);
+  const [visibility, setModalVisible] = useState(false);
 
   function onLoginACB() {
-    props.navigation.navigate("Favourites");
+    // navigation.navigate("Registration");
 
     setLoadingState(true);
     login(name, pw)
       .then((res: any) => {
+        setStatusState(true);
+        setModalVisible(true);
+        setTimeout(() => setModalVisible(false), 3000);
         console.log("succesfully logged in!");
         dispatch(setUserData(name, res.data.token));
         setLoadingState(false);
@@ -38,7 +42,7 @@ export default function LoginPresenter(
   }
 
   function onRegistrationACB() {
-    props.navigation.navigate("TabThree");
+    props.navigation.navigate("Registration");
   }
   function onReturnACB() {
     props.navigation.navigate("TabThree");
@@ -53,7 +57,15 @@ export default function LoginPresenter(
         onNameChanged={setNameState}
         loading={loading}
       ></LoginView>
-      {error && <ErrorView error={error} onReturn={onReturnACB}></ErrorView>}
+      {error && (
+        <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>
+      )}
+      {!error && status && (
+        <SuccessMessage
+          modalVisible={visibility}
+          success="You've logged in successfully!"
+        ></SuccessMessage>
+      )}
     </>
   );
 }

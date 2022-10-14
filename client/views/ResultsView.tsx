@@ -1,33 +1,14 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Image,
-  TextInput,
-  View,
-  ActivityIndicator,
-} from "react-native";
-import {
-  Stack,
-  IconButton,
-  Flex,
-  Text,
-  Button,
-  HStack,
-} from "@react-native-material/core";
-import DropdownMenu from "../components/dropdownMenu";
+import React from "react";
+import { StyleSheet, ScrollView, ActivityIndicator, Text } from "react-native";
+import { Flex } from "@react-native-material/core";
 import DishCard from "../components/dishCard";
 import Search from "../components/search";
 import Header from "../components/header";
 import DishCardPresenter from "../presenters/dishCardPresenter";
 
-const data = [
-  { label: "Item 1", value: "1" },
-  { label: "Item 2", value: "2" },
-  { label: "Item 3", value: "3" },
-];
-
 const styles = StyleSheet.create({
   mainContainer: {
+    position: "relative",
     backgroundColor: "#FDFBF7",
     padding: 10,
     // top: 0,
@@ -42,10 +23,9 @@ const styles = StyleSheet.create({
     height: 60,
     marginRight: "auto",
     marginLeft: "auto",
-    paddingTop: "10px",
-    paddingBottom: "10px",
+    paddingTop: 10,
+    paddingBottom: 10,
     borderRadius: 300,
-    boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
   },
   mainContainer_filters: {
     backgroundColor: "white",
@@ -56,7 +36,7 @@ const styles = StyleSheet.create({
     overflowX: "auto",
   },
   textInput: {
-    marginBottom: "10px",
+    marginBottom: 10,
     backgroundColor: "#F3F2E9",
     borderRadius: 10,
     width: "100%",
@@ -67,19 +47,21 @@ const styles = StyleSheet.create({
 });
 export default function ResultsView(props: any) {
   return (
-    <Flex fill style={styles.mainContainer}>
-      {props.header ? <Text>{props.header}</Text> : null}
-      {props.loading ? (
-        <ActivityIndicator size="large" color="#00ff00" />
-      ) : null}
+    <ScrollView style={styles.mainContainer}>
+      <Flex fill>
+        {props.header ? <Text>{props.header}</Text> : null}
+        {props.loading ? (
+          <ActivityIndicator size="large" color="#00ff00" />
+        ) : null}
 
-      {props.results.map((r) => (
-        <DishCardPresenter
-          key={r.idMeal}
-          data={r}
-          onClicked={props.onSelectedRecipe}
-        />
-      ))}
-    </Flex>
+        {props.results.map((r) => (
+          <DishCardPresenter
+            key={r.idMeal}
+            data={r}
+            onClicked={props.onSelectedRecipe}
+          />
+        ))}
+      </Flex>
+    </ScrollView>
   );
 }

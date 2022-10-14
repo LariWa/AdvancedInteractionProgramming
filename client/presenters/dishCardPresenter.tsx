@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import LoginView from "../views/loginView";
-import ErrorView from "../views/errorView";
 import { login } from "../loginSource";
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, setToken } from "../redux";
 import { RootTabScreenProps } from "../types";
 import DishCard from "../components/dishCard";
 import { addFav, deleteFav } from "../redux/actions/favouritesActions";
@@ -26,6 +24,7 @@ export default function DishCardPresenter(props: any) {
       addedToFav={addedToFav}
       loading={loading}
       onFavBtnClicked={favBtnClickedACB}
+      onSelectedRecipe={props.onSelectedRecipe}
     />
   );
 }

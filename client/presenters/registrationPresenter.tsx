@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import RegistrationView from "../views/registrationView";
-import ErrorView from "../views/errorView";
+import ErrorMessage from "../components/errorMessage";
+import SuccessMessage from "../components/modalMessage";
 import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
 import { setUserData, setToken, setNewUserData } from "../redux";
+// import { setUserData, setToken, setNewUserData } from "../redux";
 import { RootTabScreenProps } from "../types";
 import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 
@@ -16,7 +18,9 @@ export default function RegistrationPresenter(
   const [pwConfirm, setPwConfirmState] = useState("");
   const dispatch = useDispatch<any>();
   const [loading, setLoadingState] = useState(false);
+  const [status, setStatusState] = useState(false);
   const [error, setError] = useState("");
+  const [visibility, setModalVisible] = useState(false);
 
   function onRegistrationACB() {
     console.log("inside onLoginACB");
@@ -24,6 +28,9 @@ export default function RegistrationPresenter(
 
     signup(name, pw)
       .then((res: any) => {
+        setStatusState(true);
+        setModalVisible(true);
+        setTimeout(() => setModalVisible(false), 3000);
         console.log("succesfully signed in!");
         dispatch(setNewUserData(name, res.data));
         // props.navigation.navigate("TabFour");
@@ -67,7 +74,15 @@ export default function RegistrationPresenter(
         onNameChanged={setNameState}
         loading={loading}
       ></RegistrationView>
-      {error && <ErrorView error={error} onReturn={onReturnACB}></ErrorView>}
+      {error && (
+        <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>
+      )}
+      {!error && status && (
+        <SuccessMessage
+          modalVisible={visibility}
+          success="You've registered successfully!"
+        ></SuccessMessage>
+      )}
     </>
   );
 }

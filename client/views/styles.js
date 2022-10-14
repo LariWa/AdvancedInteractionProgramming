@@ -16,7 +16,7 @@ export const styles_registrationPage = StyleSheet.create({
   mainContainer_textInput:{
       marginRight:"auto", 
       marginLeft:"auto", 
-      marginBottom: "10px",
+      marginBottom: 10,
       border: "1px solid #314959",
       borderRadius: 10,
       width: 264,
@@ -24,16 +24,15 @@ export const styles_registrationPage = StyleSheet.create({
       paddingLeft: 10
   },
   mainContainer_h5: {
+      fontWeight:"bold",
       marginRight:"auto", 
       marginLeft:"auto", 
-      fontWeight: 700,
       fontSize: 32,
       marginBottom: 20,
       color:"#314959"
   },
   mainContainer_italics: {
       fontStyle: "italic",
-      fontWeight: "400",
       fontSize: 16,
       marginRight:"auto", 
       marginLeft:"auto", 
@@ -89,16 +88,15 @@ export const styles_loginPage = StyleSheet.create({
     paddingLeft: 10,
   },
   mainContainer_h5: {
+    fontWeight:"bold",
     marginRight: "auto",
     marginLeft: "auto",
-    fontWeight: 700,
     fontSize: 32,
     marginBottom: 20,
     color: "#A7C6DA",
   },
   mainContainer_italics: {
     fontStyle: "italic",
-    fontWeight: "400",
     fontSize: 16,
     marginRight: "auto",
     marginLeft: "auto",
@@ -113,8 +111,8 @@ export const styles_loginPage = StyleSheet.create({
     height: 60,
     marginRight: "auto",
     marginLeft: "auto",
-    paddingTop: "10px",
-    paddingBottom: "10px",
+    paddingTop: 10,
+    paddingBottom: 10,
     borderRadius: 300,
     boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
   },
@@ -122,7 +120,7 @@ export const styles_loginPage = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     left: 0,
-    width: "150px",
-    height: "270px",
+    width: 150,
+    height: 270,
   },
 });

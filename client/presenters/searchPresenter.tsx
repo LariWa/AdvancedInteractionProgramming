@@ -7,6 +7,7 @@ import {
   getCategories,
   getIngredients,
 } from "../mealSouce";
+import { addFavourite } from "../dbSource";
 import resolvePromise from "../resolvePromise";
 import { promiseStateType } from "../types";
 import { RootTabScreenProps } from "../types";
@@ -18,9 +19,7 @@ import { Flex } from "@react-native-material/core";
 import RecipePresenter from "./recipePresenter";
 import { getTopFavourites } from "../dbSource";
 
-export default function SearchPresenter({
-  navigation,
-}: RootTabScreenProps<"TabFour">) {
+export default function SearchPresenter(props: any) {
   const dispatch = useDispatch();
   const [categories, setCategoriesState] = useState([]);
   const [areas, setAreasState] = useState([]);
@@ -113,6 +112,20 @@ export default function SearchPresenter({
   function setCurrentRecipeACB(recipe: any) {
     //dispatch(setCurrentRecipe(recipe));
     //TODO go to RecipePresenter
+    console.log(recipe);
+    props.navigation.navigate("Recipe", {
+      recipe,
+    });
+  }
+  function handleFavoritesACB(id: string) {
+    // addFavourite(id.toString())
+    //   .then((res: any) => {
+    //     console.log("succesfully added in!");
+    //   })
+    //   .catch((data) => {
+    //     console.log("errrrror");
+    //     setError(data.response?.data?.error.toString());
+    //   });
   }
   const styles = StyleSheet.create({
     mainContainer: {
