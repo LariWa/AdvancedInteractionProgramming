@@ -15,7 +15,6 @@ function resolvePromise(
   function saveDataACB(result: Object | null) {
     if (promiseState.promise !== promiseToResolve) return;
     promiseState.data = result;
-    console.log(result);
     if (notifyACB) notifyACB(promiseState);
   }
 

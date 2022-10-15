@@ -2,7 +2,7 @@ import React from "react";
 import { Image, TextInput, View } from "react-native";
 import { Flex, Text, Button } from "@react-native-material/core";
 import { styles_registrationPage } from "./styles";
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
 
 export default function RegistrationView(props: any) {
   return (
@@ -38,18 +38,21 @@ export default function RegistrationView(props: any) {
               onBlur={handleBlur("password")}
               value={values.password}
               placeholder="Password"
+              secureTextEntry={true}
             />
             {errors.password && touched.password ? (
               <Text style={styles_registrationPage.error}>
                 {errors.password}
               </Text>
             ) : null}
+
             <TextInput
               style={styles_registrationPage.mainContainer_textInput}
               onChangeText={handleChange("confirmPassword")}
               onBlur={handleBlur("confirmPassword")}
               value={values.confirmPassword}
               placeholder="Confirm your password"
+              secureTextEntry={true}
             />
             {errors.confirmPassword && touched.confirmPassword ? (
               <Text style={styles_registrationPage.error}>

@@ -18,6 +18,7 @@ import {
 } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useDispatch, useSelector } from "react-redux";
+import FavouriteBtnPresenter from "../presenters/favouriteBtnPresenter";
 
 const styles = StyleSheet.create({
   dishcard: {
@@ -95,20 +96,7 @@ export default function DishCard(props: any) {
               </View>
             </Flex>
           </View>
-          {props.loading ? (
-            <ActivityIndicator size="large" color="#00ff00" />
-          ) : (
-            <IconButton
-              onPress={props.onFavBtnClicked}
-              icon={() => (
-                <Icon
-                  name={"heart"}
-                  size={24}
-                  color={props.addedToFav ? "red" : "grey"}
-                />
-              )}
-            />
-          )}
+          <FavouriteBtnPresenter id={props.data.idMeal} />
         </Wrap>
       </HStack>
     </TouchableOpacity>

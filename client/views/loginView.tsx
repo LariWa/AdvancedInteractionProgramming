@@ -38,6 +38,7 @@ export default function LoginView(props: any) {
                 onBlur={handleBlur("password")}
                 value={values.password}
                 placeholder="Password"
+                secureTextEntry={true}
               />
               {errors.password && touched.password ? (
                 <Text style={styles_loginPage.error}>{errors.password}</Text>

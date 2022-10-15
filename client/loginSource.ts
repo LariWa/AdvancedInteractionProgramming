@@ -2,11 +2,6 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://mealappserver.onrender.com";
 
-// function getData(token: string) {
-//   axios.get("https://localhost:8080/db/", {
-//     headers: { authorization: "bearer " + token },
-//   });
-
 function login(username: string, password: string) {
   return axios.post("/user/login", {
     username: username,

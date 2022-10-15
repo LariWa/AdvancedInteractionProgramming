@@ -20,16 +20,11 @@ function deleteFavourite(id: string) {
   );
 }
 function getFavourites() {
-  return axios.get(
-    "/db/getFavourites",
-
-    getHeader()
-  );
+  return axios.get("/db/getFavourites", getHeader());
 }
 
 function getTopFavourites() {
   return axios.get("/db/topTen").then((res) => {
-    console.log(res.data);
     return axios.post("/api/mealsDetails", {
       ids: res.data,
     });

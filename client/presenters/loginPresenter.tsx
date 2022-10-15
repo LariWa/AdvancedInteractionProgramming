@@ -8,8 +8,6 @@ import * as Yup from "yup";
 import ErrorMessage from "../components/errorMessage";
 
 export default function LoginPresenter(props: any) {
-  const [name, setNameState] = useState("");
-  const [pw, setPwState] = useState("");
   const dispatch = useDispatch<any>();
   const [loading, setLoadingState] = useState(false);
   const [error, setError] = useState();
@@ -28,7 +26,6 @@ export default function LoginPresenter(props: any) {
         props.navigation.navigate("Search");
       })
       .catch((data) => {
-        console.log(data);
         setError(data.response.data?.error || data.message);
         setLoadingState(false);
       });

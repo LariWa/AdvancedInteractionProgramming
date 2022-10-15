@@ -1,6 +1,5 @@
-import { addFavourite, deleteFavourite, getFavourites } from "../../dbSource";
+import { addFavourite, deleteFavourite } from "../../dbSource";
 import { Dispatch } from "react";
-import { StackRouter } from "@react-navigation/native";
 import store from "../store";
 
 export const addFav = (id: string) => {

@@ -17,6 +17,9 @@ function getAreas() {
 function getIngredients() {
   return axios.get("api/ingredients");
 }
+function getAllFilterData() {
+  return axios.all([getCategories(), getAreas(), getIngredients()]);
+}
 function filterMeals(
   categories: Array<string>,
   areas: Array<string>,
@@ -38,4 +41,5 @@ export {
   getAreas,
   getIngredients,
   filterMeals,
+  getAllFilterData,
 };
