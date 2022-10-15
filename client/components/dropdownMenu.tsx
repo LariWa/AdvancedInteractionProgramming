@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { MultiSelect  } from "react-native-element-dropdown";
+import { MultiSelect } from "react-native-element-dropdown";
 
 const styles = StyleSheet.create({
   dropdown: {
@@ -12,12 +12,11 @@ const styles = StyleSheet.create({
   },
 });
 export default function DropdownMenu(props: any) {
-  const [selected, setSelected] = useState([])
+  const [selected, setSelected] = useState([]);
 
-  function onChange(value: any) {
-    props.onChange(value.toString());
-    console.log(JSON.stringify(value))
-    setSelected(value);
+  function onChange(values: any) {
+    props.onChange(values);
+    setSelected(values);
   }
   return (
     <MultiSelect

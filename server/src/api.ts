@@ -81,10 +81,14 @@ router.get("/ingredients", (req, res) => {
 router.post("/filterMeals", (req, res) => {
   try {
     let filterPromises = [];
-    if (req.body.category)
-      filterPromises.push(axios.get("filter.php?c=" + req.body.category));
-    if (req.body.area)
-      filterPromises.push(axios.get("filter.php?a=" + req.body.area));
+    if (req.body.categories && req.body.categories.length > 0)
+      req.body.categories.forEach((category) => {
+        filterPromises.push(axios.get("filter.php?c=" + category));
+      });
+    if (req.body.areas && req.body.areas.length > 0)
+      req.body.areas.forEach((area) => {
+        filterPromises.push(axios.get("filter.php?a=" + area));
+      });
     if (req.body.ingredients && req.body.ingredients.length > 0)
       filterPromises.push(
         axios.get("filter.php?i=" + req.body.ingredients.toString())

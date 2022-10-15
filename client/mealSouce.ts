@@ -18,14 +18,14 @@ function getIngredients() {
   return axios.get("api/ingredients");
 }
 function filterMeals(
-  category: string,
-  area: string,
+  categories: Array<string>,
+  areas: Array<string>,
   ingredients: Array<string>,
   query: string
 ) {
   return axios.post("api/filterMeals", {
-    category: category,
-    area: area,
+    categories: categories,
+    areas: areas,
     ingredients: ingredients,
     query: query,
   });

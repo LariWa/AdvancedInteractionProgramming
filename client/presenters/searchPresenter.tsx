@@ -26,11 +26,13 @@ export default function SearchPresenter({
   const dispatch = useDispatch();
   const [categories, setCategoriesState] = useState([]);
   const [areas, setAreasState] = useState([]);
-  const [ingredientsToSelect, setIngrdsToSelectState] = useState([]);
+  const [ingredients, setIngredientsState] = useState([]);
 
-  const [category, setCategoryState] = useState("");
-  const [area, setAreaState] = useState("");
-  const [ingredients, setIngredientsState] = useState<Array<string>>([]);
+  const [selectedCategories, setSelectedCategories] = useState("");
+  const [selectedAreas, setSelectedAreas] = useState("");
+  const [selectedIngredients, setSelectedIngredients] = useState<Array<string>>(
+    []
+  );
   const [query, setQueryState] = useState("");
   const [results, setResultsState] = useState([]);
   const [topFavs, setTopFavs] = React.useState<Array<any>>([]);
@@ -68,7 +70,7 @@ export default function SearchPresenter({
       });
     getIngredients()
       .then((res) =>
-        setIngrdsToSelectState(
+        setIngredientsState(
           res.data.map((elem: { strIngredient: string }) => ({
             label: elem.strIngredient,
             value: elem.strIngredient,
@@ -100,7 +102,12 @@ export default function SearchPresenter({
     setData(null);
     setError(null);
     resolvePromise(
-      filterMeals(category, area, ingredients, query),
+      filterMeals(
+        selectedCategories,
+        selectedAreas,
+        selectedIngredients,
+        query
+      ),
       mealsPromiseState,
       mealPromiseStateChanged
     );
@@ -140,14 +147,11 @@ export default function SearchPresenter({
       <SearchView
         categories={categories}
         areas={areas}
-        ingrToSelect={ingredientsToSelect}
-        category={category}
-        area={area}
-        ingredients={ingredients}
+        ingrToSelect={ingredients}
         query={query}
-        onCategorySelected={setCategoryState}
-        onAreaSelected={setAreaState}
-        onIngredientsSelected={setIngredientsState}
+        onCategoriesSelected={setSelectedCategories}
+        onAreasSelected={setSelectedAreas}
+        onIngredientsSelected={setSelectedIngredients}
         onQueryChanged={setQueryState}
         onSearch={onSearchACB}
       ></SearchView>

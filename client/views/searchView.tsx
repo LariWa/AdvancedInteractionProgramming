@@ -1,10 +1,6 @@
 import React from "react";
 import { StyleSheet, TextInput, View, ScrollView } from "react-native";
-import {
-  Flex,
-  Button,
-  HStack,
-} from "@react-native-material/core";
+import { Flex, Button, HStack } from "@react-native-material/core";
 import DropdownMenu from "../components/dropdownMenu";
 import Header from "../components/header";
 
@@ -48,14 +44,14 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontStyle: "italic",
   },
-  searchButton:{
+  searchButton: {
     backgroundColor: "#314959",
     borderRadius: 300,
     height: 45,
-  }
+  },
 });
 export default function SearchView(props: any) {
-  function onSearch(){
+  function onSearch() {
     props.onSearch();
   }
   return (
@@ -68,19 +64,19 @@ export default function SearchView(props: any) {
           style={styles.textInput}
           onChangeText={props.onQueryChanged}
         />
-        <Button title="Search"  style={styles.searchButton} onPress={onSearch} />
+        <Button title="Search" style={styles.searchButton} onPress={onSearch} />
       </HStack>
       <ScrollView horizontal={true}>
         <Flex direction="row" style={styles.mainContainer_filters}>
           <DropdownMenu
             data={props.categories}
-            onChange={props.onCategorySelected}
-            searchItem="Category"
+            onChange={props.onCategoriesSelected}
+            searchItem="Categories"
           />
-          <DropdownMenu 
-            data={props.areas} 
-            onChange={props.onAreaSelected} 
-            searchItem="Area"
+          <DropdownMenu
+            data={props.areas}
+            onChange={props.onAreasSelected}
+            searchItem="Areas"
           />
           <DropdownMenu
             data={props.ingrToSelect}
