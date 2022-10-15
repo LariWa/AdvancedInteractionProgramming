@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/AdvancedInteractionProgramming/static/js/app.3d1b6b0c.chunk.js",
-    "app.js.map": "/AdvancedInteractionProgramming/static/js/app.3d1b6b0c.chunk.js.map",
+    "app.js": "/AdvancedInteractionProgramming/static/js/app.86d7a1c9.chunk.js",
+    "app.js.map": "/AdvancedInteractionProgramming/static/js/app.86d7a1c9.chunk.js.map",
     "runtime~app.js": "/AdvancedInteractionProgramming/static/js/runtime~app.2ed6d695.js",
     "runtime~app.js.map": "/AdvancedInteractionProgramming/static/js/runtime~app.2ed6d695.js.map",
     "static/js/2.94c01e61.chunk.js": "/AdvancedInteractionProgramming/static/js/2.94c01e61.chunk.js",
@@ -33,6 +33,6 @@
   "entrypoints": [
     "static/js/runtime~app.2ed6d695.js",
     "static/js/2.94c01e61.chunk.js",
-    "static/js/app.3d1b6b0c.chunk.js"
+    "static/js/app.86d7a1c9.chunk.js"
   ]
 }
