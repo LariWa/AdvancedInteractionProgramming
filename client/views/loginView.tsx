@@ -1,49 +1,62 @@
 import React from "react";
-import { StyleSheet, Image, TextInput } from "react-native";
-import {
-  Stack,
-  IconButton,
-  Flex,
-  Text,
-  Button,
-} from "@react-native-material/core";
+import { Image, TextInput, View } from "react-native";
+import { Flex, Text, Button } from "@react-native-material/core";
 import { styles_loginPage } from "./styles";
-
+import { Formik } from "formik";
 export default function LoginView(props: any) {
-  const handleLoginACB = () => {
-    console.log("loginView");
-    props.onLogin();
-  };
-  const handleRegistrationACB = () => {
-    props.onRegistration();
-  };
   return (
     <>
       <Flex fill style={styles_loginPage.mainContainer}>
         <Text style={styles_loginPage.mainContainer_h5}>Sign in</Text>
-        <TextInput
-          onChangeText={props.onNameChanged}
-          placeholder="Name"
-          style={styles_loginPage.mainContainer_textInput}
-        />
-        <TextInput
-          placeholder="Password"
-          style={styles_loginPage.mainContainer_textInput}
-          onChangeText={props.onPWChanged}
-        />
-        <Text
-          style={styles_loginPage.mainContainer_italics}
-          onPress={handleRegistrationACB}
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={props.onLogin}
+          validationSchema={props.signupSchema}
         >
-          New user
-        </Text>
-        <Button
-          onPress={handleLoginACB}
-          title="Get Started"
-          style={styles_loginPage.mainContainer_button}
-          loading={props.loading}
-          disabled={props.loading}
-        />
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <View>
+              <TextInput
+                style={styles_loginPage.mainContainer_textInput}
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+                value={values.email}
+                placeholder="Email"
+              />
+              {errors.email && touched.email ? (
+                <Text style={styles_loginPage.error}>{errors.email}</Text>
+              ) : null}
+              <TextInput
+                style={styles_loginPage.mainContainer_textInput}
+                onChangeText={handleChange("password")}
+                onBlur={handleBlur("password")}
+                value={values.password}
+                placeholder="Password"
+              />
+              {errors.password && touched.password ? (
+                <Text style={styles_loginPage.error}>{errors.password}</Text>
+              ) : null}
+              <Text
+                style={styles_loginPage.mainContainer_italics}
+                onPress={props.onNewUser}
+              >
+                New user
+              </Text>
+              <Button
+                onPress={handleSubmit}
+                title="Submit"
+                style={styles_loginPage.mainContainer_button}
+                loading={props.loading}
+              />
+            </View>
+          )}
+        </Formik>
         <Image
           style={styles_loginPage.maincontainer_image}
           source={require("../styles/loginImage.png")}

@@ -4,39 +4,29 @@ import ErrorMessage from "../components/errorMessage";
 import SuccessMessage from "../components/modalMessage";
 import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
-import { setUserData, setToken, setNewUserData } from "../redux";
-// import { setUserData, setToken, setNewUserData } from "../redux";
-import { RootTabScreenProps } from "../types";
-import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
+import { setNewUserData } from "../redux";
+import * as Yup from "yup";
 
-export default function RegistrationPresenter(
-  props: any,
-  { navigation }: RootTabScreenProps<"TabThree">
-) {
-  const [name, setNameState] = useState("");
-  const [pw, setPwState] = useState("");
-  const [pwConfirm, setPwConfirmState] = useState("");
+export default function RegistrationPresenter(props: any) {
   const dispatch = useDispatch<any>();
   const [loading, setLoadingState] = useState(false);
   const [status, setStatusState] = useState(false);
   const [error, setError] = useState("");
   const [visibility, setModalVisible] = useState(false);
 
-  function onRegistrationACB() {
-    console.log("inside onLoginACB");
+  function onRegistrationACB(registerData: {
+    email: string;
+    password: string;
+  }) {
     setLoadingState(true);
-
-    signup(name, pw)
+    signup(registerData.email, registerData.password)
       .then((res: any) => {
         setStatusState(true);
         setModalVisible(true);
         setTimeout(() => setModalVisible(false), 3000);
-        console.log("succesfully signed in!");
-        dispatch(setNewUserData(name, res.data));
-        // props.navigation.navigate("TabFour");
+        dispatch(setNewUserData(registerData.email, res.data));
         setLoadingState(false);
-
-        // props.navigation.navigate("SearchPresenter");
+        props.navigation.navigate("Search");
       })
       .catch((data) => {
         console.log(data);
@@ -44,35 +34,31 @@ export default function RegistrationPresenter(
         setError("need to be adapted on server");
         setLoadingState(false);
       });
-    //props.navigation.navigate('SearchPresenter')
   }
   function onLoginACB() {
-    props.navigation.navigate("TabTwo");
-  }
-  function onPWChangedACB(pw: string) {
-    //TODO check if valid pw
-    setPwState(pw);
-  }
-  function onPWConfirmChangedACB(pwConfirm: string) {
-    //TODO check if pw matches pw
-    setPwConfirmState(pwConfirm);
-    if (pw !== pwConfirm) {
-      //TODO if passwords do not match, abort and send error message
-    }
+    props.navigation.navigate("Login");
   }
   function onReturnACB() {
-    props.navigation.navigate("TabThree");
+    props.navigation.navigate("Register");
     setError(null);
   }
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string()
+      .required("Password is a required field")
+      .min(8, "Password must be at least 8 characters"),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Passwords must match"
+    ),
+  });
   return (
     <>
       <RegistrationView
-        onRegistration={onRegistrationACB}
+        onRegister={onRegistrationACB}
         onLogin={onLoginACB}
-        onPWChanged={onPWChangedACB}
-        onPWConfirmChanged={onPWConfirmChangedACB}
-        onNameChanged={setNameState}
         loading={loading}
+        signupSchema={SignupSchema}
       ></RegistrationView>
       {error && (
         <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>
