@@ -44,6 +44,22 @@ export const setNewUserData = (username: string, token: String) => {
     });
   };
 };
+export const setSnackbar = (msg: string) => {
+  return async (dispatch: Dispatch<setSnackbar>) => {
+    dispatch({
+      type: "SET_MSG",
+      payload: msg,
+    });
+    dispatch({
+      type: "SET_VISBILITY",
+      payload: true,
+    });
+  };
+};
+export const hideSnackbar = () => ({
+  type: "SET_VISIBILITY",
+  payload: false,
+});
 export type setUserData = {
   readonly type:
     | "SET_TOKEN"
@@ -51,4 +67,8 @@ export type setUserData = {
     | "GET_FAVS_SUC"
     | "MANIPULATE_FAV_ERROR";
   payload: any;
+};
+export type setSnackbar = {
+  readonly type: "SET_MSG" | "SET_VISBILITY";
+  payload?: string | boolean;
 };

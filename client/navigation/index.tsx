@@ -34,6 +34,8 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import { login } from "../loginSource";
 import FavouritesPresenter from "../presenters/favourtiesPresenter";
 import GroceryListPresenter from "../presenters/groceryListPresenter";
+import { useDispatch, useSelector } from "react-redux";
+import { setSnackbar } from "../redux";
 
 export default function Navigation({
   colorScheme,
@@ -57,6 +59,8 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const user = useSelector((state: any) => state.user);
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -69,7 +73,10 @@ function RootNavigator() {
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
-      <Stack.Screen name="Favourites" component={FavouritesPresenter} />
+      <Stack.Screen
+        name="Favourites"
+        component={user != "" ? FavouritesPresenter : LoginPresenter}
+      />
       <Stack.Screen name="Login" component={LoginPresenter} />
       <Stack.Screen name="Registration" component={RegistrationPresenter} />
       <Stack.Screen name="Recipe" component={RecipePresenter} />
@@ -87,6 +94,9 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
+  const user = useSelector((state: any) => state.user);
+  const dispatch = useDispatch<any>();
+
   const colorScheme = useColorScheme();
 
   return (
@@ -136,7 +146,13 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Favourties"
-        component={FavouritesPresenter}
+        component={user ? FavouritesPresenter : LoginPresenter}
+        listeners={{
+          tabPress: (e) => {
+            if (!user)
+              dispatch(setSnackbar("Please login to see your favourites"));
+          },
+        }}
         options={{
           title: "Favorites",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -152,7 +168,13 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Grocery"
-        component={SearchPresenter} //Search
+        component={user ? SearchPresenter : LoginPresenter} //Search
+        listeners={{
+          tabPress: (e) => {
+            if (!user)
+              dispatch(setSnackbar("Please login to see your grocery list"));
+          },
+        }}
         options={{
           title: "Grocery list",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
