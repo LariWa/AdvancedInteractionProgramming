@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setUserData } from "../redux";
 import ModalMessage from "../components/modalMessage";
 import * as Yup from "yup";
+import ErrorMessage from "../components/errorMessage";
 
 export default function LoginPresenter(props: any) {
   const [name, setNameState] = useState("");
@@ -27,9 +28,14 @@ export default function LoginPresenter(props: any) {
         props.navigation.navigate("Search");
       })
       .catch((data) => {
-        setError(data.response?.data?.error.toString());
+        console.log(data);
+        setError(data.response.data?.error || data.message);
         setLoadingState(false);
       });
+  }
+  function onReturnACB() {
+    props.navigation.navigate("Login");
+    setError(null);
   }
   function onRegistrationACB() {
     props.navigation.navigate("Registration");
@@ -49,7 +55,7 @@ export default function LoginPresenter(props: any) {
         signupSchema={SignupSchema}
       ></LoginView>
       {error && (
-        <ModalMessage modalVisible={visibility} message={error}></ModalMessage>
+        <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>
       )}
       {!error && status && (
         <ModalMessage

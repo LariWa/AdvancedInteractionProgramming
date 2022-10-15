@@ -23,7 +23,13 @@ router.post("/signup", async (req, res) => {
     // send new user as response
     res.json(token);
   } catch (error) {
-    res.status(400).json({ error });
+    if (error.name === "MongoServerError" && error.code === 11000) {
+      //There was a duplicate key error
+      return res.status(400).json({
+        message: "Email already in use.",
+        data: { error },
+      });
+    } else return res.status(400).json({ error });
   }
 });
 

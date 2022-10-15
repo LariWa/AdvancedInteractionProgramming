@@ -29,9 +29,7 @@ export default function RegistrationPresenter(props: any) {
         props.navigation.navigate("Search");
       })
       .catch((data) => {
-        console.log(data);
-        //TODO display error in View
-        setError("need to be adapted on server");
+        setError(data.response.data?.message || data.message);
         setLoadingState(false);
       });
   }
