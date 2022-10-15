@@ -1,0 +1,38 @@
+{
+  "files": {
+    "app.js": "/AdvancedInteractionProgramming/static/js/app.3d1b6b0c.chunk.js",
+    "app.js.map": "/AdvancedInteractionProgramming/static/js/app.3d1b6b0c.chunk.js.map",
+    "runtime~app.js": "/AdvancedInteractionProgramming/static/js/runtime~app.2ed6d695.js",
+    "runtime~app.js.map": "/AdvancedInteractionProgramming/static/js/runtime~app.2ed6d695.js.map",
+    "static/js/2.94c01e61.chunk.js": "/AdvancedInteractionProgramming/static/js/2.94c01e61.chunk.js",
+    "static/js/2.94c01e61.chunk.js.map": "/AdvancedInteractionProgramming/static/js/2.94c01e61.chunk.js.map",
+    "fonts/AntDesign.ttf": "/AdvancedInteractionProgramming/./fonts/AntDesign.ttf",
+    "fonts/Entypo.ttf": "/AdvancedInteractionProgramming/./fonts/Entypo.ttf",
+    "fonts/Feather.ttf": "/AdvancedInteractionProgramming/./fonts/Feather.ttf",
+    "fonts/FontAwesome.ttf": "/AdvancedInteractionProgramming/./fonts/FontAwesome.ttf",
+    "fonts/FontAwesome5_Brands.ttf": "/AdvancedInteractionProgramming/./fonts/FontAwesome5_Brands.ttf",
+    "fonts/FontAwesome5_Solid.ttf": "/AdvancedInteractionProgramming/./fonts/FontAwesome5_Solid.ttf",
+    "fonts/Fontisto.ttf": "/AdvancedInteractionProgramming/./fonts/Fontisto.ttf",
+    "fonts/Foundation.ttf": "/AdvancedInteractionProgramming/./fonts/Foundation.ttf",
+    "fonts/Ionicons.ttf": "/AdvancedInteractionProgramming/./fonts/Ionicons.ttf",
+    "fonts/MaterialCommunityIcons.ttf": "/AdvancedInteractionProgramming/./fonts/MaterialCommunityIcons.ttf",
+    "fonts/MaterialIcons.ttf": "/AdvancedInteractionProgramming/./fonts/MaterialIcons.ttf",
+    "fonts/SimpleLineIcons.ttf": "/AdvancedInteractionProgramming/./fonts/SimpleLineIcons.ttf",
+    "fonts/SpaceMono-Regular.ttf": "/AdvancedInteractionProgramming/./fonts/SpaceMono-Regular.ttf",
+    "favicon-16.png": "/AdvancedInteractionProgramming/favicon-16.png",
+    "favicon-32.png": "/AdvancedInteractionProgramming/favicon-32.png",
+    "favicon.ico": "/AdvancedInteractionProgramming/favicon.ico",
+    "index.html": "/AdvancedInteractionProgramming/index.html",
+    "manifest.json": "/AdvancedInteractionProgramming/manifest.json",
+    "serve.json": "/AdvancedInteractionProgramming/serve.json",
+    "static/js/2.94c01e61.chunk.js.LICENSE.txt": "/AdvancedInteractionProgramming/static/js/2.94c01e61.chunk.js.LICENSE.txt",
+    "static/media/loginImage.png": "/AdvancedInteractionProgramming/static/media/loginImage.2f21b2f9.png",
+    "static/media/previewImage.png": "/AdvancedInteractionProgramming/static/media/previewImage.dfdb6cdc.png",
+    "static/media/registrationImage.png": "/AdvancedInteractionProgramming/static/media/registrationImage.9ecc3fe5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.2ed6d695.js",
+    "static/js/2.94c01e61.chunk.js",
+    "static/js/app.3d1b6b0c.chunk.js"
+  ]
+}
