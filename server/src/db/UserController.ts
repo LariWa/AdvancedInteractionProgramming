@@ -16,14 +16,17 @@ router.post("/signup", async (req, res) => {
     req.body.password = await bcrypt.hash(req.body.password, 10);
     // create a new user
     const user = await User.create(req.body);
-    //TODO add validation if user was succesfully created
     const token = await jwt.sign({ username: user.username }, SECRET);
-    console.log(token);
-
     // send new user as response
     res.json(token);
   } catch (error) {
-    res.status(400).json({ error });
+    if (error.name === "MongoServerError" && error.code === 11000) {
+      //There was a duplicate key error
+      return res.status(400).json({
+        message: "Email already in use.",
+        data: { error },
+      });
+    } else return res.status(400).json({ error });
   }
 });
 
