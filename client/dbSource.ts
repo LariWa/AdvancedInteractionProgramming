@@ -23,6 +23,28 @@ function getFavourites() {
   return axios.get("/db/getFavourites", getHeader());
 }
 
+function addIngredient(id: string) {
+  return axios.post(
+    "/db/addIngredient",
+    {
+      id: id,
+    },
+    getHeader()
+  );
+}
+function deleteIngredient(id: string) {
+  return axios.post(
+    "/db/deleteIngredient",
+    {
+      id: id,
+    },
+    getHeader()
+  );
+}
+function getIngredients() {
+  return axios.get("/db/getIngredients", getHeader());
+}
+
 function getTopFavourites() {
   return axios.get("/db/topTen").then((res) => {
     return axios.post("/api/mealsDetails", {
@@ -34,4 +56,5 @@ function getHeader() {
   return { headers: { authorization: "bearer " + store.getState().token } };
 }
 
-export { addFavourite, deleteFavourite, getFavourites, getTopFavourites };
+export { addFavourite, deleteFavourite, getFavourites,
+  getTopFavourites, addIngredient, deleteIngredient, getIngredients };
