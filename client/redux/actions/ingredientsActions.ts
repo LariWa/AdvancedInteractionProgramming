@@ -18,8 +18,8 @@ export const addIngr = (id: string) => {
 };
 export const deleteIngr = (id: string) => {
   return async (dispatch: Dispatch<deleteIng>) => {
-    var favs: Array<string> = store.getState().favourites["data"];
-    if (favs.includes(id)) {
+    var ingrs: Array<string> = store.getState().ingredients["data"];
+    if (ingrs.includes(id)) {
       dispatch({ type: "DELETE_INGR" });
       console.log(id);
       deleteIngredient(id)

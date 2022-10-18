@@ -41,7 +41,7 @@ export default function RecipeView(props: any) {
         title={ingredient.name}
         key={ingredient.name}
         trailing={(props) => (
-          <AntDesign name="pluscircleo" size={24} color="black" />
+          <AntDesign name="pluscircleo" size={24} color="black"/>
         )}
       />
     );
