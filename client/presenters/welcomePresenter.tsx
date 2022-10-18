@@ -6,7 +6,7 @@ import { RootTabScreenProps } from '../types';
 
 export default function WelcomePresenter(props: any, {navigation}: RootTabScreenProps<'TabOne'>) {
   function getStartedACB() {
-    props.navigation.navigate('TabTwo')
+    props.navigation.navigate('Login')
   }
   return <WelcomeView getStarted={getStartedACB} />;
 }

@@ -63,12 +63,20 @@ export default function GroceryListView(props: any){
     return props.loading ? (
         <ActivityIndicator size="large" color="#00ff00" />
     ) : (
-        <IconButton
-          onPress={props.onRemoveIngredient}
-          icon={() => (
-            <AntDesign name="pluscircleo" size={24} color="black"/>
-          )}
-        />
+        <ScrollView>
+            <Flex>
+                {props.ingredients}
+                <IconButton
+                    onPress={props.onRemoveIngredient}
+                    icon={() => (
+                <AntDesign name="minuscircleo" size={24} color="black"/>
+            )}
+            />
+        </Flex>
+
+        </ScrollView>
+
+
     );
 
     /*function onRemoveIngredient(){

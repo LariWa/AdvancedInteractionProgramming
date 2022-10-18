@@ -12,9 +12,9 @@ export default function GroceryListPresenter(
   const [ingredients, setIngredients] = React.useState<any>();
   const dispatch = useDispatch<any>();
   const addedToIngr = useSelector((state: any) =>
-    state.list.data.includes(props.id)
+    state.ingredients.data.includes(props.id)
   );
-  const loading = useSelector((state: any) => state.user);
+  const loading = useSelector((state: any) => state.ingredients.loading);
   const user = useSelector((state: any) => state.user);
   
   function removeIngredientACB() {
