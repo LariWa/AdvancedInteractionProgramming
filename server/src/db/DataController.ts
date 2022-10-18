@@ -22,6 +22,15 @@ router.get("/getFavourites", isLoggedIn, async (req, res) => {
     res.status(400).json({ error });
   }
 });
+router.get("/getGroceries", isLoggedIn, async (req, res) => {
+  try {
+    res.json(
+      (await Data.findOne({ username: req.body.user.username })).groceries
+    );
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
 // add favourite for user
 router.post("/addFavourite", isLoggedIn, async (req, res) => {
   try {
