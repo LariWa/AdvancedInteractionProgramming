@@ -36,6 +36,7 @@ import FavouritesPresenter from "../presenters/favourtiesPresenter";
 import GroceryListPresenter from "../presenters/groceryListPresenter";
 import { useDispatch, useSelector } from "react-redux";
 import { setSnackbar } from "../redux";
+import { Octicons } from '@expo/vector-icons';
 
 export default function Navigation({
   colorScheme,
@@ -111,7 +112,7 @@ function BottomTabNavigator() {
         component={WelcomePresenter}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
           title: "Welcome",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} tabName="Welcome" />,
           headerRight: () => (
             <Flex direction="row">
               <Pressable
@@ -155,7 +156,7 @@ function BottomTabNavigator() {
         }}
         options={{
           title: "Favorites",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} tabName="Favorites"/>,
         }}
       />
       <BottomTab.Screen
@@ -163,7 +164,7 @@ function BottomTabNavigator() {
         component={SearchPresenter} //Search
         options={{
           title: "Search",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} tabName="Search" />,
         }}
       />
       <BottomTab.Screen
@@ -177,7 +178,7 @@ function BottomTabNavigator() {
         }}
         options={{
           title: "Grocery list",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} tabName="Grocery list"/>,
         }}
       />
     </BottomTab.Navigator>
@@ -190,6 +191,16 @@ function BottomTabNavigator() {
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
+  tabName: string,
 }) {
-  return <MaterialIcons name="tab" size={30} color="black" />;
+
+  if (props.tabName == "Welcome"){
+    return <FontAwesome name = "home" size={30} color="black" />;
+  }else if (props.tabName == "Search"){
+    return <Octicons name = "search" size={30} color="black" />;
+  }else if (props.tabName == "Favorites"){
+    return <FontAwesome name= "heart" size={30} color="black" />;
+  }else if (props.tabName == "Grocery list"){
+    return <MaterialIcons name="local-grocery-store" size={30} color="black" />;
+  }
 }
