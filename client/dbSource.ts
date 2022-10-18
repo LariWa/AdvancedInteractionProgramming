@@ -23,26 +23,26 @@ function getFavourites() {
   return axios.get("/db/getFavourites", getHeader());
 }
 
-function addIngredient(id: string) {
+function addIngredient(ingredient: string) {
   return axios.post(
     "/db/addIngredient",
     {
-      id: id,
+      ingredient: ingredient,
     },
     getHeader()
   );
 }
-function deleteIngredient(id: string) {
+function deleteIngredient(ingredient: string) {
   return axios.post(
     "/db/deleteIngredient",
     {
-      id: id,
+      ingredient: ingredient,
     },
     getHeader()
   );
 }
-function getIngredients() {
-  return axios.get("/db/getIngredients", getHeader());
+function getGroceries() {
+  return axios.get("/db/getGroceries", getHeader());
 }
 
 function getTopFavourites() {
@@ -56,5 +56,12 @@ function getHeader() {
   return { headers: { authorization: "bearer " + store.getState().token } };
 }
 
-export { addFavourite, deleteFavourite, getFavourites,
-  getTopFavourites, addIngredient, deleteIngredient, getIngredients };
+export {
+  addFavourite,
+  deleteFavourite,
+  getFavourites,
+  getTopFavourites,
+  addIngredient,
+  deleteIngredient,
+  getGroceries,
+};

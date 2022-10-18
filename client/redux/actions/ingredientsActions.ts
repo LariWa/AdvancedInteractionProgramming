@@ -7,7 +7,10 @@ export const addIngr = (ingredient: any) => {
     dispatch({ type: "ADD_TO_INGR" });
     console.log(ingredient);
     addIngredient(ingredient)
-      .then(() => dispatch({ type: "ADD_TO_INGR_SUC", payload: ingredient }))
+      .then(() => {
+        console.log(ingredient);
+        dispatch({ type: "ADD_TO_INGR_SUC", payload: ingredient });
+      })
       .catch((error) => {
         dispatch({
           type: "MANIPULATE_INGR_ERROR",

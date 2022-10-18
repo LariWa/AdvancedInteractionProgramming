@@ -4,22 +4,27 @@ import { addIngr, deleteIngr } from "../redux/actions/ingredientsActions";
 import { setSnackbar } from "../redux";
 import GroceryListView from "../views/groceryListView";
 import { RootTabScreenProps } from "../types";
+import { getGroceries } from "../dbSource";
 
 export default function GroceryListPresenter(
   props: any,
   { navigation }: RootTabScreenProps<"Groceries">
 ) {
-  const [ingredients, setIngredients] = React.useState<any>();
+  const ingredients = useSelector((state: any) => state.ingredients.data);
   const dispatch = useDispatch<any>();
   const addedToIngr = useSelector((state: any) =>
     state.ingredients.data.includes(props.id)
   );
   const loading = useSelector((state: any) => state.ingredients.loading);
   const user = useSelector((state: any) => state.user);
-  
+
   function removeIngredientACB() {
     if (!user)
-      dispatch(setSnackbar("Please log in to add your ingredients to the grocery list!"));
+      dispatch(
+        setSnackbar(
+          "Please log in to add your ingredients to the grocery list!"
+        )
+      );
     else {
       if (!addedToIngr) dispatch(addIngr(props.id));
       else dispatch(deleteIngr(props.id));
@@ -28,9 +33,9 @@ export default function GroceryListPresenter(
 
   return (
     <GroceryListView
-        ingredients={props.list}
-        onRemoveIngredient={removeIngredientACB}
-        addedToIngr={addedToIngr}
+      ingredients={props.list}
+      onRemoveIngredient={removeIngredientACB}
+      addedToIngr={addedToIngr}
     />
   );
 }

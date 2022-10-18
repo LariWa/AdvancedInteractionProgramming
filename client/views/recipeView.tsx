@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 
 export default function RecipeView(props: any) {
   function onAddToList(ingredient: any) {
-    props.onAddToList(ingredient);
+    props.onAddToList(ingredient.name);
   }
   function renderArrayCB(ingredient: any) {
     return (
@@ -47,7 +47,7 @@ export default function RecipeView(props: any) {
         title={ingredient.name}
         key={ingredient.name}
         trailing={(props) => (
-          <AntDesign name="pluscircleo" size={24} color="black"/>
+          <AntDesign name="pluscircleo" size={24} color="black" />
         )}
       />
     );

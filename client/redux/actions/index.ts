@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { getFavourites, getIngredients } from "../../dbSource";
+import { getFavourites, getGroceries, getIngredients } from "../../dbSource";
 
 export const setToken = (token: String) => ({
   type: "SET_TOKEN",
@@ -30,15 +30,16 @@ export const setUserData = (username: string, token: String) => {
           payload: error,
         });
       });
-    getIngredients()
+    getGroceries()
       .then((result) => {
-        dispatch({type: "GET_INGRS_SUC", payload: result.data});
+        console.log(result);
+        dispatch({ type: "GET_INGRS_SUC", payload: result.data });
       })
-      .catch((error) =>{
+      .catch((error) => {
         dispatch({
           type: "MANIPULATE_INGR_ERROR",
           payload: error,
-        });     
+        });
       });
   };
 };
@@ -77,7 +78,7 @@ export type setUserData = {
     | "GET_FAVS_SUC"
     | "MANIPULATE_FAV_ERROR"
     | "GET_INGRS_SUC"
-    | "MANIPULATE_INGR_ERROR"
+    | "MANIPULATE_INGR_ERROR";
   payload: any;
 };
 export type setSnackbar = {
