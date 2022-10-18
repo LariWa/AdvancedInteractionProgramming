@@ -35,9 +35,15 @@ const styles = StyleSheet.create({
 });
 
 export default function RecipeView(props: any) {
+  function onAddToList(ingredient: any) {
+    props.onAddToList(ingredient);
+  }
   function renderArrayCB(ingredient: any) {
     return (
       <ListItem
+        onPress={() => {
+          onAddToList(ingredient);
+        }}
         title={ingredient.name}
         key={ingredient.name}
         trailing={(props) => (

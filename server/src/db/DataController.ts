@@ -41,6 +41,31 @@ router.post("/addFavourite", isLoggedIn, async (req, res) => {
     res.status(400).json({ error });
   }
 });
+router.post("/addIngredient", isLoggedIn, async (req, res) => {
+  try {
+    res.json(
+      await Data.update(
+        { username: req.body.user.username },
+        { $addToSet: { groceries: req.body.ingredient } },
+        { upsert: true }
+      )
+    );
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+router.post("/deleteIngredient", isLoggedIn, async (req, res) => {
+  try {
+    res.json(
+      await Data.update(
+        { username: req.body.user.username },
+        { $pull: { groceries: req.body.ingredient } }
+      )
+    );
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
 
 // delete favourite
 router.post("/deleteFavourite", isLoggedIn, async (req, res) => {

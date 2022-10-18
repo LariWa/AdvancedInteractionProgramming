@@ -160,13 +160,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Search"
-        component={user ? SearchPresenter : LoginPresenter} //Search
-        listeners={{
-          tabPress: (e) => {
-            if (!user)
-              dispatch(setSnackbar("Please login to see your grocery list"));
-          },
-        }}
+        component={SearchPresenter} //Search
         options={{
           title: "Search",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
