@@ -4,61 +4,61 @@
  * https://reactnavigation.org/docs/configuring-links
  */
 
-import { LinkingOptions } from '@react-navigation/native';
-import * as Linking from 'expo-linking';
+import { LinkingOptions } from "@react-navigation/native";
+import * as Linking from "expo-linking";
 
-import { RootStackParamList } from '../types';
+import { RootStackParamList } from "../types";
 
 const linking: LinkingOptions<RootStackParamList> = {
-  prefixes: [Linking.createURL('/')],
+  prefixes: [Linking.createURL("/")],
   config: {
     screens: {
       Root: {
         screens: {
           TabOne: {
             screens: {
-              TabOneScreen: 'one',
+              TabOneScreen: "AdvancedInteractionProgramming",
             },
           },
           TabTwo: {
             screens: {
-              TabTwoScreen: 'two',
+              TabTwoScreen: "two",
             },
           },
           TabThree: {
             screens: {
-              TabThreeScreen: 'three',
+              TabThreeScreen: "three",
             },
           },
           TabFour: {
             screens: {
-              TabFourScreen: 'four',
+              TabFourScreen: "four",
             },
           },
           TabFive: {
             screens: {
-              TabFiveScreen: 'five',
+              TabFiveScreen: "five",
             },
           },
           TabSix: {
             screens: {
-              TabSixScreen: 'six',
+              TabSixScreen: "six",
             },
           },
           TabSeven: {
             screens: {
-              TabFourScreen: 'seven',
+              TabFourScreen: "seven",
             },
           },
           TabEight: {
             screens: {
-              TabFourEight: 'eight',
+              TabFourEight: "eight",
             },
           },
         },
       },
-      Modal: 'modal',
-      NotFound: '*',
+      Modal: "modal",
+      NotFound: "*",
     },
   },
 };
