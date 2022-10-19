@@ -7,12 +7,7 @@ const router = express.Router();
 
 axios.defaults.baseURL =
   "https://www.themealdb.com/api/json/" + version + "/" + key + "//";
-// middleware that is specific to this router
-router.use((req: Request, res: Response, next: NextFunction) => {
-  console.log("Time: ", Date.now());
-  next();
-});
-// define the home page route
+
 //gets random meal
 router.get("/randomMeal", (req: Request, res: Response) => {
   try {

@@ -1,13 +1,13 @@
 const { Schema, model } = require("./connection"); // import Schema & model
 
-// Favourites Schema
+// Data Schema
 const DataSchema = new Schema({
   username: { type: String, required: true },
   favourites: [{ type: String }],
   groceries: [{ type: String }],
 });
 
-// Favourites model
+// Data model
 const Data = model("Data", DataSchema);
 
 module.exports = Data;
