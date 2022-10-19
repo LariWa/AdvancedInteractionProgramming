@@ -5,11 +5,6 @@ const router = Router(); // create router to create route bundle
 import { isLoggedIn } from "../middleware";
 var _ = require("lodash");
 
-router.use((req, res, next) => {
-  console.log("Time: ", Date.now());
-  next();
-});
-
 // get all data for user
 router.get("/", isLoggedIn, async (req, res) => {
   try {
@@ -22,6 +17,15 @@ router.get("/getFavourites", isLoggedIn, async (req, res) => {
   try {
     res.json(
       (await Data.findOne({ username: req.body.user.username })).favourites
+    );
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+router.get("/getGroceries", isLoggedIn, async (req, res) => {
+  try {
+    res.json(
+      (await Data.findOne({ username: req.body.user.username })).groceries
     );
   } catch (error) {
     res.status(400).json({ error });
@@ -80,7 +84,32 @@ router.post("/deleteFavourite", isLoggedIn, async (req, res) => {
     res.status(400).json({ error });
   }
 });
-router.get("/getTopTen", async (req, res) => {
+router.post("/addIngredient", isLoggedIn, async (req, res) => {
+  try {
+    res.json(
+      await Data.update(
+        { username: req.body.user.username },
+        { $addToSet: { groceries: req.body.ingredient } },
+        { upsert: true }
+      )
+    );
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+router.post("/deleteIngredient", isLoggedIn, async (req, res) => {
+  try {
+    res.json(
+      await Data.update(
+        { username: req.body.user.username },
+        { $pull: { groceries: req.body.ingredient } }
+      )
+    );
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+router.get("/topTen", async (req, res) => {
   try {
     let data = await Data.find({});
     let favs = data.flatMap((r) => r.toObject().favourites);

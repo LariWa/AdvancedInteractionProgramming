@@ -16,10 +16,7 @@ router.post("/signup", async (req, res) => {
     req.body.password = await bcrypt.hash(req.body.password, 10);
     // create a new user
     const user = await User.create(req.body);
-    //TODO add validation if user was succesfully created
     const token = await jwt.sign({ username: user.username }, SECRET);
-    console.log(token);
-
     // send new user as response
     res.json(token);
   } catch (error) {

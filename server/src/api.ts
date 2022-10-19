@@ -1,5 +1,5 @@
 import axios from "axios";
-import { key, version } from "./mealAPI";
+import { key, version } from "/etc/secrets/mealAPI";
 var _ = require("lodash");
 const express = require("express");
 const router = express.Router();
