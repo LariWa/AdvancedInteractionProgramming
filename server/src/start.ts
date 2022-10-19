@@ -18,15 +18,15 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
-const options = {
-  key: fs.readFileSync("./cert/localhost-key.pem"),
-  cert: fs.readFileSync("./cert/localhost.pem"),
-};
+// const options = {
+//   key: fs.readFileSync("./cert/localhost-key.pem"),
+//   cert: fs.readFileSync("./cert/localhost.pem"),
+// };
 app.use("/api", api);
 app.use("/user", UserRouter);
 app.use("/db", DataRouter);
 
-const server = https.createServer(options, app);
-server.listen(port, () => {
+// const server = https.createServer(options, app);
+app.listen(port, () => {
   console.log("Server is listening on port:" + port);
 });
