@@ -1,5 +1,5 @@
 import axios from "axios";
-import { key, version } from "/etc/secrets/mealAPI";
+import { key, version } from "./mealAPI";
 var _ = require("lodash");
 const express = require("express");
 const router = express.Router();
@@ -81,29 +81,52 @@ router.get("/ingredients", (req, res) => {
 router.post("/filterMeals", (req, res) => {
   try {
     let filterPromises = [];
-    if (req.body.categories && req.body.categories.length > 0)
+    let categoriesPromises = [];
+    let areaPromises = [];
+    let ingredientPromises = [];
+
+    if (req.body.categories && req.body.categories.length > 0) {
       req.body.categories.forEach((category) => {
-        filterPromises.push(axios.get("filter.php?c=" + category));
+        categoriesPromises.push(axios.get("filter.php?c=" + category));
       });
-    if (req.body.areas && req.body.areas.length > 0)
+      filterPromises.push(
+        axios
+          .all(categoriesPromises)
+          .then((res) => res.flatMap((res) => getMeals(res.data)))
+      );
+    }
+    if (req.body.areas && req.body.areas.length > 0) {
       req.body.areas.forEach((area) => {
-        filterPromises.push(axios.get("filter.php?a=" + area));
+        areaPromises.push(axios.get("filter.php?a=" + area));
       });
+      filterPromises.push(
+        axios
+          .all(areaPromises)
+          .then((res) => res.flatMap((res) => getMeals(res.data)))
+      );
+    }
     if (req.body.ingredients && req.body.ingredients.length > 0)
       filterPromises.push(
-        axios.get("filter.php?i=" + req.body.ingredients.toString())
+        axios
+          .get("filter.php?i=" + req.body.ingredients.toString())
+          .then((res) => getMeals(res.data))
       );
     if (req.body.query)
-      filterPromises.push(axios.get("search.php?s=" + req.body.query));
+      filterPromises.push(
+        axios
+          .get("search.php?s=" + req.body.query)
+          .then((res) => getMeals(res.data))
+      );
 
     axios.all(filterPromises).then((response) => {
-      var meals = _.intersectionBy(...response.map(getMeals), "idMeal");
+      var meals = _.intersectionBy(...response, "idMeal");
       var detailsReqs = meals.map((meal) =>
         axios.get("/lookup.php?i=" + meal.idMeal).then(getMeal)
       );
       axios.all(detailsReqs).then((mealDetails) => res.send(mealDetails));
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error });
   }
 });
@@ -130,8 +153,8 @@ function getMeal(response) {
     return null;
   }
 }
-function getMeals(response) {
-  return response.data.meals;
+function getMeals(data) {
+  return data.meals;
 }
 
 module.exports = router;
