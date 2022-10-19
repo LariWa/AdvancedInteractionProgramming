@@ -1,19 +1,20 @@
 import axios from "axios";
+import { NextFunction } from "express";
 import { key, version } from "./mealAPI";
+import express, { Request, Response } from "express";
 var _ = require("lodash");
-const express = require("express");
 const router = express.Router();
 
 axios.defaults.baseURL =
   "https://www.themealdb.com/api/json/" + version + "/" + key + "//";
 // middleware that is specific to this router
-router.use((req, res, next) => {
+router.use((req: Request, res: Response, next: NextFunction) => {
   console.log("Time: ", Date.now());
   next();
 });
 // define the home page route
 //gets random meal
-router.get("/randomMeal", (req, res) => {
+router.get("/randomMeal", (req: Request, res: Response) => {
   try {
     axios
       .get("/random.php")
@@ -25,7 +26,7 @@ router.get("/randomMeal", (req, res) => {
 });
 
 //get meal details
-router.post("/mealDetails", (req, res) => {
+router.post("/mealDetails", (req: Request, res: Response) => {
   try {
     axios
       .get("/lookup.php?i=" + req.body.id)
@@ -35,9 +36,9 @@ router.post("/mealDetails", (req, res) => {
     res.status(500).json({ error });
   }
 });
-router.post("/mealsDetails", (req, res) => {
+router.post("/mealsDetails", (req: Request, res: Response) => {
   try {
-    let requests = req.body.ids.map((id) =>
+    let requests = req.body.ids.map((id: string) =>
       axios.get("/lookup.php?i=" + id).then(getMeal)
     );
     axios.all(requests).then((data) => {
@@ -49,7 +50,7 @@ router.post("/mealsDetails", (req, res) => {
 });
 
 //get all meal categories
-router.get("/categories", (req, res) => {
+router.get("/categories", (req: Request, res: Response) => {
   try {
     axios
       .get("/categories.php")
@@ -78,15 +79,14 @@ router.get("/ingredients", (req, res) => {
 });
 
 //gets meals filtered by category, area, ingredients
-router.post("/filterMeals", (req, res) => {
+router.post("/filterMeals", (req: Request, res: Response) => {
   try {
-    let filterPromises = [];
-    let categoriesPromises = [];
-    let areaPromises = [];
-    let ingredientPromises = [];
+    const filterPromises: Array<Promise<any>> = [];
+    const categoriesPromises: Array<Promise<any>> = [];
+    const areaPromises: Array<Promise<any>> = [];
 
     if (req.body.categories && req.body.categories.length > 0) {
-      req.body.categories.forEach((category) => {
+      req.body.categories.forEach((category: string) => {
         categoriesPromises.push(axios.get("filter.php?c=" + category));
       });
       filterPromises.push(
@@ -96,7 +96,7 @@ router.post("/filterMeals", (req, res) => {
       );
     }
     if (req.body.areas && req.body.areas.length > 0) {
-      req.body.areas.forEach((area) => {
+      req.body.areas.forEach((area: string) => {
         areaPromises.push(axios.get("filter.php?a=" + area));
       });
       filterPromises.push(
@@ -120,7 +120,7 @@ router.post("/filterMeals", (req, res) => {
 
     axios.all(filterPromises).then((response) => {
       var meals = _.intersectionBy(...response, "idMeal");
-      var detailsReqs = meals.map((meal) =>
+      var detailsReqs = meals.map((meal: Meal) =>
         axios.get("/lookup.php?i=" + meal.idMeal).then(getMeal)
       );
       axios.all(detailsReqs).then((mealDetails) => res.send(mealDetails));
@@ -131,7 +131,7 @@ router.post("/filterMeals", (req, res) => {
   }
 });
 
-function getMeal(response) {
+function getMeal(response: MealAPIResponse) {
   try {
     if (
       response.data &&
@@ -153,8 +153,14 @@ function getMeal(response) {
     return null;
   }
 }
-function getMeals(data) {
+function getMeals(data: { meals: Array<Meal | any> }) {
   return data.meals;
 }
+type Meal = {
+  idMeal: string;
+};
+type MealAPIResponse = {
+  data: { meals: Array<Meal | any> };
+};
 
 module.exports = router;
