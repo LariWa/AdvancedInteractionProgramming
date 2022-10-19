@@ -1,35 +1,33 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import SearchView from "../views/searchView";
-import {
-  filterMeals,
-  getAreas,
-  getCategories,
-  getIngredients,
-} from "../mealSouce";
-import { addFavourite, getTopFavourites } from "../dbSource";
+import { filterMeals, getAllFilterData } from "../mealSouce";
 import resolvePromise from "../resolvePromise";
 import { promiseStateType } from "../types";
 import { RootTabScreenProps } from "../types";
 import promiseNoData from "../views/promiseNoData";
 import ResultsView from "../views/resultsView";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Flex } from "@react-native-material/core";
-//import { setCurrentRecipe } from "../redux";
-import RecipePresenter from "./recipePresenter";
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
+import { getTopFavourites } from "../dbSource";
+import { useDispatch } from "react-redux";
+import { setSnackbar } from "../redux";
 
 export default function SearchPresenter({
   navigation,
 }: RootTabScreenProps<"Search">) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
+
   const [categories, setCategoriesState] = useState([]);
   const [areas, setAreasState] = useState([]);
-  const [ingredientsToSelect, setIngrdsToSelectState] = useState([]);
+  const [ingredients, setIngredientsState] = useState([]);
 
-  const [category, setCategoryState] = useState("");
-  const [area, setAreaState] = useState("");
-  const [ingredients, setIngredientsState] = useState<Array<string>>([]);
+  const [selectedCategories, setSelectedCategories] = useState<Array<string>>(
+    []
+  );
+  const [selectedAreas, setSelectedAreas] = useState<Array<string>>([]);
+  const [selectedIngredients, setSelectedIngredients] = useState<Array<string>>(
+    []
+  );
   const [query, setQueryState] = useState("");
   const [results, setResultsState] = useState([]);
   const [topFavs, setTopFavs] = React.useState<Array<any>>([]);
@@ -45,52 +43,47 @@ export default function SearchPresenter({
   const [error, setError] = React.useState<any>();
 
   React.useEffect(() => {
-    // Runs after the first render() lifecycle
-    setTopFavsLoading(true);
-    getTopFavourites().then((res) => {
-      setTopFavs(res.data);
-      setTopFavsLoading(false);
-    });
-
-    getCategories()
-      .then((res) =>
+    getAllFilterData()
+      .then((res) => {
         setCategoriesState(
-          res.data.map((elem: { strCategory: string }) => ({
+          res[0].data.map((elem: { strCategory: string }) => ({
             label: elem.strCategory,
             value: elem.strCategory,
           }))
-        )
-      )
-      .catch((e) => {
-        //TODO do something to fix
-        console.log(e);
-      });
-    getIngredients()
-      .then((res) =>
-        setIngrdsToSelectState(
-          res.data.map((elem: { strIngredient: string }) => ({
-            label: elem.strIngredient,
-            value: elem.strIngredient,
-          }))
-        )
-      )
-      .catch((e) => {
-        //TODO do something to fix
-        console.log(e);
-      });
-    getAreas()
-      .then((res) =>
+        );
         setAreasState(
-          res.data.map((elem: { strArea: string }) => ({
+          res[1].data.map((elem: { strArea: string }) => ({
             label: elem.strArea,
             value: elem.strArea,
           }))
+        );
+        setIngredientsState(
+          res[2].data.map((elem: { strIngredient: string }) => ({
+            label: elem.strIngredient,
+            value: elem.strIngredient,
+          }))
+        );
+      })
+      .catch((error) =>
+        dispatch(
+          setSnackbar(
+            "Could not fetch filter values from server: " + error.message
+          )
         )
-      )
-      .catch((e) => {
-        //TODO do something to fix
-        console.log(e);
-      });
+      );
+    setTopFavsLoading(true);
+    getTopFavourites()
+      .then((res) => {
+        setTopFavs(res.data);
+        setTopFavsLoading(false);
+      })
+      .catch((error) =>
+        dispatch(
+          setSnackbar(
+            "Could not fetch top favourites from server: " + error.message
+          )
+        )
+      );
   }, []);
 
   function onSearchACB() {
@@ -99,7 +92,12 @@ export default function SearchPresenter({
     setData(null);
     setError(null);
     resolvePromise(
-      filterMeals(category, area, ingredients, query),
+      filterMeals(
+        selectedCategories,
+        selectedAreas,
+        selectedIngredients,
+        query
+      ),
       mealsPromiseState,
       mealPromiseStateChanged
     );
@@ -112,16 +110,6 @@ export default function SearchPresenter({
     if (result.data && result.data.data) setResultsState(result.data.data);
   }
 
-  function handleFavoritesACB(id: string) {
-    // addFavourite(id.toString())
-    //   .then((res: any) => {
-    //     console.log("succesfully added in!");
-    //   })
-    //   .catch((data) => {
-    //     console.log("errrrror");
-    //     setError(data.response?.data?.error.toString());
-    //   });
-  }
   const styles = StyleSheet.create({
     mainContainer: {
       backgroundColor: "#FDFBF7",
@@ -139,14 +127,11 @@ export default function SearchPresenter({
       <SearchView
         categories={categories}
         areas={areas}
-        ingrToSelect={ingredientsToSelect}
-        category={category}
-        area={area}
-        ingredients={ingredients}
+        ingrToSelect={ingredients}
         query={query}
-        onCategorySelected={setCategoryState}
-        onAreaSelected={setAreaState}
-        onIngredientsSelected={setIngredientsState}
+        onCategoriesSelected={setSelectedCategories}
+        onAreasSelected={setSelectedAreas}
+        onIngredientsSelected={setSelectedIngredients}
         onQueryChanged={setQueryState}
         onSearch={onSearchACB}
       ></SearchView>
@@ -162,7 +147,6 @@ export default function SearchPresenter({
             navigation={navigation}
           />
         ))}
-      {/* <RecipePresenter /> */}
     </Flex>
   );
 }
