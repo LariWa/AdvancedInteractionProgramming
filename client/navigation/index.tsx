@@ -36,7 +36,7 @@ import FavouritesPresenter from "../presenters/favourtiesPresenter";
 import GroceryListPresenter from "../presenters/groceryListPresenter";
 import { useDispatch, useSelector } from "react-redux";
 import { setSnackbar } from "../redux";
-import { Octicons } from "@expo/vector-icons";
+import { Octicons } from '@expo/vector-icons';
 
 export default function Navigation({
   colorScheme,
@@ -69,7 +69,6 @@ function RootNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
@@ -108,7 +107,7 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
     >
-      {/* <BottomTab.Screen
+      <BottomTab.Screen
         name="TabOne"
         component={WelcomePresenter}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
@@ -145,16 +144,6 @@ function BottomTabNavigator() {
             </Flex>
           ),
         })}
-      /> */}
-      <BottomTab.Screen
-        name="Search"
-        component={SearchPresenter} //Search
-        options={{
-          title: "Search",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="code" color={color} tabName="Search" />
-          ),
-        }}
       />
       <BottomTab.Screen
         name="Favourties"
@@ -167,12 +156,23 @@ function BottomTabNavigator() {
         }}
         options={{
           title: "Favorites",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="code" color={color} tabName="Favorites" />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} tabName="Favorites"/>,
         }}
       />
-
+      <BottomTab.Screen
+        name="Search"
+        component={user ? SearchPresenter : LoginPresenter} //Search
+        listeners={{
+          tabPress: (e) => {
+            if (!user)
+              dispatch(setSnackbar("Please login to see your grocery list"));
+          },
+        }}
+        options={{
+          title: "Search",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} tabName="Search" />,
+        }}
+      />
       <BottomTab.Screen
         name="Grocery"
         component={user ? GroceryListPresenter : LoginPresenter} //Grocery
@@ -184,9 +184,7 @@ function BottomTabNavigator() {
         }}
         options={{
           title: "Grocery list",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="code" color={color} tabName="Grocery list" />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} tabName="Grocery list"/>,
         }}
       />
     </BottomTab.Navigator>
@@ -199,15 +197,29 @@ function BottomTabNavigator() {
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
-  tabName: string;
+  tabName: string,
+  theme: string,
 }) {
-  if (props.tabName == "Welcome") {
-    return <FontAwesome name="home" size={30} color="black" />;
-  } else if (props.tabName == "Search") {
-    return <Octicons name="search" size={30} color="black" />;
-  } else if (props.tabName == "Favorites") {
-    return <FontAwesome name="heart" size={30} color="black" />;
-  } else if (props.tabName == "Grocery list") {
-    return <MaterialIcons name="local-grocery-store" size={30} color="black" />;
+
+  if(props.theme == 'dark'){
+    if (props.tabName == "Welcome"){
+      return <FontAwesome name = "home" size={30} color="white" />;
+    }else if (props.tabName == "Search"){
+      return <Octicons name = "search" size={30} color="white" />;
+    }else if (props.tabName == "Favorites"){
+      return <FontAwesome name= "heart" size={30} color="white" />;
+    }else if (props.tabName == "Grocery list"){
+      return <MaterialIcons name="local-grocery-store" size={30} color="white" />;
+    }
+  } else{
+    if (props.tabName == "Welcome"){
+      return <FontAwesome name = "home" size={30} color="white" />;
+    }else if (props.tabName == "Search"){
+      return <Octicons name = "search" size={30} color="white" />;
+    }else if (props.tabName == "Favorites"){
+      return <FontAwesome name= "heart" size={30} color="white" />;
+    }else if (props.tabName == "Grocery list"){
+      return <MaterialIcons name="local-grocery-store" size={30} color="white" />;
+    }
   }
 }

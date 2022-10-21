@@ -60,26 +60,49 @@ const styles = StyleSheet.create({
 
 export default function GroceryListView(props: any){
 
+    function onRemoveIngredient(ingredient: any) {
+        props.onRemoveIngredient(ingredient.name);
+    }
+
+    function renderListCB(ingredient: any) {
+        return (
+          <ListItem
+            onPress={() => {
+                props.onRemoveIngredient(ingredient);
+            }}
+            title={ingredient.name}
+            trailing={(props) => (
+              <AntDesign name="minuscircleo" size={24} color="black" />
+            )}
+            
+          />
+        );
+      }
+
     return props.loading ? (
         <ActivityIndicator size="large" color="#00ff00" />
     ) : (
         <ScrollView>
-            <Flex>
-                {props.ingredients}
-                <IconButton
-                    onPress={props.onRemoveIngredient}
-                    icon={() => (
-                <AntDesign name="minuscircleo" size={24} color="black"/>
-            )}
-            />
-        </Flex>
-
+            <Text>What do you need to buy?</Text>
+            <Flex direction="column">
+                <Flex direction="column" style={styles.details}>
+                    <Flex direction="column">
+                    {props.ingredient &&
+                        props.ingredient.map(renderListCB)}
+                    </Flex>
+                </Flex>
+            </Flex>
         </ScrollView>
-
-
     );
 
-    /*function onRemoveIngredient(){
+    /*<IconButton
+        onPress={props.onRemoveIngredient}
+        icon={() => (
+    <AntDesign name="minuscircleo" size={24} color="black"/>
+        )}
+    />
+
+    function onRemoveIngredient(){
         props.onRemove();
     }
     function renderListCB(ingredient: any){

@@ -8,7 +8,7 @@ import {
   Button,
 } from "@react-native-material/core";
 import DishCard from "../components/dishCard";
-import { styles_loginPage } from "./styles";
+//import { styles_loginPage } from "./styles";
 
 export default function FavoritesView(props: any) {
   return (
