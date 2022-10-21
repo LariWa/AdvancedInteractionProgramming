@@ -3,6 +3,7 @@ var { Router } = require("express"); // import router from express
 const User = require("./user"); // import user model
 const bcrypt = require("bcryptjs"); // import bcrypt to hash passwords
 const jwt = require("jsonwebtoken"); // import jwt to sign tokens
+import { Request, Response } from "express";
 
 const router = Router(); // create router to create route bundle
 
@@ -10,19 +11,16 @@ const router = Router(); // create router to create route bundle
 const { SECRET = "secret" } = process.env;
 
 // Signup route to create a new user
-router.post("/signup", async (req, res) => {
+router.post("/signup", async (req: Request, res: Response) => {
   try {
     // hash the password
     req.body.password = await bcrypt.hash(req.body.password, 10);
     // create a new user
     const user = await User.create(req.body);
-    //TODO add validation if user was succesfully created
     const token = await jwt.sign({ username: user.username }, SECRET);
-    console.log(token);
-
     // send new user as response
     res.json(token);
-  } catch (error) {
+  } catch (error: any) {
     if (error.name === "MongoServerError" && error.code === 11000) {
       //There was a duplicate key error
       return res.status(400).json({
@@ -34,7 +32,7 @@ router.post("/signup", async (req, res) => {
 });
 
 // Login route to verify a user and get a token
-router.post("/login", async (req, res) => {
+router.post("/login", async (req: Request, res: Response) => {
   try {
     // check if the user exists
     const user = await User.findOne({ username: req.body.username });

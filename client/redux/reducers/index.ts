@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { favouritesReducer } from "./favouritesReducer";
+import { ingredientsReducer } from "./ingredientsReducer";
 const user = (state = "", action: any) => {
   switch (action.type) {
     case "SET_USER":
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
   token: token,
   user: user,
   favourites: favouritesReducer,
+  ingredients: ingredientsReducer,
   currentRecipe: currentRecipe,
   snackbar: snackbar,
 });

@@ -1,19 +1,15 @@
 import axios from "axios";
+import { NextFunction } from "express";
 import { key, version } from "./mealAPI";
+import express, { Request, Response } from "express";
 var _ = require("lodash");
-const express = require("express");
 const router = express.Router();
 
 axios.defaults.baseURL =
   "https://www.themealdb.com/api/json/" + version + "/" + key + "//";
-// middleware that is specific to this router
-router.use((req, res, next) => {
-  console.log("Time: ", Date.now());
-  next();
-});
-// define the home page route
+
 //gets random meal
-router.get("/randomMeal", (req, res) => {
+router.get("/randomMeal", (req: Request, res: Response) => {
   try {
     axios
       .get("/random.php")
@@ -25,7 +21,7 @@ router.get("/randomMeal", (req, res) => {
 });
 
 //get meal details
-router.post("/mealDetails", (req, res) => {
+router.post("/mealDetails", (req: Request, res: Response) => {
   try {
     axios
       .get("/lookup.php?i=" + req.body.id)
@@ -35,9 +31,9 @@ router.post("/mealDetails", (req, res) => {
     res.status(500).json({ error });
   }
 });
-router.post("/mealsDetails", (req, res) => {
+router.post("/mealsDetails", (req: Request, res: Response) => {
   try {
-    let requests = req.body.ids.map((id) =>
+    let requests = req.body.ids.map((id: string) =>
       axios.get("/lookup.php?i=" + id).then(getMeal)
     );
     axios.all(requests).then((data) => {
@@ -49,7 +45,7 @@ router.post("/mealsDetails", (req, res) => {
 });
 
 //get all meal categories
-router.get("/categories", (req, res) => {
+router.get("/categories", (req: Request, res: Response) => {
   try {
     axios
       .get("/categories.php")
@@ -78,37 +74,59 @@ router.get("/ingredients", (req, res) => {
 });
 
 //gets meals filtered by category, area, ingredients
-router.post("/filterMeals", (req, res) => {
+router.post("/filterMeals", (req: Request, res: Response) => {
   try {
-    let filterPromises = [];
-    if (req.body.categories && req.body.categories.length > 0)
-      req.body.categories.forEach((category) => {
-        filterPromises.push(axios.get("filter.php?c=" + category));
+    const filterPromises: Array<Promise<any>> = [];
+    const categoriesPromises: Array<Promise<any>> = [];
+    const areaPromises: Array<Promise<any>> = [];
+
+    if (req.body.categories && req.body.categories.length > 0) {
+      req.body.categories.forEach((category: string) => {
+        categoriesPromises.push(axios.get("filter.php?c=" + category));
       });
-    if (req.body.areas && req.body.areas.length > 0)
-      req.body.areas.forEach((area) => {
-        filterPromises.push(axios.get("filter.php?a=" + area));
+      filterPromises.push(
+        axios
+          .all(categoriesPromises)
+          .then((res) => res.flatMap((res) => getMeals(res.data)))
+      );
+    }
+    if (req.body.areas && req.body.areas.length > 0) {
+      req.body.areas.forEach((area: string) => {
+        areaPromises.push(axios.get("filter.php?a=" + area));
       });
+      filterPromises.push(
+        axios
+          .all(areaPromises)
+          .then((res) => res.flatMap((res) => getMeals(res.data)))
+      );
+    }
     if (req.body.ingredients && req.body.ingredients.length > 0)
       filterPromises.push(
-        axios.get("filter.php?i=" + req.body.ingredients.toString())
+        axios
+          .get("filter.php?i=" + req.body.ingredients.toString())
+          .then((res) => getMeals(res.data))
       );
     if (req.body.query)
-      filterPromises.push(axios.get("search.php?s=" + req.body.query));
+      filterPromises.push(
+        axios
+          .get("search.php?s=" + req.body.query)
+          .then((res) => getMeals(res.data))
+      );
 
     axios.all(filterPromises).then((response) => {
-      var meals = _.intersectionBy(...response.map(getMeals), "idMeal");
-      var detailsReqs = meals.map((meal) =>
+      var meals = _.intersectionBy(...response, "idMeal");
+      var detailsReqs = meals.map((meal: Meal) =>
         axios.get("/lookup.php?i=" + meal.idMeal).then(getMeal)
       );
       axios.all(detailsReqs).then((mealDetails) => res.send(mealDetails));
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error });
   }
 });
 
-function getMeal(response) {
+function getMeal(response: MealAPIResponse) {
   try {
     if (
       response.data &&
@@ -130,8 +148,14 @@ function getMeal(response) {
     return null;
   }
 }
-function getMeals(response) {
-  return response.data.meals;
+function getMeals(data: { meals: Array<Meal | any> }) {
+  return data.meals;
 }
+type Meal = {
+  idMeal: string;
+};
+type MealAPIResponse = {
+  data: { meals: Array<Meal | any> };
+};
 
 module.exports = router;

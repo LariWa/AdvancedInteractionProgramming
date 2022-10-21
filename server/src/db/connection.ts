@@ -16,7 +16,7 @@ mongoose.connect = mongoose.connect(uri, {
 mongoose.connection
   .on("open", () => console.log("DATABASE STATE", "Connection Open"))
   .on("close", () => console.log("DATABASE STATE", "Connection Open"))
-  .on("error", (error) => console.log("DATABASE STATE", error));
+  .on("error", (error: any) => console.log("DATABASE STATE", error));
 
 // EXPORT CONNECTION
 module.exports = mongoose;

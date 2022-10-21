@@ -1,34 +1,41 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { addIngr, deleteIngr } from "../redux/actions/ingredientsActions";
+import { setSnackbar } from "../redux";
 import GroceryListView from "../views/groceryListView";
-import PromiseNoData from "../views/promiseNoData";
 import { RootTabScreenProps } from "../types";
+import { getGroceries } from "../dbSource";
 
 export default function GroceryListPresenter(
   props: any,
   { navigation }: RootTabScreenProps<"Groceries">
 ) {
-  //const [ingredients, setIngredients] = React.useState(props.meal.ingredients); //React.useState<any>();
-  const [ingredients, setIngredients] = React.useState<any>();
+  const ingredients = useSelector((state: any) => state.ingredients.data);
+  const dispatch = useDispatch<any>();
+  const addedToIngr = useSelector((state: any) =>
+    state.ingredients.data.includes(props.id)
+  );
+  const loading = useSelector((state: any) => state.ingredients.loading);
+  const user = useSelector((state: any) => state.user);
 
-  function observerACB() {
-    setIngredients(props.meal.ingredients);
+  function removeIngredientACB() {
+    if (!user)
+      dispatch(
+        setSnackbar(
+          "Please log in to add your ingredients to the grocery list!"
+        )
+      );
+    else {
+      if (!addedToIngr) dispatch(addIngr(props.id));
+      else dispatch(deleteIngr(props.id));
+    }
   }
 
-  function observerItWasCreatedACB() {
-    observerACB(); //create Object and set props
-    props.meal.addObserver(observerACB); //add the observer to the model
-
-    return function isPutDownACB() {
-      //function to be called when removing the observer
-      props.meal.removeObserver(observerACB);
-    };
-  }
-
-  /*function removeIngredientACB(ingredient){
-        props.meal.removeFromList(ingredient);
-    }*/
-
-  return <GroceryListView></GroceryListView>; //ingredients={props.meal.ingredients}
-  /*onRemove={removeIngredientACB}*/
+  return (
+    <GroceryListView
+      ingredients={props.list}
+      onRemoveIngredient={removeIngredientACB}
+      addedToIngr={addedToIngr}
+    />
+  );
 }

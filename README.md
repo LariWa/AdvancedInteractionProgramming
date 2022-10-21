@@ -1,23 +1,26 @@
 # AdvancedInteractionProgramming - mealApp
+This project was developed as part of the course Advanced Interaction Programming at KTH.
 
-# Run the server
-run `npm run start:dev` to start the server
+This is a Recipe app developed in React Native - browse and search for recipes, find your favourites and create the according shopping list! 
 
-# Run the expo mealApp - client
+The backend was build with Express.js.
 
-In order to run the app ,
+![image](https://user-images.githubusercontent.com/40071882/197187433-dcdd36e7-d566-46f6-9d32-ebc6463d286b.png)
 
-1. `npm run android`
-2. `npm run ios`
-3. `npm run web`
+Webpage : https://lariwa.github.io/AdvancedInteractionProgramming/ 
 
-or android/ios if you want, `npm run android` `npm run ios`
+Android Apk: 
 
-In order to install the app using expo
+Ios:
 
-1. `expo init meal-app`
+### Run the server
+1. `cd server `
+2. `npm install `
+3. `npm run start:dev`
 
-In order to run the expo app (if using expo),
+### Run the expo mealApp - client
+1. `cd client `
+2. `npm install `
+3. `expo start`
 
-1. `expo start`
 

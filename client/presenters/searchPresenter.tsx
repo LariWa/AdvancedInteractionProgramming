@@ -54,16 +54,16 @@ export default function SearchPresenter({
             value: elem.strCategory,
           }))
         );
-        setIngredientsState(
-          res[1].data.map((elem: { strIngredient: string }) => ({
-            label: elem.strIngredient,
-            value: elem.strIngredient,
-          }))
-        );
         setAreasState(
-          res[2].data.map((elem: { strArea: string }) => ({
+          res[1].data.map((elem: { strArea: string }) => ({
             label: elem.strArea,
             value: elem.strArea,
+          }))
+        );
+        setIngredientsState(
+          res[2].data.map((elem: { strIngredient: string }) => ({
+            label: elem.strIngredient,
+            value: elem.strIngredient,
           }))
         );
       })

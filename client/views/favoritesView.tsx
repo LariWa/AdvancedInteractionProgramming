@@ -10,7 +10,6 @@ import {
 import DishCard from "../components/dishCard";
 import { styles_loginPage } from "./styles";
 
-
 export default function FavoritesView(props: any) {
   return (
     <ScrollView>
