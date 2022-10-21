@@ -9,7 +9,7 @@ const styles = (props: any) => StyleSheet.create({
     top: 0,
     width: "100%",
     height: "auto",
-    backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#FDFBF7",
+    backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#F3F2E9",
     // position: "absolute",
     paddingLeft: 10,
     paddingRight: 10,

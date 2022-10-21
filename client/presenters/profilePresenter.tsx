@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { useSelector } from "react-redux";
 import ProfileView from "../views/profileView";
-import {emailToName} from "email-to-name"
 import { useDispatch } from "react-redux";
 import { setUserData,setSnackbar } from "../redux";
 import useColorScheme from "../hooks/useColorScheme";
@@ -21,7 +20,7 @@ export default function ProfilePresenter() {
   }
 
   return <ProfileView 
-  name={emailToName.process(user)} 
+  name={user} 
   loading={loading}
   colorScheme={colorScheme}
   handleLogout={handleLogoutACB}/>;

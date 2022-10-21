@@ -1,7 +1,6 @@
 import { Flex, Text, ListItem, Box, Avatar } from "@react-native-material/core";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import {emailToName} from "email-to-name"
 import { StyleSheet, Image, TextInput, View, Button } from "react-native";
 import { white } from "react-native-paper/lib/typescript/styles/colors";
 
@@ -36,7 +35,7 @@ const styles = (props: any) => StyleSheet.create({
     },
     profile_text:{
         margin: 20,
-        color: "white",
+        color: "grey",
     }
 });
 
@@ -51,7 +50,6 @@ export default function ProfileView(props: any) {
                 title="Logout"
                 // color= {props.colorScheme == "dark" ? "#FDFBF7" : "#FDFBF7"}
                 onPress={props.handleLogout}
-                loading={props.loading}
                 style={styles(props).profile_button}
             />
         </Flex>

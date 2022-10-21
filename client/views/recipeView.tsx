@@ -12,15 +12,11 @@ const styles = (props: any) => StyleSheet.create({
     height: 210,
   },
   details: {
-    position: "absolute",
     width: "100%",
     backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#FDFBF7",
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    height: "auto",
     padding: 20,
-    top: 200,
-    color: "black"
   },
   header: {
     marginTop: 20,
@@ -72,6 +68,9 @@ const styles = (props: any) => StyleSheet.create({
     padding: 5,
     fontSize: 12,
   },
+  mainContianer:{
+    height: "100%"
+  }
 });
 
 export default function RecipeView(props: any) {
@@ -97,7 +96,8 @@ export default function RecipeView(props: any) {
     );
   }
   return (
-    <ScrollView>
+    <View style={styles(props).mainContianer}>
+    <ScrollView vertical={true}>
       <Flex fill direction="column">
         <Image style={styles(props).image} source={{uri:props.recipe.strMealThumb}}></Image>
         <Flex direction="column" style={styles(props).details}>
@@ -124,5 +124,6 @@ export default function RecipeView(props: any) {
         </Flex>
       </Flex>
     </ScrollView>
+    </View>
   );
 }

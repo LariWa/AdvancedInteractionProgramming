@@ -148,7 +148,7 @@ export default function SearchPresenter({
 
 const styles = (colorScheme: any) => StyleSheet.create({
   mainContainer: {
-    backgroundColor: colorScheme == "dark" ? "#18191A" : "#FDFBF7",
+    backgroundColor: colorScheme == "dark" ? "#18191A" : "#F3F2E9",
     padding: 10,
     top: 0,
     width: "100%",

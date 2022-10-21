@@ -20,12 +20,11 @@
  import useColorScheme from "../hooks/useColorScheme";
  import ModalPresenter from "../presenters/modalPresenter";
  import NotFoundScreen from "../views/notFoundView";
+ import WelcomePresenter from "../presenters/welcomePresenter";
  import LoginPresenter from "../presenters/loginPresenter";
  import RegistrationPresenter from "../presenters/registrationPresenter";
  import SearchPresenter from "../presenters/searchPresenter";
- import HeaderPresenter from "../presenters/headerPresenter";
  import RecipePresenter from "../presenters/recipePresenter";
- import ProfilePresenter from "../presenters/profilePresenter";
  import {
    RootStackParamList,
    RootTabParamList,
@@ -37,6 +36,8 @@
  import GroceryListPresenter from "../presenters/groceryListPresenter";
  import { useDispatch, useSelector } from "react-redux";
  import { setSnackbar } from "../redux";
+ import { Octicons } from "@expo/vector-icons";
+import ProfilePresenter from "../presenters/profilePresenter";
  
  export default function Navigation({
    colorScheme,
@@ -69,6 +70,7 @@
          component={BottomTabNavigator}
          options={{ headerShown: false }}
        />
+ 
        <Stack.Screen
          name="NotFound"
          component={NotFoundScreen}
@@ -78,12 +80,9 @@
          name="Favourites"
          component={user != "" ? FavouritesPresenter : LoginPresenter}
        />
-       <Stack.Screen name="Login" component={LoginPresenter}/>
+       <Stack.Screen name="Login" component={LoginPresenter} />
        <Stack.Screen name="Registration" component={RegistrationPresenter} />
        <Stack.Screen name="Recipe" component={RecipePresenter} />
-       <Stack.Screen 
-       name="Profile" 
-       component={user != "" ? ProfilePresenter : LoginPresenter}/>
        <Stack.Group screenOptions={{ presentation: "modal" }}>
          <Stack.Screen name="Modal" component={ModalPresenter} />
        </Stack.Group>
@@ -105,23 +104,29 @@
  
    return (
      <BottomTab.Navigator
-       initialRouteName="Search"
+       initialRouteName="TabOne"
        screenOptions={{
          tabBarActiveTintColor: Colors[colorScheme].tint,
        }}
      >
-       <BottomTab.Screen
+      <BottomTab.Screen
          name="Profile"
          component={user ? ProfilePresenter : LoginPresenter}
-         listeners={{
-           tabPress: (e) => {
-             if (!user)
-               dispatch(setSnackbar("Please login to see your profile"));
-           },
-         }}
          options={{
            title: "Profile",
-           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+           tabBarIcon: ({ color }) => (
+             <TabBarIcon name="code" color={color} tabName="Profile" />
+           ),
+         }}
+       />
+       <BottomTab.Screen
+         name="Search"
+         component={SearchPresenter} //Search
+         options={{
+           title: "Search",
+           tabBarIcon: ({ color }) => (
+             <TabBarIcon name="code" color={color} tabName="Search" />
+           ),
          }}
        />
        <BottomTab.Screen
@@ -135,20 +140,15 @@
          }}
          options={{
            title: "Favorites",
-           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+           tabBarIcon: ({ color }) => (
+             <TabBarIcon name="code" color={color} tabName="Favorites" />
+           ),
          }}
        />
-       <BottomTab.Screen
-         name="Search"
-         component={SearchPresenter} //Search
-         options={{
-           title: "Search",
-           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-         }}
-       />
+ 
        <BottomTab.Screen
          name="Grocery"
-         component={user ? SearchPresenter : LoginPresenter} //Search
+         component={user ? GroceryListPresenter : LoginPresenter} //Grocery
          listeners={{
            tabPress: (e) => {
              if (!user)
@@ -157,7 +157,9 @@
          }}
          options={{
            title: "Grocery list",
-           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+           tabBarIcon: ({ color }) => (
+             <TabBarIcon name="code" color={color} tabName="Grocery list" />
+           ),
          }}
        />
      </BottomTab.Navigator>
@@ -170,6 +172,17 @@
  function TabBarIcon(props: {
    name: React.ComponentProps<typeof FontAwesome>["name"];
    color: string;
+   tabName: string;
  }) {
-   return <MaterialIcons name="tab" size={30} color="black" />;
+   if (props.tabName == "Welcome") {
+     return <FontAwesome name="home" size={30} color="grey" />;
+   } else if (props.tabName == "Search") {
+     return <Octicons name="search" size={30} color="grey" />;
+   } else if (props.tabName == "Favorites") {
+     return <FontAwesome name="heart" size={30} color="grey" />;
+   } else if (props.tabName == "Grocery list") {
+     return <MaterialIcons name="local-grocery-store" size={30} color="grey" />;
+   } else if (props.tabName == "Profile") {
+    return <MaterialIcons name="user" size={30} color="grey" />;
+  }
  }
