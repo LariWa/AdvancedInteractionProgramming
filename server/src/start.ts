@@ -5,6 +5,7 @@ import UserRouter from "./db/UserController"; //import User Routes
 import DataRouter from "./db/DataController"; //import Data Routes
 import fs from "fs";
 const api = require("./api");
+const health = require("./health");
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -22,6 +23,7 @@ app.use(
 //   key: fs.readFileSync("./cert/localhost-key.pem"),
 //   cert: fs.readFileSync("./cert/localhost.pem"),
 // };
+app.use("/health", health);
 app.use("/api", api);
 app.use("/user", UserRouter);
 app.use("/db", DataRouter);
