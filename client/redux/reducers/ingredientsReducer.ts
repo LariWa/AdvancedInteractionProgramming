@@ -39,7 +39,7 @@ export const ingredientsReducer = (
         success: true,
         error: false,
       };
-    case "GET_INGR_SUC":
+    case "GET_INGRS_SUC":
       return {
         data: action.payload,
         loading: false,
