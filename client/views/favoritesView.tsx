@@ -16,7 +16,13 @@ export default function FavoritesView(props: any) {
     <ScrollView>
         <Flex fill>
             {props.results && props.results.map((r: any) => (
-            <DishCard key={r.idMeal} data={r} onSelectedRecipe={props.onSelectedRecipe} handleFavorites={props.handleFavorites}/>
+            <DishCard 
+              key={r.idMeal} 
+              data={r} 
+              onSelectedRecipe={props.onSelectedRecipe} 
+              handleFavorites={props.handleFavorites}
+              colorScheme={props.colorScheme}
+            />
             ))}
         </Flex>
     </ScrollView>

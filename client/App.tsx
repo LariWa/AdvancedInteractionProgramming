@@ -5,6 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
+import HeaderPresenter from "./presenters/headerPresenter";
 import SnackbarPresenter from "./presenters/snackbarPresenter";
 
 export default function App() {

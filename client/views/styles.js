@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles_registrationPage = StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#F4FFDC",
+    // backgroundColor: "#F4FFDC",
     padding: 10,
     top: 0,
     width: "100%",
@@ -42,7 +42,7 @@ export const styles_registrationPage = StyleSheet.create({
     overflow: "hidden",
   },
   mainContainer_button: {
-    backgroundColor: "#314959",
+    // backgroundColor: "#314959",
     width: 155,
     height: 60,
     marginRight: "auto",
@@ -71,7 +71,7 @@ export const styles_registrationPage = StyleSheet.create({
 
 export const styles_loginPage = StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#314959",
+    // backgroundColor: "#314959",
     padding: 10,
     top: 0,
     width: "100%",
@@ -114,7 +114,7 @@ export const styles_loginPage = StyleSheet.create({
     overflow: "hidden",
   },
   mainContainer_button: {
-    backgroundColor: "#A7C6DA",
+    // backgroundColor: "#A7C6DA",
     width: 155,
     height: 60,
     marginRight: "auto",

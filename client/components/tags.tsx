@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet  } from "react-native";
+import { StyleSheet, Text  } from "react-native";
 
 const styles = StyleSheet.create({
     tag:{
@@ -12,6 +12,6 @@ const styles = StyleSheet.create({
 
 export default function Tags(props:string) {
   return (
-    <div style={styles.tag}></div>
+    <Text style={styles.tag}></Text>
   )
 }

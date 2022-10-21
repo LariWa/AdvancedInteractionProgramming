@@ -6,10 +6,9 @@ import Search from "../components/search";
 import Header from "../components/header";
 import DishCardPresenter from "../presenters/dishCardPresenter";
 
-const styles = StyleSheet.create({
+const styles = (props: any) => StyleSheet.create({
   mainContainer: {
     position: "relative",
-    backgroundColor: "#FDFBF7",
     padding: 10,
     // top: 0,
     width: "100%",
@@ -18,7 +17,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   mainContainer_button: {
-    backgroundColor: "var(--dark-blue)",
     width: 155,
     height: 60,
     marginRight: "auto",
@@ -28,7 +26,6 @@ const styles = StyleSheet.create({
     borderRadius: 300,
   },
   mainContainer_filters: {
-    backgroundColor: "white",
     borderRadius: 10,
     padding: 0,
     width: "100%",
@@ -37,29 +34,37 @@ const styles = StyleSheet.create({
   },
   textInput: {
     marginBottom: 10,
-    backgroundColor: "#F3F2E9",
     borderRadius: 10,
     width: "100%",
     height: 45,
     paddingLeft: 10,
     fontStyle: "italic",
   },
+  topRecipes: {
+    backgroundColor: props.colorScheme == "dark" ? "black" : "#8D909B",
+    borderRadius: 30,
+    overflow: 'hidden',
+    height: "auto",
+    color: "white",
+    padding: 20,
+  },
 });
 export default function ResultsView(props: any) {
   return (
-    <ScrollView style={styles.mainContainer}>
+    <ScrollView style={styles(props).mainContainer}>
       <Flex fill>
-        {props.header ? <Text>{props.header}</Text> : null}
+        {props.header ? <Text style={styles(props).topRecipes}>{props.header}</Text> : null}
         {props.loading ? (
           <ActivityIndicator size="large" color="#00ff00" />
         ) : null}
 
-        {props.results.map((r) => (
+        {props.results.map((r: any) => (
           <DishCardPresenter
             key={r.idMeal}
             data={r}
             navigation={props.navigation}
             onClicked={props.onSelectedRecipe}
+            colorScheme={props.colorScheme}
           />
         ))}
       </Flex>

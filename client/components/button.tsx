@@ -1,7 +1,8 @@
 import React from 'react'
+import {Text} from "react-native"
 
 export default function Button() {
   return (
-    <div>B</div>
+    <Text>B</Text>
   )
 }

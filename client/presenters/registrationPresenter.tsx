@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import RegistrationView from "../views/registrationView";
-import ErrorMessage from "../components/errorMessage";
+// import ErrorMessage from "../components/errorMessage";
 import SuccessMessage from "../components/modalMessage";
 import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
 import { setNewUserData } from "../redux";
+import { Button, Snackbar } from 'react-native-paper';
 import * as Yup from "yup";
+import useColorScheme from "../hooks/useColorScheme";
 
 export default function RegistrationPresenter(props: any) {
   const dispatch = useDispatch<any>();
@@ -13,6 +15,7 @@ export default function RegistrationPresenter(props: any) {
   const [status, setStatusState] = useState(false);
   const [error, setError] = useState("");
   const [visibility, setModalVisible] = useState(false);
+  const colorScheme = useColorScheme();
 
   function onRegistrationACB(registerData: {
     email: string;
@@ -57,9 +60,13 @@ export default function RegistrationPresenter(props: any) {
         onLogin={onLoginACB}
         loading={loading}
         signupSchema={SignupSchema}
+        colorScheme={colorScheme}
       ></RegistrationView>
       {error && (
-        <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>
+         <Snackbar
+         duration={200}>
+         Hey there! I'm a Snackbar.
+        </Snackbar>
       )}
       {!error && status && (
         <SuccessMessage

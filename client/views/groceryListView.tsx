@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyleSheet, Image, TextInput, Text, View } from "react-native";
-import { ListItem } from 'react-native-elements'
 import { AntDesign } from '@expo/vector-icons';
 import { Flex, Button } from "@react-native-material/core";
 import DishCard from "../components/dishCard";
@@ -18,26 +17,15 @@ const styles = StyleSheet.create({
         paddingTop: "30px",
         alignContent: "center",
       },
-      mainContainer_button: {
-        backgroundColor: "var(--dark-blue)",
-        width: 155,
-        height: 60,
-        marginRight: "auto",
-        marginLeft: "auto",
-        paddingTop: "10px",
-        paddingBottom: "10px",
-        borderRadius: 300,
-        boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
-      },
-      mainContainer_filters: {
-        backgroundColor: "white",
+      mainContainer__filters: {
+        backgroundColor: "#FFFFFF",
         borderRadius: 10,
         padding: 0,
         width: "100%",
         display: "flex",
         overflowX: "auto",
       },
-      textInput: {
+      mainContainer__textInput: {
         marginBottom: "10px",
         backgroundColor: "#F3F2E9",
         borderRadius: 10,
@@ -55,20 +43,20 @@ export default function GroceryListView(props: any){
             <Text>
                 Your grocery list
             </Text>
-        <div style={styles.mainContainer_filters}>
+        <div style={styles.mainContainer__filters}>
             {/*renderIngredients(ingredients, onRemove)*/}
             <Text>
                     Ingredient1 
             </Text>
             <AntDesign name="minuscircle" size={24} color="black" onPress={props.onRemove} />
         </div>
-        <div style={styles.mainContainer_filters}>
+        <div style={styles.mainContainer__filters}>
             <Text>
                     Ingredient2 
             </Text>
             <AntDesign name="minuscircle" size={24} color="black" onPress={props.onRemove} />
         </div>
-        <div style={styles.mainContainer_filters}>
+        <div style={styles.mainContainer__filters}>
             <Text>
                     Ingredient3
             </Text>

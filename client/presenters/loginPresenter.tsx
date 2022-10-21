@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import LoginView from "../views/loginView";
 import { login } from "../loginSource";
 import { useDispatch } from "react-redux";
-import { setUserData } from "../redux";
+import { setUserData,setSnackbar } from "../redux";
 import ModalMessage from "../components/modalMessage";
+import { Button, Snackbar } from 'react-native-paper';
+import useColorScheme from "../hooks/useColorScheme";
 import * as Yup from "yup";
-import ErrorMessage from "../components/errorMessage";
 
 export default function LoginPresenter(props: any) {
   const dispatch = useDispatch<any>();
+  const colorScheme = useColorScheme();
   const [loading, setLoadingState] = useState(false);
   const [error, setError] = useState();
   const [status, setStatusState] = useState(false);
@@ -21,12 +23,14 @@ export default function LoginPresenter(props: any) {
         setStatusState(true);
         setModalVisible(true);
         setTimeout(() => setModalVisible(false), 3000);
+        dispatch(setSnackbar("You logged in successfully"))
         dispatch(setUserData(loginData.email, res.data.token));
         setLoadingState(false);
         props.navigation.navigate("Search");
       })
       .catch((data) => {
-        setError(data.response.data?.error || data.message);
+        // setError(data.response.data?.error || data.message);
+        dispatch(setSnackbar(data.response.data?.error || data.message))
         setLoadingState(false);
       });
   }
@@ -50,10 +54,9 @@ export default function LoginPresenter(props: any) {
         onNewUser={onRegistrationACB}
         loading={loading}
         signupSchema={SignupSchema}
+        colorScheme={colorScheme}
       ></LoginView>
-      {error && (
-        <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>
-      )}
+
       {!error && status && (
         <ModalMessage
           modalVisible={visibility}

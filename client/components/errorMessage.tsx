@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import {
   Flex,
   Button,
@@ -49,7 +49,7 @@ export default function ErrorView(props: any) {
   return (
     <Flex fill style={styles.errorContainer}>
         <View style={styles.message}>
-            {props.error}
+            <Text> {props.error}</Text>
             <Button
             onPress={handleReturnACB}
             title="Ge back"

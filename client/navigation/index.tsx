@@ -20,11 +20,12 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalPresenter from "../presenters/modalPresenter";
 import NotFoundScreen from "../views/notFoundView";
-import WelcomePresenter from "../presenters/welcomePresenter";
 import LoginPresenter from "../presenters/loginPresenter";
 import RegistrationPresenter from "../presenters/registrationPresenter";
 import SearchPresenter from "../presenters/searchPresenter";
+import HeaderPresenter from "../presenters/headerPresenter";
 import RecipePresenter from "../presenters/recipePresenter";
+import ProfilePresenter from "../presenters/profilePresenter";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -77,9 +78,12 @@ function RootNavigator() {
         name="Favourites"
         component={user != "" ? FavouritesPresenter : LoginPresenter}
       />
-      <Stack.Screen name="Login" component={LoginPresenter} />
+      <Stack.Screen name="Login" component={LoginPresenter}/>
       <Stack.Screen name="Registration" component={RegistrationPresenter} />
       <Stack.Screen name="Recipe" component={RecipePresenter} />
+      <Stack.Screen 
+      name="Profile" 
+      component={user != "" ? ProfilePresenter : LoginPresenter}/>
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalPresenter} />
       </Stack.Group>
@@ -101,48 +105,24 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Search"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
     >
       <BottomTab.Screen
-        name="TabOne"
-        component={WelcomePresenter}
-        options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Welcome",
+        name="Profile"
+        component={user ? ProfilePresenter : LoginPresenter}
+        listeners={{
+          tabPress: (e) => {
+            if (!user)
+              dispatch(setSnackbar("Please login to see your profile"));
+          },
+        }}
+        options={{
+          title: "Profile",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Flex direction="row">
-              <Pressable
-                onPress={() => navigation.navigate("Modal")}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              >
-                <FontAwesome
-                  name="info-circle"
-                  size={25}
-                  color={Colors[colorScheme].text}
-                  style={{ marginRight: 15 }}
-                />
-              </Pressable>
-              <Pressable
-                onPress={() => navigation.navigate("Login")}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              >
-                <FontAwesome
-                  name="sign-in"
-                  size={25}
-                  color={Colors[colorScheme].text}
-                  style={{ marginRight: 15 }}
-                />
-              </Pressable>
-            </Flex>
-          ),
-        })}
+        }}
       />
       <BottomTab.Screen
         name="Favourties"

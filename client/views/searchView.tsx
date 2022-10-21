@@ -4,12 +4,12 @@ import { Flex, Button, HStack } from "@react-native-material/core";
 import DropdownMenu from "../components/dropdownMenu";
 import Header from "../components/header";
 
-const styles = StyleSheet.create({
+const styles = (props: any) => StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#FDFBF7",
     top: 0,
     width: "100%",
     height: "auto",
+    backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#FDFBF7",
     // position: "absolute",
     paddingLeft: 10,
     paddingRight: 10,
@@ -28,24 +28,24 @@ const styles = StyleSheet.create({
     borderRadius: 300,
   },
   mainContainer_filters: {
-    backgroundColor: "white",
     borderRadius: 10,
     marginTop: 10,
     width: "100%",
     display: "flex",
     overflowX: "auto",
   },
-  textInput: {
+  mainContainer__search: {
     marginBottom: 10,
-    backgroundColor: "#F3F2E9",
+    backgroundColor: props.colorScheme == "dark" ? "#2F2F2F" : "#FDFBF7",
+    color: props.colorScheme == "dark" ? "white" : "#2F2F2F",
     borderRadius: 10,
     width: "70%",
     height: 45,
     paddingLeft: 10,
     fontStyle: "italic",
   },
-  searchButton: {
-    backgroundColor: "#314959",
+  mainContainer__button: {
+    backgroundColor: "black",
     borderRadius: 300,
     height: 45,
   },
@@ -55,32 +55,35 @@ export default function SearchView(props: any) {
     props.onSearch();
   }
   return (
-    <View style={styles.mainContainer}>
+    <View style={styles(props).mainContainer}>
       {/* <Header /> */}
       {/* <Text style={styles.mainContainer_h5} >Sign up</Text> */}
       <HStack spacing={6}>
         <TextInput
           placeholder="Search"
-          style={styles.textInput}
+          style={styles(props).mainContainer__search}
           onChangeText={props.onQueryChanged}
         />
-        <Button title="Search" style={styles.searchButton} onPress={onSearch} />
+        <Button title="Search" style={styles(props).mainContainer__button} onPress={onSearch} />
       </HStack>
       <ScrollView horizontal={true}>
-        <Flex direction="row" style={styles.mainContainer_filters}>
+        <Flex direction="row" style={styles(props).mainContainer_filters}>
           <DropdownMenu
             data={props.categories}
             onChange={props.onCategoriesSelected}
+            colorScheme={props.colorScheme}
             searchItem="Categories"
           />
           <DropdownMenu
             data={props.areas}
             onChange={props.onAreasSelected}
+            colorScheme={props.colorScheme}
             searchItem="Areas"
           />
           <DropdownMenu
             data={props.ingrToSelect}
             onChange={props.onIngredientsSelected}
+            colorScheme={props.colorScheme}
             searchItem="Ingredients"
           />
         </Flex>

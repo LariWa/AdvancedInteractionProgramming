@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchView from "../views/searchView";
 import { filterMeals, getAllFilterData } from "../mealSouce";
+import useColorScheme from "../hooks/useColorScheme";
 import resolvePromise from "../resolvePromise";
 import { promiseStateType } from "../types";
 import { RootTabScreenProps } from "../types";
@@ -41,6 +42,8 @@ export default function SearchPresenter({
   const [promise, setPromise] = React.useState<any>();
   const [data, setData] = React.useState<any>();
   const [error, setError] = React.useState<any>();
+
+  const colorScheme = useColorScheme();
 
   React.useEffect(() => {
     getAllFilterData()
@@ -109,21 +112,8 @@ export default function SearchPresenter({
     setError(result.error);
     if (result.data && result.data.data) setResultsState(result.data.data);
   }
-
-  const styles = StyleSheet.create({
-    mainContainer: {
-      backgroundColor: "#FDFBF7",
-      padding: 10,
-      top: 0,
-      width: "100%",
-      height: "100%",
-      position: "absolute",
-      paddingTop: "0px",
-      alignContent: "center",
-    },
-  });
   return (
-    <Flex style={styles.mainContainer}>
+    <Flex style={styles(colorScheme).mainContainer}>
       <SearchView
         categories={categories}
         areas={areas}
@@ -134,19 +124,37 @@ export default function SearchPresenter({
         onIngredientsSelected={setSelectedIngredients}
         onQueryChanged={setQueryState}
         onSearch={onSearchACB}
+        colorScheme={colorScheme}
       ></SearchView>
 
       {promiseNoData(promise, data, error) ||
         (results && results.length > 0 ? (
-          <ResultsView results={results} navigation={navigation} />
+          <ResultsView 
+            results={results} 
+            navigation={navigation} 
+            colorScheme={colorScheme}/>
         ) : (
           <ResultsView
             header="No data was found :( But you can get inspired by the Top Favourites of other users:"
             loading={topFavsLoading}
             results={topFavs}
             navigation={navigation}
+            colorScheme={colorScheme}
           />
         ))}
     </Flex>
   );
 }
+
+const styles = (colorScheme: any) => StyleSheet.create({
+  mainContainer: {
+    backgroundColor: colorScheme == "dark" ? "#18191A" : "#FDFBF7",
+    padding: 10,
+    top: 0,
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    paddingTop: 0,
+    alignContent: "center",
+  },
+});

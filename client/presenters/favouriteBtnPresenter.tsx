@@ -21,6 +21,7 @@ export default function FavouriteBtnPresenter(props: any) {
   }
   return (
     <FavBtnView
+      colorScheme={props.colorScheme}
       loading={loading}
       onClicked={favBtnClickedACB}
       addedToFav={addedToFav}
