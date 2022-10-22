@@ -1,11 +1,11 @@
 import React from "react";
-import { ActivityIndicator } from "react-native";
 import { IconButton } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import Loading from "../components/loading";
 
 export default function FavBtnView(props: any) {
   return props.loading ? (
-    <ActivityIndicator size="large" color="#00ff00" />
+    <Loading />
   ) : (
     <IconButton
       onPress={props.onClicked}
