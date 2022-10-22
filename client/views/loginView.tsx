@@ -59,10 +59,12 @@ export default function LoginView(props: any) {
             </View>
           )}
         </Formik>
-        <Image
-          style={styles(props).maincontainer_image}
-          source={require("../styles/loginImage.png")}
-        ></Image>
+        <View  style={styles(props).maincontainer_image}>
+          <Image
+            style={styles(props).image}
+            source={require("../styles/loginImage.png")}
+          ></Image>
+        </View>
       </Flex>
     </>
   );
@@ -125,12 +127,16 @@ const styles = (props: any) => StyleSheet.create({
     borderRadius: 300,
     boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
   },
-  maincontainer_image: {
+  maincontainer_image:{
     position: "absolute",
     bottom: 0,
-    left: 0,
-    height: "50%",
-    width: "40%",
+    width: "50%",
+    height: "50%"
+  },
+  image:{
+    width: "auto",
+    height: "100%",
+    resizeMode: 'contain',
   },
   error: {
     marginRight: "auto",

@@ -78,10 +78,12 @@ export default function RegistrationView(props: any) {
           )}
         </Formik>
       </View>
-      <Image
-        style={styles(props).maincontainer__image}
-        source={require("../styles/registrationImage.png")}
-      ></Image>
+      <View  style={styles(props).maincontainer_image}>
+          <Image
+            style={styles(props).image}
+            source={require("../styles/registrationImage.png")}
+          ></Image>
+        </View>
     </Flex>
   );
 }
@@ -89,7 +91,6 @@ export default function RegistrationView(props: any) {
 const styles = (props: any) => StyleSheet.create({
   mainContainer: {
     backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#FDFBF7",
-    padding: 10,
     top: 0,
     width: "100%",
     height: "100%",
@@ -141,12 +142,17 @@ const styles = (props: any) => StyleSheet.create({
     boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
     color: "#A7C6DA",
   },
-  maincontainer__image: {
+  maincontainer_image:{
     position: "absolute",
     bottom: 0,
     right: 0,
-    height: "50%",
     width: "50%",
+    height: "50%"
+  },
+  image:{
+    width: "auto",
+    height: "100%",
+    resizeMode: 'contain',
   },
   mainContainer__error: {
     marginRight: "auto",
