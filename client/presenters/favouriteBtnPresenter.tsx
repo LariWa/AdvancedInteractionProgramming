@@ -4,7 +4,10 @@ import { setSnackbar } from "../redux";
 import React from "react";
 import FavBtnView from "../views/favBtnView";
 
-export default function FavouriteBtnPresenter(props: any) {
+export default function FavouriteBtnPresenter(props: {
+  id: string;
+  colorScheme: any;
+}) {
   const dispatch = useDispatch<any>();
   const addedToFav = useSelector((state: any) =>
     state.favourites.data.includes(props.id)
