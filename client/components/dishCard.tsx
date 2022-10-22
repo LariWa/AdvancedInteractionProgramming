@@ -91,10 +91,14 @@ export default function DishCard(props: any) {
   return (
     <TouchableOpacity onPress={props.onSelectedRecipe}>
       <HStack spacing={0} style={styles(props).dishcard}>
-        <Image
+        {props.data.strMealThumb && <Image
           style={styles(props).dishcard__left}
           source={{uri: props.data.strMealThumb}}
-        ></Image>
+        ></Image>}
+         {!props.data.strMealThumb && <Image
+          style={styles(props).dishcard__left}
+          source={require("../styles/notFoundImage.png")}
+        ></Image>}
         <HStack style={styles(props).dishcard__right}>
           <View style={styles(props).dishcard__right__details}>
             <Text style={styles(props).dishcard__right__details__header}>
