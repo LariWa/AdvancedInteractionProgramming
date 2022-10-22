@@ -99,7 +99,14 @@ export default function RecipeView(props: any) {
     <View style={styles(props).mainContianer}>
     <ScrollView vertical={true}>
       <Flex fill direction="column">
-        <Image style={styles(props).image} source={{uri:props.recipe.strMealThumb}}></Image>
+        {props.recipe.strMealThumb && <Image
+          style={styles(props).image}
+          source={{uri:props.recipe.strMealThumb}}
+        ></Image>}
+        {!props.recipe.strMealThumb && <Image
+          style={styles(props).image}
+          source={require("../styles/notFoundImage.png")}
+        ></Image>}
         <Flex direction="column" style={styles(props).details}>
           <View style={styles(props).details_header}>
             <Text style={styles(props).header}>{props.recipe.strMeal}</Text>   
