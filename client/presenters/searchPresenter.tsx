@@ -11,6 +11,7 @@ import { Flex } from "@react-native-material/core";
 import { getTopFavourites } from "../dbSource";
 import { useDispatch } from "react-redux";
 import { setSnackbar } from "../redux";
+import useColorScheme from "../hooks/useColorScheme";
 
 export default function SearchPresenter({
   navigation,
@@ -41,6 +42,7 @@ export default function SearchPresenter({
   const [promise, setPromise] = React.useState<any>();
   const [data, setData] = React.useState<any>();
   const [error, setError] = React.useState<any>();
+  const colorScheme = useColorScheme();
 
   React.useEffect(() => {
     getAllFilterData()
@@ -110,9 +112,10 @@ export default function SearchPresenter({
     if (result.data && result.data.data) setResultsState(result.data.data);
   }
 
-  const styles = StyleSheet.create({
+  const styles = (props: any) => StyleSheet.create({
     mainContainer: {
-      backgroundColor: "#FDFBF7",
+      //backgroundColor: "#FDFBF7",
+      backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#FDFBF7", //this is for the darkmode
       padding: 10,
       top: 0,
       width: "100%",
@@ -134,6 +137,7 @@ export default function SearchPresenter({
         onIngredientsSelected={setSelectedIngredients}
         onQueryChanged={setQueryState}
         onSearch={onSearchACB}
+        colorScheme={colorScheme}
       ></SearchView>
 
       {promiseNoData(promise, data, error) ||

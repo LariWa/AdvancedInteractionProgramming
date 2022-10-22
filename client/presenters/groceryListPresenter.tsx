@@ -7,6 +7,7 @@ import { RootTabScreenProps } from "../types";
 import { getGroceries } from "../dbSource";
 
 export default function GroceryListPresenter() {
+  
   const ingredients = useSelector((state: any) => state.ingredients.data);
 
   return <GroceryListView ingredients={ingredients} />;

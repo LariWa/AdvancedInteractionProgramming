@@ -4,9 +4,10 @@ import { Flex, Button, HStack } from "@react-native-material/core";
 import DropdownMenu from "../components/dropdownMenu";
 import Header from "../components/header";
 
-const styles = StyleSheet.create({
+const styles  = (props: any) => StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#FDFBF7",
+    //backgroundColor: "#FDFBF7",
+    backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#FDFBF7", //this is for the darkmode
     top: 0,
     width: "100%",
     height: "auto",

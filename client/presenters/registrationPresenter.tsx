@@ -6,6 +6,7 @@ import { signup } from "../loginSource";
 import { useDispatch } from "react-redux";
 import { setNewUserData } from "../redux";
 import * as Yup from "yup";
+import useColorScheme from "../hooks/useColorScheme"; 
 
 export default function RegistrationPresenter(props: any) {
   const dispatch = useDispatch<any>();
@@ -13,6 +14,7 @@ export default function RegistrationPresenter(props: any) {
   const [status, setStatusState] = useState(false);
   const [error, setError] = useState("");
   const [visibility, setModalVisible] = useState(false);
+  const colorScheme = useColorScheme();
 
   function onRegistrationACB(registerData: {
     email: string;
@@ -57,6 +59,7 @@ export default function RegistrationPresenter(props: any) {
         onLogin={onLoginACB}
         loading={loading}
         signupSchema={SignupSchema}
+        colorScheme={colorScheme}
       ></RegistrationView>
       {error && (
         <ErrorMessage error={error} onReturn={onReturnACB}></ErrorMessage>

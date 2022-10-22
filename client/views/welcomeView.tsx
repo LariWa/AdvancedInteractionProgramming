@@ -3,12 +3,14 @@ import { Image, StyleSheet } from "react-native";
 import { Flex, Text, Button } from "@react-native-material/core";
 const previewImage = require("../pictures/previewImage.png");
 
-const styles = StyleSheet.create({
+const styles = (props: any) => StyleSheet.create({
     containerOne: {
-        backgroundColor: "#FFFFFF"
+        //backgroundColor: "#FFFFFF"
+        backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#FDFBF7", //this is for the darkmode
     },
-    containerTwo: { 
-        backgroundColor: "#F4FFDC", 
+    containerTwo: {
+        backgroundColor: props.colorScheme == "dark" ? "#18191A" : "#FDFBF7", //this is for the darkmode
+        //backgroundColor: "#F4FFDC", 
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
     },
