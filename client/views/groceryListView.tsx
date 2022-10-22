@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, ScrollView, ActivityIndicator } from "react-native";
-import { ListItem } from 'react-native-elements'
-import { AntDesign } from '@expo/vector-icons';
-import { Flex, Button, IconButton } from "@react-native-material/core";
+// import { ListItem } from 'react-native-elements'
+import { AntDesign } from "@expo/vector-icons";
+import {
+  Flex,
+  Button,
+  IconButton,
+  ListItem,
+} from "@react-native-material/core";
 import DishCard from "../components/dishCard";
 import { getIngredients } from "../mealSouce";
+import GroceryItemPresenter from "../presenters/groceryItemPresenter";
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -19,7 +25,7 @@ const styles = StyleSheet.create({
         paddingTop: "30px",
         alignContent: "center",
       },
-      mainContainer__filters: {
+      mainContainer_button: {
         backgroundColor: "var(--dark-blue)",
         width: 155,
         height: 60,
@@ -46,7 +52,7 @@ const styles = StyleSheet.create({
         display: "flex",
         overflowX: "auto",
       },
-      mainContainer__textInput: {
+      textInput: {
         marginBottom: "10px",
         backgroundColor: "#F3F2E9",
         borderRadius: 10,
@@ -57,51 +63,32 @@ const styles = StyleSheet.create({
       },
 });
 
-
-export default function GroceryListView(props: any){
-
+export default function GroceryListView(props: any) {
+    function renderListCB(ingredient: any) {
+      console.log(ingredient);
+      return (
+        <GroceryItemPresenter
+          ingredient={ingredient}
+          key={ingredient}
+          trailing={() => (
+            <AntDesign name="minuscircleo" size={24} color="black" />
+          )}
+        />
+      );
+    }
+  
     return props.loading ? (
-        <ActivityIndicator size="large" color="#00ff00" />
+      <ActivityIndicator size="large" color="#00ff00" />
     ) : (
-        <ScrollView>
-            <Flex>
-                {props.ingredients}
-                <IconButton
-                    onPress={props.onRemoveIngredient}
-                    icon={() => (
-                <AntDesign name="minuscircleo" size={24} color="black"/>
-            )}
-            />
-        </Flex>
-
-        </ScrollView>
-
-
-    );
-
-    /*function onRemoveIngredient(){
-        props.onRemove();
-    }
-    function renderListCB(ingredient: any){
-        return(
-            <ListItem
-                title={ingredient.name}
-
-            />
-        );
-    }
-
-    return(
-        <ScrollView>
-            <Flex fill direction="column">
-            <Flex direction="column" style={styles.details}>
-            <Text>Your grocery list</Text>
-                <Flex direction="column">
-                    {props.groceryList &&
-                    props.groceryList.map(renderListCB)}
-                </Flex>
-            </Flex> 
+      <ScrollView>
+        <Text>What do you need to buy?</Text>
+        <Flex direction="column">
+          <Flex direction="column" style={styles.details}>
+            <Flex direction="column">
+              {props.ingredients && props.ingredients.map(renderListCB)}
             </Flex>
-        </ScrollView>
-    );*/
+          </Flex>
+        </Flex>
+      </ScrollView>
+    );
 }

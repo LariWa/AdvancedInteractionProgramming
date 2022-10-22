@@ -5,6 +5,7 @@
  */
  import { FontAwesome } from "@expo/vector-icons";
  import { MaterialIcons } from "@expo/vector-icons";
+ import { MaterialCommunityIcons } from '@expo/vector-icons'; 
  import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
  import {
    NavigationContainer,
@@ -20,7 +21,6 @@
  import useColorScheme from "../hooks/useColorScheme";
  import ModalPresenter from "../presenters/modalPresenter";
  import NotFoundScreen from "../views/notFoundView";
- import WelcomePresenter from "../presenters/welcomePresenter";
  import LoginPresenter from "../presenters/loginPresenter";
  import RegistrationPresenter from "../presenters/registrationPresenter";
  import SearchPresenter from "../presenters/searchPresenter";
@@ -174,15 +174,13 @@ import ProfilePresenter from "../presenters/profilePresenter";
    color: string;
    tabName: string;
  }) {
-   if (props.tabName == "Welcome") {
-     return <FontAwesome name="home" size={30} color="grey" />;
-   } else if (props.tabName == "Search") {
+   if (props.tabName == "Search") {
      return <Octicons name="search" size={30} color="grey" />;
    } else if (props.tabName == "Favorites") {
      return <FontAwesome name="heart" size={30} color="grey" />;
    } else if (props.tabName == "Grocery list") {
      return <MaterialIcons name="local-grocery-store" size={30} color="grey" />;
    } else if (props.tabName == "Profile") {
-    return <MaterialIcons name="user" size={30} color="grey" />;
+    return <MaterialCommunityIcons name="face-man-profile" size={30} color="grey" />;
   }
  }
