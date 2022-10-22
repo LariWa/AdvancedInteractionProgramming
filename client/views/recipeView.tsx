@@ -78,6 +78,7 @@ export default function RecipeView(props: any) {
     let Image_Http_URL ={ uri: "https://www.themealdb.com/images/ingredients/"+ ingredient.name +"-Small.png"}
     return (
       <ListItem
+        color="pink"
         style={styles(props).listItem}
         leading={<Image source={Image_Http_URL} style={styles(props).imageIngr}/>}
         title={ingredient.name + ": " + ingredient.quantity}
