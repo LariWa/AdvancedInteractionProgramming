@@ -16,7 +16,6 @@ export default function IngredientItem(props: {
       props.name +
       "-Small.png",
   };
-  console.log(props.colorScheme);
   return (
     <ListItem
       onPress={props.onBtnClicked}

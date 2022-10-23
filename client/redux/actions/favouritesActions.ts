@@ -5,7 +5,6 @@ import store from "../store";
 export const addFav = (id: string) => {
   return async (dispatch: Dispatch<addFav>) => {
     dispatch({ type: "ADD_TO_FAV" });
-    console.log(id);
     addFavourite(id)
       .then(() => dispatch({ type: "ADD_TO_FAV_SUC", payload: id }))
       .catch((error) => {
@@ -21,11 +20,9 @@ export const deleteFav = (id: string) => {
     var favs: Array<string> = store.getState().favourites["data"];
     if (favs.includes(id)) {
       dispatch({ type: "DELETE_FAV" });
-      console.log(id);
       deleteFavourite(id)
         .then(() => dispatch({ type: "DELETE_FAV_SUC", payload: id }))
         .catch((error) => {
-          console.log("error");
           dispatch({
             type: "MANIPULATE_FAV_ERROR",
             payload: error,

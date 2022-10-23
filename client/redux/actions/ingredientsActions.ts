@@ -5,10 +5,8 @@ import store from "../store";
 export const addIngr = (ingredient: any) => {
   return async (dispatch: Dispatch<addIng>) => {
     dispatch({ type: "ADD_TO_INGR" });
-    console.log(ingredient);
     addIngredient(ingredient)
       .then(() => {
-        console.log(ingredient);
         dispatch({ type: "ADD_TO_INGR_SUC", payload: ingredient });
       })
       .catch((error) => {
@@ -24,11 +22,9 @@ export const deleteIngr = (ingredient: any) => {
     var ingrs: Array<string> = store.getState().ingredients["data"];
     if (ingrs.includes(ingredient)) {
       dispatch({ type: "DELETE_INGR" });
-      console.log(ingredient);
       deleteIngredient(ingredient)
         .then(() => dispatch({ type: "DELETE_INGR_SUC", payload: ingredient }))
         .catch((error) => {
-          console.log("error");
           dispatch({
             type: "MANIPULATE_INGR_ERROR",
             payload: error,

@@ -18,7 +18,6 @@ export const favouritesReducer = (
         error: false,
       };
     case "DELETE_FAV_SUC":
-      console.log(action);
       return {
         data: state.data.filter((fav) => fav !== action.payload),
         loading: false,
