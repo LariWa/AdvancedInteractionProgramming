@@ -5,14 +5,24 @@ This is a Recipe app developed in React Native - browse and search for recipes, 
 
 The backend was build with Express.js.
 
-![image](https://user-images.githubusercontent.com/40071882/197187433-dcdd36e7-d566-46f6-9d32-ebc6463d286b.png)
+<img src="https://user-images.githubusercontent.com/40071882/197414786-cddd8f79-71d6-4fb4-be35-4b524a1a803b.png " width="200">
 
-Webpage : https://lariwa.github.io/AdvancedInteractionProgramming/ 
 
-Android Apk: 
+### Webpage 
+https://lariwa.github.io/AdvancedInteractionProgramming/ 
 
-Ios:
+### Android 
+Install apk:
 
+![image](https://user-images.githubusercontent.com/40071882/197414731-bce9602a-e23f-4486-b0e0-06d2e5e510ef.png)
+
+https://expo.dev/accounts/lariwa/projects/meal-app/builds/8c759a3a-45b6-4f70-8722-b663d2f4de5c 
+
+
+### Ios
+
+
+## Run the project locally
 ### Run the server
 1. `cd server `
 2. `npm install `
