@@ -9,6 +9,7 @@ export const setCurrentRecipe = (recipe: any) => ({
   type: "SET_CURRENT_RECIPE",
   payload: recipe,
 });
+
 export const setUserData = (username: string, token: String) => {
   return async (dispatch: Dispatch<setUserData>) => {
     dispatch({
@@ -40,6 +41,22 @@ export const setUserData = (username: string, token: String) => {
           payload: error,
         });
       });
+  };
+};
+export const deleteUserData = () => {
+  return async (dispatch: Dispatch<setUserData>) => {
+    dispatch({
+      type: "SET_TOKEN",
+      payload: null,
+    });
+    dispatch({
+      type: "SET_USER",
+      payload: null,
+    });
+
+    dispatch({ type: "SET_FAVS", payload: [] });
+
+    dispatch({ type: "SET_INGRS", payload: [] });
   };
 };
 export const setNewUserData = (username: string, token: String) => {
@@ -77,7 +94,9 @@ export type setUserData = {
     | "GET_FAVS_SUC"
     | "MANIPULATE_FAV_ERROR"
     | "GET_INGRS_SUC"
-    | "MANIPULATE_INGR_ERROR";
+    | "MANIPULATE_INGR_ERROR"
+    | "SET_FAVS"
+    | "SET_INGRS";
   payload: any;
 };
 export type setSnackbar = {

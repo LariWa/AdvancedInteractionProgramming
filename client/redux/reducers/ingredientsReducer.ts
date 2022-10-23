@@ -32,7 +32,7 @@ export const ingredientsReducer = (
         success: false,
         error: action.payload,
       };
-    case "SET_INGR":
+    case "SET_INGRS":
       return {
         data: action.payload,
         loading: false,
