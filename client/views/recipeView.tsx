@@ -49,8 +49,13 @@ const styles = (props: any) => StyleSheet.create({
     color: props.colorScheme == "dark" ? "white" : "black",
   },
   listItem:{
-    color: props.colorScheme == "dark" ? "#313237" : "#FDFBF7",
-    backgroundColor: props.colorScheme == "dark" ? "#313237" : "#FDFBF7",
+    color: props.colorScheme == "dark" ? "#313237" : "##0548EE",
+    backgroundColor: props.colorScheme == "dark" ? "#313237" : "FDFBF7",
+    borderRadius: 10,
+  },
+  listItemPressed:{
+    color: props.colorScheme == "dark" ? "#0548EE" : "#9BB3EE",
+    backgroundColor: props.colorScheme == "dark" ? "#040507" : "#083EC4",
     borderRadius: 10,
   },
   tags: {
@@ -85,9 +90,10 @@ export default function RecipeView(props: any) {
       <ListItem
         onPress={() => {
           onAddToList(ingredient);
-        }}  
-        color="pink"
-        style={styles(props).listItem}
+        }}
+        color="green"
+        //style={styles(props).listItem}
+        style={styles(props).listItemPressed}
         leading={<Image source={Image_Http_URL} style={styles(props).imageIngr}/>}
 
         title={ingredient.name + ": " + ingredient.quantity}

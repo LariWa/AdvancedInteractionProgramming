@@ -11,68 +11,45 @@ import {
 import DishCard from "../components/dishCard";
 import { getIngredients } from "../mealSouce";
 import GroceryItemPresenter from "../presenters/groceryItemPresenter";
+import { ingredientsReducer } from "../redux/reducers/ingredientsReducer";
 
 
 const styles = (props: any) => StyleSheet.create({
-    mainContainer: {
-        backgroundColor: "#FDFBF7",
-        padding: 10,
-        top: 0,
-        width: "100%",
-        // height: "100%",
-        // position: "absolute",
-        paddingLeft: "50px",
-        paddingRight: "50px",
-        paddingTop: "30px",
-        alignContent: "center",
+      mainContianer:{
+        height: "100%"
       },
-      mainContainer_button: {
-        backgroundColor: "var(--dark-blue)",
-        width: 155,
-        height: 60,
-        marginRight: "auto",
-        marginLeft: "auto",
-        paddingTop: "10px",
-        paddingBottom: "10px",
-        borderRadius: 300,
-        boxShadow: "0px 0px 100px rgba(162, 170, 106, 0.2)",
+      listItem:{
+        color: props.colorScheme == "dark" ? "#313237" : "##0548EE",
+        backgroundColor: props.colorScheme == "dark" ? "#313237" : "FDFBF7",
+        padding: 10,
+      },
+      listItemPressed:{
+        color: props.colorScheme == "dark" ? "#0548EE" : "#9BB3EE",
+        backgroundColor: props.colorScheme == "dark" ? "#040507" : "#083EC4",
+        padding: 10,
       },
       details: {
         width: "100%",
-        backgroundColor: "#FDFBF7",
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
+        //backgroundColor: "#FDFBF7",
+        //background: props.colorScheme == "dark" ? "white" : "black",
+        color: props.colorScheme == "dark" ? "#313237" : "##0548EE",
+        backgroundColor: props.colorScheme == "dark" ? "#313237" : "FDFBF7",
         height: "100%",
-        padding: 20,
-      },
-      mainContainer_filters: {
-        backgroundColor: "white",
-        borderRadius: 10,
-        padding: 0,
-        width: "100%",
-        display: "flex",
-        overflowX: "auto",
-      },
-      textInput: {
-        marginBottom: "10px",
-        backgroundColor: "#F3F2E9",
-        borderRadius: 10,
-        width: "100%",
-        height: 45,
-        paddingLeft: 10,
-        fontStyle: "italic",
+        padding: 10,
       },
       text: {
         fontWeight: "400",
         fontSize: 14,
+        backgroundColor: props.colorScheme == "dark" ? "#313237" : "FDFBF7",
         color: props.colorScheme == "dark" ? "white" : "black",
+        padding: 10,
       },
 });
 
 export default function GroceryListView(props: any) {
     function renderListCB(ingredient: any) {
       return (
-        <GroceryItemPresenter
+        <GroceryItemPresenter style={styles(props).text}
           ingredient={ingredient}
           key={ingredient}
           trailing={() => (
@@ -82,18 +59,18 @@ export default function GroceryListView(props: any) {
       );
     }
   
-    return props.loading ? (
-      <ActivityIndicator size="large" color="#00ff00" />
-    ) : (
-      <ScrollView>
+    return props.ingredients.length > 0 ? (
+      <ScrollView style={styles(props).mainContianer}>
         <Text style={styles(props).text}>What do you need to buy?</Text>
-        <Flex direction="column">
-          <Flex direction="column" style={styles(props).details}>
-            <Flex direction="column">
+        <Flex direction="column" style={styles(props).details}>
+          <Flex direction="column" style={styles(props).listItem}>
+            <Flex direction="column" style={styles(props).listItem}>
               {props.ingredients && props.ingredients.map(renderListCB)}
             </Flex>
           </Flex>
         </Flex>
-      </ScrollView>
+      </ScrollView>    
+    ) : (
+      <Text style={styles(props).text}> The list is empty. Add ingredients to buy!</Text>
     );
 }
