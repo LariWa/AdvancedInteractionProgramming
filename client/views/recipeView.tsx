@@ -38,7 +38,10 @@ const styles = (props: any) =>
       fontSize: 14,
       color: props.colorScheme == "dark" ? "white" : "black",
     },
-
+    imageIngr: {
+      width: 20,
+      height: 20,
+    },
     details_header: {
       display: "flex",
       flexDirection: "row",
@@ -48,7 +51,21 @@ const styles = (props: any) =>
       gap: "auto",
       color: props.colorScheme == "dark" ? "white" : "black",
     },
-
+    /*listItem:{
+    color: props.colorScheme == "dark" ? "#313237" : "#0548EE",
+    backgroundColor: props.colorScheme == "dark" ? "#313237" : "FDFBF7",
+    borderRadius: 10,
+  },*/
+    listItem: {
+      color: props.colorScheme == "dark" ? "black" : "white",
+      backgroundColor: props.colorScheme == "dark" ? "black" : "white",
+      borderRadius: 10,
+    },
+    listItemPressed: {
+      color: props.colorScheme == "dark" ? "#0548EE" : "#9BB3EE",
+      backgroundColor: props.colorScheme == "dark" ? "#040507" : "#083EC4",
+      borderRadius: 10,
+    },
     tags: {
       display: "flex",
       flexDirection: "row",
@@ -64,7 +81,7 @@ const styles = (props: any) =>
       padding: 5,
       fontSize: 12,
     },
-    mainContianer: {
+    mainContainer: {
       height: "100%",
     },
   });
@@ -89,7 +106,7 @@ export default function RecipeView(props: any) {
     );
   }
   return (
-    <View style={styles(props).mainContianer}>
+    <View style={styles(props).mainContainer}>
       <ScrollView vertical={true}>
         <Flex fill direction="column">
           {props.recipe.strMealThumb && (

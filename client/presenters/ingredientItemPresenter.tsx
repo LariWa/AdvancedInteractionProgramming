@@ -16,7 +16,6 @@ export default function IngredientItemPresenter(props: {
   );
   const user = useSelector((state: any) => state.user);
   function btnClickedACB() {
-    console.log("clicked");
     if (!user)
       dispatch(
         setSnackbar("Please log in to add groceries to your shopping list!")

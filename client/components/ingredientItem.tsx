@@ -16,7 +16,7 @@ export default function IngredientItem(props: {
       props.name +
       "-Small.png",
   };
-
+  console.log(props.colorScheme);
   return (
     <ListItem
       onPress={props.onBtnClicked}
@@ -24,7 +24,7 @@ export default function IngredientItem(props: {
       leading={
         <Image source={Image_Http_URL} style={styles(props).imageIngr} />
       }
-      title={props.name + ": " + (props.showQuantity ? props.quantity : "")}
+      title={props.name + (props.showQuantity ? ": " + props.quantity : "")}
       key={props.name}
       trailing={() => (
         <IconButton
@@ -44,8 +44,8 @@ export default function IngredientItem(props: {
 const styles = (props: any) =>
   StyleSheet.create({
     listItem: {
-      color: props.colorScheme == "dark" ? "#313237" : "##0548EE",
-      backgroundColor: props.colorScheme == "dark" ? "#313237" : "FDFBF7",
+      color: props.colorScheme == "dark" ? "black" : "white",
+      backgroundColor: props.colorScheme == "dark" ? "black" : "white",
       borderRadius: 10,
     },
     listItemPressed: {
