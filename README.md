@@ -20,6 +20,10 @@ https://expo.dev/accounts/lariwa/projects/meal-app/builds/8c759a3a-45b6-4f70-872
 
 
 ### Ios
+1. Install the Expo Go App
+2. Scan the QR code
+
+![image](https://user-images.githubusercontent.com/40071882/197416453-bec5467d-4732-4514-beee-940a7ba87c6a.png)
 
 
 ## Run the project locally
