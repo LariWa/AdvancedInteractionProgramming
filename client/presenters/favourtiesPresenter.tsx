@@ -46,6 +46,9 @@ export default function FavouritesPresenter({
   ) : loading ? (
     <Loading />
   ) : (
-    <NoResultsView />
+    <NoResultsView
+      text="You don't have any favourites yet!"
+      colorScheme={colorScheme}
+    />
   );
 }
