@@ -5,12 +5,11 @@ import { setSnackbar } from "../redux";
 import GroceryListView from "../views/groceryListView";
 import { RootTabScreenProps } from "../types";
 import { getGroceries } from "../dbSource";
+import { useColorScheme } from "react-native";
 
 export default function GroceryListPresenter() {
   const ingredients = useSelector((state: any) => state.ingredients.data);
-  return (
-    <GroceryListView
-      ingredients={ingredients}
-    />
-  );
+  const colorScheme = useColorScheme();
+
+  return <GroceryListView ingredients={ingredients} colorScheme={colorScheme}/>
 }

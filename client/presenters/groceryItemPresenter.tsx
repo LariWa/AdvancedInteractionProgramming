@@ -15,7 +15,7 @@ export default function GroceryItemPresenter(props: any) {
   //   );
   //   const loading = useSelector((state: any) => state.ingredients.loading);
 
-  function removeIngredientACB() {
+  function removeIngredientACB() {  
     dispatch(deleteIngr(props.ingredient));
   }
 

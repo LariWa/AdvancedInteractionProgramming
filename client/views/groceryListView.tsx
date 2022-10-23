@@ -12,7 +12,8 @@ import DishCard from "../components/dishCard";
 import { getIngredients } from "../mealSouce";
 import GroceryItemPresenter from "../presenters/groceryItemPresenter";
 
-const styles = StyleSheet.create({
+
+const styles = (props: any) => StyleSheet.create({
     mainContainer: {
         backgroundColor: "#FDFBF7",
         padding: 10,
@@ -61,11 +62,15 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         fontStyle: "italic",
       },
+      text: {
+        fontWeight: "400",
+        fontSize: 14,
+        color: props.colorScheme == "dark" ? "white" : "black",
+      },
 });
 
 export default function GroceryListView(props: any) {
     function renderListCB(ingredient: any) {
-      console.log(ingredient);
       return (
         <GroceryItemPresenter
           ingredient={ingredient}
@@ -81,9 +86,9 @@ export default function GroceryListView(props: any) {
       <ActivityIndicator size="large" color="#00ff00" />
     ) : (
       <ScrollView>
-        <Text>What do you need to buy?</Text>
+        <Text style={styles(props).text}>What do you need to buy?</Text>
         <Flex direction="column">
-          <Flex direction="column" style={styles.details}>
+          <Flex direction="column" style={styles(props).details}>
             <Flex direction="column">
               {props.ingredients && props.ingredients.map(renderListCB)}
             </Flex>

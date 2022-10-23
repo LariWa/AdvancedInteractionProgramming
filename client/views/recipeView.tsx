@@ -74,13 +74,22 @@ const styles = (props: any) => StyleSheet.create({
 });
 
 export default function RecipeView(props: any) {
+
+  function onAddToList(ingredient: any){
+    props.onAddToList(ingredient.name);
+  }
+
   function renderArrayCB(ingredient: any) {
     let Image_Http_URL ={ uri: "https://www.themealdb.com/images/ingredients/"+ ingredient.name +"-Small.png"}
     return (
       <ListItem
+        onPress={() => {
+          onAddToList(ingredient);
+        }}  
         color="pink"
         style={styles(props).listItem}
         leading={<Image source={Image_Http_URL} style={styles(props).imageIngr}/>}
+
         title={ingredient.name + ": " + ingredient.quantity}
         key={ingredient.name}
         trailing={(props) => (
