@@ -94,7 +94,7 @@ export default function RecipeView(props: any) {
         quantity={ingredient.quantity}
         colorScheme={props.colorScheme}
         showQuantity={true}
-        key={ingredient.name}
+        key={ingredient.name + ingredient.quantity}
       />
     );
   }

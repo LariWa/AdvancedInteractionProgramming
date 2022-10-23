@@ -32,7 +32,6 @@ export const setUserData = (username: string, token: String) => {
       });
     getGroceries()
       .then((result) => {
-        console.log(result);
         dispatch({ type: "GET_INGRS_SUC", payload: result.data });
       })
       .catch((error) => {
