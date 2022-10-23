@@ -38,7 +38,8 @@ const styles = (props: any) => StyleSheet.create({
         padding: 10,
       },
       text: {
-        fontWeight: "400",
+        marginTop: 20,
+        fontWeight: "700",
         fontSize: 14,
         backgroundColor: props.colorScheme == "dark" ? "#313237" : "FDFBF7",
         color: props.colorScheme == "dark" ? "white" : "black",
@@ -62,12 +63,8 @@ export default function GroceryListView(props: any) {
     return props.ingredients.length > 0 ? (
       <ScrollView style={styles(props).mainContianer}>
         <Text style={styles(props).text}>What do you need to buy?</Text>
-        <Flex direction="column" style={styles(props).details}>
-          <Flex direction="column" style={styles(props).listItem}>
-            <Flex direction="column" style={styles(props).listItem}>
-              {props.ingredients && props.ingredients.map(renderListCB)}
-            </Flex>
-          </Flex>
+        <Flex direction="column" style={styles(props).listItem}>
+          {props.ingredients && props.ingredients.map(renderListCB)}
         </Flex>
       </ScrollView>    
     ) : (

@@ -48,9 +48,14 @@ const styles = (props: any) => StyleSheet.create({
     gap: "auto",
     color: props.colorScheme == "dark" ? "white" : "black",
   },
-  listItem:{
-    color: props.colorScheme == "dark" ? "#313237" : "##0548EE",
+  /*listItem:{
+    color: props.colorScheme == "dark" ? "#313237" : "#0548EE",
     backgroundColor: props.colorScheme == "dark" ? "#313237" : "FDFBF7",
+    borderRadius: 10,
+  },*/
+  listItem:{
+    color: props.colorScheme == "dark" ? "black" : "white",
+    backgroundColor: props.colorScheme == "dark" ? "black" : "white",
     borderRadius: 10,
   },
   listItemPressed:{
@@ -73,7 +78,7 @@ const styles = (props: any) => StyleSheet.create({
     padding: 5,
     fontSize: 12,
   },
-  mainContianer:{
+  mainContainer:{
     height: "100%"
   }
 });
@@ -91,9 +96,10 @@ export default function RecipeView(props: any) {
         onPress={() => {
           onAddToList(ingredient);
         }}
-        color="green"
+        //color={props.addedToFav ? "red" : "grey"}
         //style={styles(props).listItem}
         style={styles(props).listItemPressed}
+        
         leading={<Image source={Image_Http_URL} style={styles(props).imageIngr}/>}
 
         title={ingredient.name + ": " + ingredient.quantity}
@@ -112,7 +118,7 @@ export default function RecipeView(props: any) {
     );
   }
   return (
-    <View style={styles(props).mainContianer}>
+    <View style={styles(props).mainContainer}>
     <ScrollView vertical={true}>
       <Flex fill direction="column">
         {props.recipe.strMealThumb && <Image
