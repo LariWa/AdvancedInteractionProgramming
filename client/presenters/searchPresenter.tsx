@@ -12,6 +12,8 @@ import { Flex } from "@react-native-material/core";
 import { getTopFavourites } from "../dbSource";
 import { useDispatch } from "react-redux";
 import { setSnackbar } from "../redux";
+import NoResultsView from "../views/noResultsView";
+import ProfilePresenter from "./profilePresenter";
 
 export default function SearchPresenter({
   navigation,
@@ -129,16 +131,22 @@ export default function SearchPresenter({
 
       {promiseNoData(promise, data, error) ||
         (results && results.length > 0 ? (
-          <ResultsView 
-            results={results} 
-            navigation={navigation} 
-            colorScheme={colorScheme}/>
-        ) : (
           <ResultsView
-            header="No data was found :( But you can get inspired by the Top Favourites of other users:"
+            results={results}
+            navigation={navigation}
+            colorScheme={colorScheme}
+          />
+        ) : !promise ? (
+          <ResultsView
+            header="Top Favourites of other users:"
             loading={topFavsLoading}
             results={topFavs}
             navigation={navigation}
+            colorScheme={colorScheme}
+          />
+        ) : (
+          <NoResultsView
+            text={"no recipes found matching your search criteria"}
             colorScheme={colorScheme}
           />
         ))}
@@ -146,15 +154,16 @@ export default function SearchPresenter({
   );
 }
 
-const styles = (colorScheme: any) => StyleSheet.create({
-  mainContainer: {
-    backgroundColor: colorScheme == "dark" ? "#18191A" : "#F3F2E9",
-    padding: 10,
-    top: 0,
-    width: "100%",
-    height: "100%",
-    position: "absolute",
-    paddingTop: 0,
-    alignContent: "center",
-  },
-});
+const styles = (colorScheme: any) =>
+  StyleSheet.create({
+    mainContainer: {
+      backgroundColor: colorScheme == "dark" ? "#18191A" : "#F3F2E9",
+      padding: 10,
+      top: 0,
+      width: "100%",
+      height: "100%",
+      position: "absolute",
+      paddingTop: 0,
+      alignContent: "center",
+    },
+  });
