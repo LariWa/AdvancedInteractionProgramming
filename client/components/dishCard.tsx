@@ -17,7 +17,6 @@ import {
   Wrap,
 } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-import { useDispatch, useSelector } from "react-redux";
 import FavouriteBtnPresenter from "../presenters/favouriteBtnPresenter";
 
 const styles = (props: any) =>
@@ -76,11 +75,6 @@ const styles = (props: any) =>
     },
   });
 export default function DishCard(props: any) {
-  // const addedToFav = useSelector((state: any) =>
-  //   state.favourites.includes(props.idMeal)
-  // );
-  const dispatch = useDispatch<any>();
-
   function renderArrayCB(tag: any) {
     return (
       <Text style={styles(props).dishcard__right__details__tags__tag} key={tag}>
