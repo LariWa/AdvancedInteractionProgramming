@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootTabScreenProps } from "../types";
 
 export default function ModalPresenter() {
+  console.log("ModalPresenter")
   return (
     <>
       <ModalView></ModalView>

@@ -25,6 +25,7 @@
  import RegistrationPresenter from "../presenters/registrationPresenter";
  import SearchPresenter from "../presenters/searchPresenter";
  import RecipePresenter from "../presenters/recipePresenter";
+ import AboutPresenter from "../presenters/aboutPresenter";
  import {
    RootStackParamList,
    RootTabParamList,
@@ -83,9 +84,7 @@ import ProfilePresenter from "../presenters/profilePresenter";
        <Stack.Screen name="Login" component={LoginPresenter} />
        <Stack.Screen name="Registration" component={RegistrationPresenter} />
        <Stack.Screen name="Recipe" component={RecipePresenter} />
-       <Stack.Group screenOptions={{ presentation: "modal" }}>
          <Stack.Screen name="Modal" component={ModalPresenter} />
-       </Stack.Group>
      </Stack.Navigator>
    );
  }
@@ -162,6 +161,17 @@ import ProfilePresenter from "../presenters/profilePresenter";
            ),
          }}
        />
+
+      <BottomTab.Screen
+         name="About"
+         component={AboutPresenter} //Grocery
+         options={{
+          title: "About",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="code" color={color} tabName="About" />
+          ),
+        }}
+       />
      </BottomTab.Navigator>
    );
  }
@@ -182,5 +192,7 @@ import ProfilePresenter from "../presenters/profilePresenter";
      return <MaterialIcons name="local-grocery-store" size={30} color="grey" />;
    } else if (props.tabName == "Profile") {
     return <MaterialCommunityIcons name="face-man-profile" size={30} color="grey" />;
+    } else if (props.tabName == "About") {
+    return <MaterialCommunityIcons name="information" size={30} color="grey" />;
   }
  }
