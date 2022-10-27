@@ -127,6 +127,9 @@ export default function SearchPresenter({
         onQueryChanged={setQueryState}
         onSearch={onSearchACB}
         colorScheme={colorScheme}
+        selectedCategories={selectedCategories}
+        selectedAreas={selectedAreas}
+        selectedIngredients={selectedIngredients}
       ></SearchView>
 
       {promiseNoData(promise, data, error) ||

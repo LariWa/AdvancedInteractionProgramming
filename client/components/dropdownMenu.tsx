@@ -23,11 +23,8 @@ const styles = (props: any) =>
     },
   });
 export default function DropdownMenu(props: any) {
-  const [selected, setSelected] = useState([]);
-
   function onChange(values: any) {
     props.onChange(values);
-    setSelected(values);
   }
   return (
     <MultiSelect
@@ -39,7 +36,7 @@ export default function DropdownMenu(props: any) {
       search={true}
       labelField="label"
       valueField="value"
-      value={selected}
+      value={props.value}
       placeholder={props.searchItem}
       onChange={onChange}
     />
