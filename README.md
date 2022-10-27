@@ -14,16 +14,15 @@ https://lariwa.github.io/AdvancedInteractionProgramming/
 ### Android 
 Install apk:
 
-![image](https://user-images.githubusercontent.com/40071882/197414731-bce9602a-e23f-4486-b0e0-06d2e5e510ef.png)
+![image](https://user-images.githubusercontent.com/40071882/198300003-af79ee13-536b-4aee-af84-146d98c45387.png)
 
-https://expo.dev/accounts/lariwa/projects/meal-app/builds/8c759a3a-45b6-4f70-8722-b663d2f4de5c 
-
+https://expo.dev/accounts/lariwa/projects/meal-app/builds/2e36f88d-a4e8-4387-84a5-48648419ca71
 
 ### Ios
 1. Install the Expo Go App
 2. Scan the QR code
 
-![image](https://user-images.githubusercontent.com/40071882/197416453-bec5467d-4732-4514-beee-940a7ba87c6a.png)
+![image](https://user-images.githubusercontent.com/40071882/198300082-f932189a-483a-4992-89c2-9f785dbcf761.png)
 
 
 ## Run the project locally
