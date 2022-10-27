@@ -90,22 +90,33 @@ export default function SearchPresenter({
         )
       );
   }, []);
-
-  function onSearchACB() {
-    setResultsState([]);
-    setPromise(null);
-    setData(null);
-    setError(null);
-    resolvePromise(
-      filterMeals(
-        selectedCategories,
-        selectedAreas,
-        selectedIngredients,
-        query
-      ),
-      mealsPromiseState,
-      mealPromiseStateChanged
+  function areFiltersSpecified() {
+    return (
+      selectedCategories.length > 0 ||
+      selectedAreas.length > 0 ||
+      selectedIngredients.length > 0 ||
+      query
     );
+  }
+  function onSearchACB() {
+    if (areFiltersSpecified()) {
+      setResultsState([]);
+      setPromise(null);
+      setData(null);
+      setError(null);
+      resolvePromise(
+        filterMeals(
+          selectedCategories,
+          selectedAreas,
+          selectedIngredients,
+          query
+        ),
+        mealsPromiseState,
+        mealPromiseStateChanged
+      );
+    } else {
+      setPromise(null); //show top favourites
+    }
   }
   function mealPromiseStateChanged(result: promiseStateType) {
     setMealsPromiseState(result);
@@ -141,7 +152,7 @@ export default function SearchPresenter({
           />
         ) : !promise ? (
           <ResultsView
-            header="Top Favourites of other users:"
+            header="Please specify search criteria to see relevant recipes! These are the Top Favourites of other users:"
             loading={topFavsLoading}
             results={topFavs}
             navigation={navigation}
