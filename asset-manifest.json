@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/AdvancedInteractionProgramming/static/js/app.6dcab169.chunk.js",
-    "app.js.map": "/AdvancedInteractionProgramming/static/js/app.6dcab169.chunk.js.map",
+    "app.js": "/AdvancedInteractionProgramming/static/js/app.94513ee1.chunk.js",
+    "app.js.map": "/AdvancedInteractionProgramming/static/js/app.94513ee1.chunk.js.map",
     "runtime~app.js": "/AdvancedInteractionProgramming/static/js/runtime~app.2ed6d695.js",
     "runtime~app.js.map": "/AdvancedInteractionProgramming/static/js/runtime~app.2ed6d695.js.map",
-    "static/js/2.375af4d8.chunk.js": "/AdvancedInteractionProgramming/static/js/2.375af4d8.chunk.js",
-    "static/js/2.375af4d8.chunk.js.map": "/AdvancedInteractionProgramming/static/js/2.375af4d8.chunk.js.map",
+    "static/js/2.5d22bf96.chunk.js": "/AdvancedInteractionProgramming/static/js/2.5d22bf96.chunk.js",
+    "static/js/2.5d22bf96.chunk.js.map": "/AdvancedInteractionProgramming/static/js/2.5d22bf96.chunk.js.map",
     "fonts/AntDesign.ttf": "/AdvancedInteractionProgramming/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/AdvancedInteractionProgramming/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/AdvancedInteractionProgramming/./fonts/Feather.ttf",
@@ -25,7 +25,7 @@
     "index.html": "/AdvancedInteractionProgramming/index.html",
     "manifest.json": "/AdvancedInteractionProgramming/manifest.json",
     "serve.json": "/AdvancedInteractionProgramming/serve.json",
-    "static/js/2.375af4d8.chunk.js.LICENSE.txt": "/AdvancedInteractionProgramming/static/js/2.375af4d8.chunk.js.LICENSE.txt",
+    "static/js/2.5d22bf96.chunk.js.LICENSE.txt": "/AdvancedInteractionProgramming/static/js/2.5d22bf96.chunk.js.LICENSE.txt",
     "static/media/loginImage.png": "/AdvancedInteractionProgramming/static/media/loginImage.2f21b2f9.png",
     "static/media/notFoundImage.png": "/AdvancedInteractionProgramming/static/media/notFoundImage.dbae6ccc.png",
     "static/media/notfound.png": "/AdvancedInteractionProgramming/static/media/notfound.d0e990fc.png",
@@ -33,7 +33,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.2ed6d695.js",
-    "static/js/2.375af4d8.chunk.js",
-    "static/js/app.6dcab169.chunk.js"
+    "static/js/2.5d22bf96.chunk.js",
+    "static/js/app.94513ee1.chunk.js"
   ]
 }
